@@ -1,2 +1,2 @@
 Jeung Lee
-jlee3120
+jeunglee@gatech.edu
