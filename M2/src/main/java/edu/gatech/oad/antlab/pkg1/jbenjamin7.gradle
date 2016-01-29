@@ -1,5 +1,5 @@
 //Set a default task, so if you don't provide any, these will be executed.
-defaultTasks   'task1', 'task2'
+defaultTasks   'jar'
 
 //Import a bunch of Java related tasks to help you
 //By default production code should be in src/main/java
@@ -20,46 +20,25 @@ apply plugin: 'pmd'
 
 apply plugin: 'application'
 
-//Define a simple task ourselves
-task hello << {
-   println 'Hello World'
-}
-
-//Define a simple task that depends on another task
-task intro(dependsOn: hello) << {
-   println 'I am gradle'
-}
-
 task runp1(dependsOn:build)<< {
-   mainClassName = "HelloWorld"
-}
-//Define a task
-task task1 << {
-	 String aString = "SomE DiFFerEnt CAse ChARs"
-	 println "Original String: " + aString
-	 println "All Upper: " + aString.toUpperCase()
-}
-
-//Define another task
-task task2 << {
-    println 'Task 2'
+   mainClassName = "AntLabMain"
 }
 
 //set up some variables
 sourceCompatibility = 1.8
 version = '1.0'
-mainClassName='HelloWorld'
+mainClassName='AntLabMain'
 
 //Define the contents of the jar file
 jar  {
   manifest {
      attributes  'Implementation-Title' : 'Gradle Quickstart' ,
                  'Implementation-Version' : version,
-                 'Main-Class' : 'HelloWorld' 
+                 'Main-Class' : 'AntLabMain'
     }
 
     destinationDir = file(".")
-    archiveName = 'hello.jar'
+    archiveName = 'jbenjamin7.jar'
 }
 
 dependencies {
