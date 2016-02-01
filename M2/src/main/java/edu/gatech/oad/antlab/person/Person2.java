@@ -39,7 +39,7 @@ public class Person2 {
             int randPicker = (int)(Math.random()*arr.size());
             out.append(arr.remove(randPicker));
         }
-        return output.toString();
+        return out.toString();
 	}
 	/**
 	 * Return a string rep of this object
