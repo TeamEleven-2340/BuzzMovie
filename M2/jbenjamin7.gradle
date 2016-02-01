@@ -4,7 +4,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 task runp1(dependsOn:build)<< {
-   mainClassName = "AntLabMain"
+    mainClassName = "AntLabMain"
 }
 
 sourceCompatibility = 1.8
@@ -12,17 +12,16 @@ version = '1.0'
 mainClassName='AntLabMain'
 
 jar  {
-  manifest {
-     attributes  'Main-Class' : 'AntLabMain'
+    manifest {
+        attributes  'Main-Class' : 'edu/gatech/oad/antlab/pkg1/AntLabMain' ,
+                    'Class-Path' : '../../lib/resources.jar'
     }
 
-    destinationDir = file(".")
     archiveName = 'jbenjamin7.jar'
 }
 
 sourceSets {
     main.java.srcDir "src/main"
-    main.resources.srcDirs = ["lib/"]
 }
 
 dependencies {
@@ -31,5 +30,5 @@ dependencies {
 }
 
 repositories {
-   mavenCentral()
+    mavenCentral()
 }
