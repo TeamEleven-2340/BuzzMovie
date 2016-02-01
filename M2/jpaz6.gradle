@@ -1,0 +1,28 @@
+//run jar as default task
+defaultTasks   'jar'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+//variable set up
+sourceCompatibility = 1.8
+version = '1.0'
+mainClassName='antLabMain'
+
+
+//contents of jar
+jar  {
+    manifest {
+        attributes 'Implementation-Title': 'Jed Paz Gradle - jpaz6',
+                'Implementation-Version': version,
+                'Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
+                'Class-Path': 'lib/resources.jar'
+    }
+    destinationDir = file(".")
+    archiveName = 'jpaz6.jar'
+}
+
+dependencies {
+    compile files("lib/resources.jar")
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
