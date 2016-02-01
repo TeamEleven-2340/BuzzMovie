@@ -23,11 +23,16 @@ mainClassName='antLabMain'
 //Define the contents of the jar file
 jar  {
     manifest {
-        attributes  'Implementation-Title' : 'Gradle Quickstart' ,
-                'Implementation-Version' : version,
-                    'Main-Class' : 'antLabMain'
+        attributes 'Implementation-Title': 'Younje Do - ydo30',
+                'Implementation-Version': '1.0',
+                'Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
+                'Class-Path': 'lib/resources.jar'
     }
-
     destinationDir = file(".")
     archiveName = 'ydo30.jar'
+}
+
+dependencies {
+    compile files("lib/resources.jar")
+    testCompile group: 'junit', name: 'junit', version: '4.+'
 }
