@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a7a1ff1-3852-4193-b5b7-f6f059a27fe3" name="Default" comment="Merge branch 'master' of https://github.com/TeamEleven-2340/BuzzMovie&#10;&#10;# Please enter a commit message to explain why this merge is necessary,&#10;# especially if it merges an updated upstream into a topic branch.&#10;#&#10;# Lines starting with '#' will be ignored, and an empty message aborts&#10;# the commit.&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg1/AntLab11.java" afterPath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg1/AntLab11.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg1/AntLab12.java" afterPath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg1/AntLab12.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg2/AntLab21.java" afterPath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg2/AntLab21.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg2/AntLab22.java" afterPath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg2/AntLab22.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg1/AntLabMain.java" afterPath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg1/AntLabMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/person/Person1.java" afterPath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/person/Person1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/person/Person2.java" afterPath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/person/Person2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/person/Person3.java" afterPath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/person/Person3.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/person/Person4.java" afterPath="$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/person/Person4.java" />
     </list>
     <ignored path="M2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,9 +34,11 @@
       <file leaf-file-name="AntLabMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg1/AntLabMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.88709676">
-              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.6451613">
+              <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+              <folding>
+                <marker date="1454351743000" expanded="true" signature="149:153" placeholder="/**...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -489,7 +499,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1454351743000" expanded="true" signature="149:153" placeholder="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -497,7 +509,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1454351743000" expanded="true" signature="149:153" placeholder="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -505,7 +519,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1454351743000" expanded="true" signature="149:153" placeholder="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -543,9 +559,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/gatech/oad/antlab/pkg1/AntLabMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.88709676">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.6451613">
+          <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
+          <folding>
+            <marker date="1454351743000" expanded="true" signature="149:153" placeholder="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
