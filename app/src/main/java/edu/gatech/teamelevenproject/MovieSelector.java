@@ -26,6 +26,7 @@ public class MovieSelector extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.logout) {
             Intent back = new Intent(getBaseContext(), MainActivity.class);
+            back.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(back);
         }
 
