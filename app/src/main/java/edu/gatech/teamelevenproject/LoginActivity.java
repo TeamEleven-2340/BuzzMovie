@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.cancel) {
             Intent back = new Intent(getBaseContext(), MainActivity.class);
+            back.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(back);
         }
 
