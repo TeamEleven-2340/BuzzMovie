@@ -42,24 +42,25 @@ public class RegisterActivity extends AppCompatActivity {
             int duration = Toast.LENGTH_SHORT;
             Toast t = Toast.makeText(context, text, duration);
             t.show();
-        }
-        if (rg.handleRegisterRequest(registerNameBox.getText().toString(), registerPassBox.getText().toString())) {
-
-            text = "Register Success!";
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast t = Toast.makeText(context, text, duration);
-            t.show();
-            rg.addUser(registerNameBox.getText().toString(),registerPassBox.getText().toString());
-            Intent i = new Intent(getBaseContext(), MovieSelector.class);
-            startActivity(i);
-
         } else {
-            text = "User already exists!";
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast t = Toast.makeText(context, text, duration);
-            t.show();
+            if (rg.handleRegisterRequest(registerNameBox.getText().toString(), registerPassBox.getText().toString())) {
+
+                text = "Register Success!";
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast t = Toast.makeText(context, text, duration);
+                t.show();
+                rg.addUser(registerNameBox.getText().toString(), registerPassBox.getText().toString());
+                Intent i = new Intent(getBaseContext(), MovieSelector.class);
+                startActivity(i);
+
+            } else {
+                text = "User already exists!";
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast t = Toast.makeText(context, text, duration);
+                t.show();
+            }
         }
     }
 }
