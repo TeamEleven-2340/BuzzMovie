@@ -19,10 +19,14 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="LoginActivity"/>
+            android:label="LoginActivity" />
         <activity
             android:name=".MovieSelector"
             android:label="MovieSelector" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
