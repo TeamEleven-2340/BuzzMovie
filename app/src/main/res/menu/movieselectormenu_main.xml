@@ -8,4 +8,11 @@
         android:title="Log Out"
         app:showAsAction="always" />
 
+    <item
+        android:id = "@+id/profile"
+        android:orderInCategory="200"
+        android:title="View Profile"
+        app:showAsAction = "always"
+        />
+
 </menu>

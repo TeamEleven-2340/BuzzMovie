@@ -35,6 +35,9 @@ public class MovieSelector extends AppCompatActivity {
             int duration = Toast.LENGTH_SHORT;
             Toast t = Toast.makeText(context, text, duration);
             t.show();
+        } else if (id == R.id.profile) {
+            Intent profile = new Intent (getBaseContext(), ProfileActivity.class);
+            startActivity(profile);
         }
 
         return super.onOptionsItemSelected(item);
