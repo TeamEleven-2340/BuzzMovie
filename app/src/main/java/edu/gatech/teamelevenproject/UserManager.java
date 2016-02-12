@@ -23,10 +23,17 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
 
     public boolean handleLoginRequest(String name, String pass) {
         User u = findUserById(name);
-        if (u == null) return false;
-        return u.checkPassword(pass);
+        return u!=null && u.checkPassword(pass);
     }
-
+    public boolean handleRegisterRequest(String name, String pass) {
+        User u = findUserById(name);
+        if (u == null) {
+            return true;
+        }
+        else {
+            return  false;
+        }
+    }
     public UserManager() {
 
     }
