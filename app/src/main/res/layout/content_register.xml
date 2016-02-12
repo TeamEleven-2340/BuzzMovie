@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#1471d4"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="edu.gatech.teamelevenproject.RegisterActivity"
     tools:showIn="@layout/activity_register">
@@ -61,5 +62,13 @@
         android:layout_toRightOf="@+id/passwordTextView"
         android:layout_toEndOf="@+id/passwordTextView"
         android:onClick="OnRegisterClicked" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegisterBuzzLogo"
+        android:src="@drawable/MainBackground"
+        android:layout_below="@+id/RegisterButton"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
