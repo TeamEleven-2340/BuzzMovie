@@ -23,4 +23,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(), LoginActivity.class);
         startActivity(intent);
     }
+    public void onRegistrationButtonClicked(View view) {
+        Intent registerintent = new Intent (getBaseContext(), RegisterActivity.class);
+        startActivity(registerintent);
+    }
 }
