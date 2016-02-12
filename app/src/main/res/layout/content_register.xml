@@ -59,6 +59,7 @@
         android:id="@+id/RegisterButton"
         android:layout_below="@+id/passwordEditText"
         android:layout_toRightOf="@+id/passwordTextView"
-        android:layout_toEndOf="@+id/passwordTextView" />
+        android:layout_toEndOf="@+id/passwordTextView"
+        android:onClick="OnRegisterClicked" />
 
 </RelativeLayout>
