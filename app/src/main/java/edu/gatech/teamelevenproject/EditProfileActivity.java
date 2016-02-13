@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,24 +52,32 @@ public class EditProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.done) {
-            if (emailEditText.getText().toString().contains("@")) {
-                afepa.getCurrentUsername().email = emailEditText.getText().toString();
-            } else {
+            afepa.getCurrentUsername().fullname = nameEditText.getText().toString();
+            if (!(emailEditText.getText().toString().contains("@")) && !(emailEditText.getText().toString().equals(afepa.getCurrentUsername().email))) {
                 String text = "Not a valid email address!";
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;
                 Toast t = Toast.makeText(context, text, duration);
                 t.show();
+            } else {
+                afepa.getCurrentUsername().email = emailEditText.getText().toString();
+                Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+                startActivity(intent);
             }
-            afepa.getCurrentUsername().email = nameEditText.getText().toString();
-            Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
-            startActivity(intent);
-        }
-        if (id == R.id.cancel) {
-            Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
-            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if(keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 
     }

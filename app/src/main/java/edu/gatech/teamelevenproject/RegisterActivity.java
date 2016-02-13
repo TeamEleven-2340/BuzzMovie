@@ -20,15 +20,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     public void OnRegisterClicked(View v) {
@@ -51,6 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast t = Toast.makeText(context, text, duration);
                 t.show();
                 rg.addUser(registerNameBox.getText().toString(), registerPassBox.getText().toString());
+                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                startActivity(intent);
             } else {
                 text = "User already exists!";
                 Context context = getApplicationContext();

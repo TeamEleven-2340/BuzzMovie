@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -36,10 +37,23 @@ public class MovieSelector extends AppCompatActivity {
             Toast t = Toast.makeText(context, text, duration);
             t.show();
         } else if (id == R.id.profile) {
-            Intent profile = new Intent (getBaseContext(), ProfileActivity.class);
+             Intent profile = new Intent (getBaseContext(), ProfileActivity.class);
             startActivity(profile);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if(keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 }

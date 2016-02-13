@@ -36,7 +36,7 @@
         <activity
             android:name=".EditProfileActivity"
             android:noHistory="true"
-            android:label="@string/title_activity_edit_profile"
+            android:label="Edit Profile"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
