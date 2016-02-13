@@ -46,11 +46,13 @@ public class LoginActivity extends AppCompatActivity {
     public void LoginButtonClicked(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
         AuthenticationFacade af = new UserManager();
+        UserManagementFacade uf = new UserManager();
         EditText nameBox = (EditText) findViewById(R.id.idEditText);
         EditText passBox = (EditText) findViewById(R.id.passwordEditText);
         CharSequence text;
         if (af.handleLoginRequest(nameBox.getText().toString(), passBox.getText().toString())) {
-
+            User loggedinUser = uf.findUserById(nameBox.getText().toString());
+            uf.setCurrentUsername(loggedinUser);
             text = "Login Success!";
             Context context = getApplicationContext();
             int duration = Toast.LENGTH_SHORT;
