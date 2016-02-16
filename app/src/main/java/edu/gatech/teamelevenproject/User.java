@@ -2,6 +2,9 @@ package edu.gatech.teamelevenproject;
 
 import android.widget.Toast;
 
+/**
+ * Class that defines the contents of a user.
+ */
 
 public class User {
     String name;
@@ -9,6 +12,11 @@ public class User {
     static String email = "";
     static String fullname = "";
 
+    /**
+     * Creates a user with a name and password.
+     * @param n the user's username
+     * @param p the user's password
+     */
     public User(String n, String p) {
         name = n;
         password = p;

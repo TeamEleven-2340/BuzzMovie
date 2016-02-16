@@ -10,6 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+/**
+ * Class that defines the selection of movies.
+ */
+
 public class MovieSelector extends AppCompatActivity {
 
     @Override

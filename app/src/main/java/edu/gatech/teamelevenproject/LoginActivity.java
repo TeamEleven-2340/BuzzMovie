@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Class that defines the actions that happen during login.
+ */
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -43,6 +47,10 @@ public class LoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Defines what happens during a standard login activity when the login button is clicked.
+     * @param v the current view
+     */
     public void LoginButtonClicked(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
         AuthenticationFacade af = new UserManager();

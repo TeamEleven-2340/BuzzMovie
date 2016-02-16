@@ -12,6 +12,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Class that defines the actions that happen during registration.
+ */
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -22,6 +26,10 @@ public class RegisterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    /**
+     * Defines what happens during a standard registration activity when the registration button is clicked.
+     * @param v the current view
+     */
     public void OnRegisterClicked(View v) {
         EditText registerNameBox = (EditText) findViewById(R.id.IDEditText);
         EditText registerPassBox = (EditText) findViewById(R.id.passwordEditText);

@@ -15,6 +15,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Class that allows the user to edit his or her profile.
+ */
+
 public class EditProfileActivity extends AppCompatActivity {
 
     private String email = "";
@@ -80,4 +84,4 @@ public class EditProfileActivity extends AppCompatActivity {
         return false;
     }
 
-    }
+}
