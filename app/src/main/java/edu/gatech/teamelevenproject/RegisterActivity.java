@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText registerPassBox = (EditText) findViewById(R.id.passwordEditText);
         UserManagementFacade rg = new UserManager();
         CharSequence text;
+
         if (registerPassBox.getText().toString().equals("") || registerNameBox.getText().toString().equals("")) {
             text = "No Username or Password Entered!";
             Context context = getApplicationContext();
@@ -43,7 +44,6 @@ public class RegisterActivity extends AppCompatActivity {
             t.show();
         } else {
             if (rg.handleRegisterRequest(registerNameBox.getText().toString(), registerPassBox.getText().toString())) {
-
                 text = "Register Success!";
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;

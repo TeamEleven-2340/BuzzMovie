@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText nameBox = (EditText) findViewById(R.id.idEditText);
         EditText passBox = (EditText) findViewById(R.id.passwordEditText);
         CharSequence text;
+
         if (af.handleLoginRequest(nameBox.getText().toString(), passBox.getText().toString())) {
             User loggedinUser = uf.findUserById(nameBox.getText().toString());
             uf.setCurrentUsername(loggedinUser);
@@ -68,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
             t.show();
             Intent i = new Intent(getBaseContext(), MovieSelector.class);
             startActivity(i);
-
         } else {
             text = "Login Failure!";
             Context context = getApplicationContext();

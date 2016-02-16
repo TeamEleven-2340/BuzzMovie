@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates an instance of the login activity.
-     *
      * @param view the current view
      */
     public void onLoginButtonClicked(View view) {
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates an instance of the registration activity.
-     *
      * @param view the current view
      */
     public void onRegistrationButtonClicked(View view) {

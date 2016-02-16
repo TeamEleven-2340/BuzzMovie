@@ -44,7 +44,6 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     public void addUser(String name, String pass) {
         User user = new User(name, pass);
         users.put(name, user);
-
     }
 
     /**
@@ -56,7 +55,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      */
     public boolean handleLoginRequest(String name, String pass) {
         User u = findUserById(name);
-        return u!=null && u.checkPassword(pass);
+        return u != null && u.checkPassword(pass);
     }
 
     /**
@@ -68,12 +67,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      */
     public boolean handleRegisterRequest(String name, String pass) {
         User u = findUserById(name);
-        if (u == null) {
-            return true;
-        }
-        else {
-            return  false;
-        }
+        return u == null;
     }
 
     /**

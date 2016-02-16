@@ -16,7 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Class that allows the user to edit his or her profile.
+ * Class that allows the user to edit his or her profile, which contains the users email,
+ * username, and full name.
  */
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class EditProfileActivity extends AppCompatActivity {
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         email = afepa.getCurrentUsername().email;
-        name =afepa.getCurrentUsername().name;
+        name = afepa.getCurrentUsername().name;
         fullname = afepa.getCurrentUsername().fullname;
         emailEditText.setText(email);
         usernamedisplay.setText(name);
@@ -57,7 +58,8 @@ public class EditProfileActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.done) {
             afepa.getCurrentUsername().fullname = nameEditText.getText().toString();
-            if (!(emailEditText.getText().toString().contains("@")) && !(emailEditText.getText().toString().equals(afepa.getCurrentUsername().email))) {
+            if (!(emailEditText.getText().toString().contains("@"))
+                    && !(emailEditText.getText().toString().equals(afepa.getCurrentUsername().email))) {
                 String text = "Not a valid email address!";
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;
@@ -75,8 +77,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
-        if(keyCode == KeyEvent.KEYCODE_BACK)
-        {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
             startActivity(intent);
             return true;

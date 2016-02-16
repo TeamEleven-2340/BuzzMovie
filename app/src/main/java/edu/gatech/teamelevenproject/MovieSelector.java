@@ -31,6 +31,7 @@ public class MovieSelector extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.logout) {
             Intent back = new Intent(getBaseContext(), MainActivity.class);
             back.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
@@ -51,8 +52,7 @@ public class MovieSelector extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
-        if(keyCode == KeyEvent.KEYCODE_BACK)
-        {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(intent);
