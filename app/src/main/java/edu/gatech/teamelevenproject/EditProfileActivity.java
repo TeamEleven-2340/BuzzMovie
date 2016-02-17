@@ -25,8 +25,12 @@ public class EditProfileActivity extends AppCompatActivity {
     private String email = "";
     private String name = "";
     private String fullname = "";
+    private String major = "";
+    private String interest = "";
     EditText nameEditText;
     EditText emailEditText;
+    EditText majorEditText;
+    EditText interestEditText;
     UserManagementFacade afepa = new UserManager();
 
     @Override
@@ -38,12 +42,18 @@ public class EditProfileActivity extends AppCompatActivity {
         TextView usernamedisplay = (TextView) findViewById(R.id.usernamedisplayText);
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
+        majorEditText = (EditText) findViewById(R.id.majorEditText);
+        interestEditText = (EditText) findViewById(R.id.interestEditText);
         email = afepa.getCurrentUsername().email;
         name = afepa.getCurrentUsername().name;
         fullname = afepa.getCurrentUsername().fullname;
+        interest = afepa.getCurrentUsername().interest;
+        major = afepa.getCurrentUsername().major;
         emailEditText.setText(email);
         usernamedisplay.setText(name);
         nameEditText.setText(fullname);
+        majorEditText.setText(major);
+        interestEditText.setText(interest);
     }
 
     @Override
@@ -58,6 +68,8 @@ public class EditProfileActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.done) {
             afepa.getCurrentUsername().fullname = nameEditText.getText().toString();
+            afepa.getCurrentUsername().interest = interestEditText.getText().toString();
+            afepa.getCurrentUsername().major = majorEditText.getText().toString();
             if (!(emailEditText.getText().toString().contains("@"))
                     && !(emailEditText.getText().toString().equals(afepa.getCurrentUsername().email))) {
                 String text = "Not a valid email address!";

@@ -11,6 +11,9 @@ public class User {
     String password;
     static String email = "";
     static String fullname = "";
+    static boolean banStatus = false;
+    static String major = "";
+    static String interest = "";
 
     /**
      * Creates a user with a name and password.
