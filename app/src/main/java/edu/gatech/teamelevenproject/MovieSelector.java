@@ -2,24 +2,47 @@ package edu.gatech.teamelevenproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 
 /**
  * Class that defines the selection of movies.
  */
 
+
 public class MovieSelector extends AppCompatActivity {
+
+    private RequestQueue queue;
+    private String response;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_selector);
+        queue = Volley.newRequestQueue(this);
     }
 
     @Override
@@ -48,6 +71,73 @@ public class MovieSelector extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void onGetMovie(View view) {
+        String url = "http://www.omdbapi.com/?s=men&type=movie&y=&plot=short&r=json";
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject resp) {
+                        //handle a valid response coming back.  Getting this string mainly for debug
+                        response = resp.toString();
+                        //printing first 500 chars of the response.  Only want to do this for debug
+                        //TextView view = (TextView) findViewById(R.id.textView2);
+                        //view.setText(response.substring(0, 500));
+
+                        //Now we parse the information.  Looking at the format, everything encapsulated in RestResponse object
+                        JSONObject obj1 = null;
+
+                        obj1 = resp;
+
+                        assert obj1 != null;
+                        //From that object, we extract the array of actual data labeled result
+                        JSONArray array = obj1.optJSONArray("Search");
+                        ArrayList<edu.gatech.teamelevenproject.State> states = new ArrayList<>();
+                        for(int i=0; i < array.length(); i++) {
+
+                            try {
+                                //for each array element, we have to create an object
+                                JSONObject jsonObject = array.getJSONObject(i);
+                                State s = new State();
+                                assert jsonObject != null;
+                                s.setName(jsonObject.optString("Title"));
+                                s.setA2Code(jsonObject.optString("year"));
+                                s.setA3Code(jsonObject.optString("rated"));
+                                //save the object for later
+                                states.add(s);
+
+
+                            } catch (JSONException e) {
+                                Log.d("VolleyApp", "Failed to get JSON object");
+                                e.printStackTrace();
+                            }
+                        }
+                        //once we have all data, then go to list screen
+                        changeView(states);
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        response = "JSon Request Failed!!";
+                        //show error on phone
+                        //TextView view = (TextView) findViewById(R.id.textView2);
+                        //view.setText(response);
+                    }
+                });
+        //this actually queues up the async response with Volley
+        queue.add(jsObjRequest);
+    }
+
+    private void changeView(ArrayList<edu.gatech.teamelevenproject.State> states) {
+        Intent intent = new Intent(this, ItemListActivity.class);
+        //this is where we save the info.  note the State object must be Serializable
+        intent.putExtra("states", states);
+        startActivity(intent);
+    }
+
+
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
