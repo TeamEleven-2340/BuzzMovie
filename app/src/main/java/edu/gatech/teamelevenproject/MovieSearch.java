@@ -2,7 +2,6 @@ package edu.gatech.teamelevenproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,7 +9,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -32,22 +31,24 @@ import java.util.ArrayList;
  */
 
 
-public class MovieSelector extends AppCompatActivity {
+public class MovieSearch extends AppCompatActivity {
 
     private RequestQueue queue;
     private String response;
-
+    private String searchTerm;
+    private EditText searcheditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_selector);
+        setContentView(R.layout.activity_movie_search);
         queue = Volley.newRequestQueue(this);
+        searcheditText = ((EditText) findViewById(R.id.searcheditText));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.movieselectormenu_main, menu);
+        getMenuInflater().inflate(R.menu.moviesearchmenu_main, menu);
         return true;
     }
 
@@ -73,7 +74,26 @@ public class MovieSelector extends AppCompatActivity {
     }
 
     public void onGetMovie(View view) {
-        String url = "http://www.omdbapi.com/?s=men&type=movie&y=&plot=short&r=json";
+        searchTerm = searcheditText.getText().toString();
+        int count = 1;
+        String a = "";
+        ArrayList<String> terms = new ArrayList<>();
+        while (count <= searchTerm.length()) {
+            for (int i = 0; i < searchTerm.length(); i++) {
+                if (searchTerm.charAt(i) != ' ') {
+                    a = a + searchTerm.charAt(i);
+                    count++;
+                } else {
+                    terms.add(a);
+                    count++;
+                }
+            }
+        }
+        String combinedterms = terms.get(0);
+        for (int i = 1; i < terms.size(); i++) {
+            combinedterms += "+" + terms.get(i);
+        }
+        String url = "http://www.omdbapi.com/?s=" + combinedterms + "&type=movie&y=&plot=short&r=json";
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override

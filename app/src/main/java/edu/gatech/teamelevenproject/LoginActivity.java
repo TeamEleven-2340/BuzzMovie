@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             int duration = Toast.LENGTH_SHORT;
             Toast t = Toast.makeText(context, text, duration);
             t.show();
-            Intent i = new Intent(getBaseContext(), MovieSelector.class);
+            Intent i = new Intent(getBaseContext(), MovieSearch.class);
             startActivity(i);
         } else {
             text = "Login Failure!";
