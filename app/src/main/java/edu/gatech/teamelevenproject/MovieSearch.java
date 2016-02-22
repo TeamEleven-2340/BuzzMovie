@@ -112,28 +112,37 @@ public class MovieSearch extends AppCompatActivity {
                         assert obj1 != null;
                         //From that object, we extract the array of actual data labeled result
                         JSONArray array = obj1.optJSONArray("Search");
-                        ArrayList<edu.gatech.teamelevenproject.State> states = new ArrayList<>();
-                        for(int i=0; i < array.length(); i++) {
+                        if (array != null) {
+                            ArrayList<edu.gatech.teamelevenproject.State> states = new ArrayList<>();
+                            for (int i = 0; i < array.length(); i++) {
 
-                            try {
-                                //for each array element, we have to create an object
-                                JSONObject jsonObject = array.getJSONObject(i);
-                                State s = new State();
-                                assert jsonObject != null;
-                                s.setName(jsonObject.optString("Title"));
-                                s.setA2Code(jsonObject.optString("year"));
-                                s.setA3Code(jsonObject.optString("rated"));
-                                //save the object for later
-                                states.add(s);
+                                try {
+                                    //for each array element, we have to create an object
+                                    JSONObject jsonObject = array.getJSONObject(i);
+                                    State s = new State();
+                                    assert jsonObject != null;
+                                    s.setName(jsonObject.optString("Title"));
+                                    s.setA2Code(jsonObject.optString("year"));
+                                    s.setA3Code(jsonObject.optString("rated"));
+                                    //save the object for later
+                                    states.add(s);
 
 
-                            } catch (JSONException e) {
-                                Log.d("VolleyApp", "Failed to get JSON object");
-                                e.printStackTrace();
+                                } catch (JSONException e) {
+                                    Log.d("VolleyApp", "Failed to get JSON object");
+                                    e.printStackTrace();
+                                }
                             }
+
+                            //once we have all data, then go to list screen
+                            changeView(states);
+                        } else {
+                            String text = "No Movies with the search term were found!";
+                            Context context = getApplicationContext();
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast t = Toast.makeText(context, text, duration);
+                            t.show();
                         }
-                        //once we have all data, then go to list screen
-                        changeView(states);
                     }
                 }, new Response.ErrorListener() {
 
