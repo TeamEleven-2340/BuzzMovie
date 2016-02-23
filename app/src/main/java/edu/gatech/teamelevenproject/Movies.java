@@ -8,10 +8,10 @@ import java.util.Map;
 /**
  *
  */
-public class States {
+public class Movies {
 
     /**
-     * An array of State objects.
+     * An array of Movie objects.
      */
     public static final List<Movie> ITEMS = new ArrayList<>();
 
@@ -20,18 +20,14 @@ public class States {
      */
     public static final Map<String, Movie> ITEM_MAP = new HashMap<>();
 
+    /**
+     * Add items to Movies array
+     * @param item
+     */
+
     public static void addItem(Movie item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.getName(), item);
-    }
-
-    private static String makeDetails(int position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Details about State: ").append(position);
-        for (int i = 0; i < position; i++) {
-            builder.append("\nMore details information here.");
-        }
-        return builder.toString();
     }
 
 }

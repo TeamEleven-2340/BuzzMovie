@@ -38,7 +38,7 @@ public class ItemListActivity extends AppCompatActivity {
 
 
         for (Movie s : states) {
-            States.addItem(s);
+            Movies.addItem(s);
             arrayAdapter.add(s.toString());
         }
         lv.setAdapter(arrayAdapter);
