@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * This class puts group of movies into an array called Movies.
  */
 public class Movies {
 
