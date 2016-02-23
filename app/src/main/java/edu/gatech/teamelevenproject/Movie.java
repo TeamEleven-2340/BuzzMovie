@@ -3,7 +3,7 @@ package edu.gatech.teamelevenproject;
 import java.io.Serializable;
 
 /**
- * Class that defines what a movie is.
+ * Class defines a movie to have a name and a year in which it was released.
  * Created by robertwaters on 2/13/16.
  */
 public class Movie implements Serializable {

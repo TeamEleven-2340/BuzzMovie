@@ -25,10 +25,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
 /**
- * Class that defines the selection of movies.
+ * MovieSearch defines the selection of movies.
  */
+
 public class MovieSearch extends AppCompatActivity {
 
     private RequestQueue queue;

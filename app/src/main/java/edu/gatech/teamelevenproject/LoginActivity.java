@@ -13,9 +13,8 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.Volley;
 
-
 /**
- * Class that defines the actions that happen during login.
+ * LoginActivity defines the actions that happen during login.
  */
 
 public class LoginActivity extends AppCompatActivity {

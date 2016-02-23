@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 /**
- * Class that defines the actions that happen during the visitation of a user's profile.
+ * ProfileActivity defines the actions that happen during the visitation of a user's profile.
  */
 
 public class ProfileActivity extends AppCompatActivity {

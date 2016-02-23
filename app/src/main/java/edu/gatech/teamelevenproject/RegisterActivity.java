@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * Class that defines the actions that happen during registration.
+ * RegisterActivity defines the actions that happen during registration.
  */
 
 public class RegisterActivity extends AppCompatActivity {
