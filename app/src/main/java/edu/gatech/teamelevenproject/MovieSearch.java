@@ -29,8 +29,6 @@ import java.util.ArrayList;
 /**
  * Class that defines the selection of movies.
  */
-
-
 public class MovieSearch extends AppCompatActivity {
 
     private RequestQueue queue;
@@ -167,15 +165,16 @@ public class MovieSearch extends AppCompatActivity {
         queue.add(jsObjRequest);
     }
 
+    /**
+     * Change the view,
+     * @param states
+     */
     private void changeView(ArrayList<edu.gatech.teamelevenproject.Movie> states) {
         Intent intent = new Intent(this, ItemListActivity.class);
         //this is where we save the info.  note the State object must be Serializable
         intent.putExtra("states", states);
         startActivity(intent);
     }
-
-
-
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
