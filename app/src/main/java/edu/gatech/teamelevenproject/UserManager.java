@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class that handles the database of the registered users.
+ * UserManager handles the database of the registered users.
  */
 
 public class UserManager implements AuthenticationFacade, UserManagementFacade {

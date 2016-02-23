@@ -15,8 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ItemListActivity which displays the lists of movies that a user searched for
+ * ItemListActivity displays the lists of movies that a user searched for.
  */
+
 public class ItemListActivity extends AppCompatActivity {
 
     private List<Movie> states;
@@ -44,10 +45,4 @@ public class ItemListActivity extends AppCompatActivity {
         lv.setAdapter(arrayAdapter);
 
     }
-
-
-
-
-
-
 }
