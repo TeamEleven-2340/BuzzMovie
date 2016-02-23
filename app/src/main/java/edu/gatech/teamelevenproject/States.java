@@ -13,14 +13,14 @@ public class States {
     /**
      * An array of State objects.
      */
-    public static final List<State> ITEMS = new ArrayList<>();
+    public static final List<Movie> ITEMS = new ArrayList<>();
 
     /**
      * A map of states  by Name.
      */
-    public static final Map<String, State> ITEM_MAP = new HashMap<>();
+    public static final Map<String, Movie> ITEM_MAP = new HashMap<>();
 
-    public static void addItem(State item) {
+    public static void addItem(Movie item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.getName(), item);
     }
