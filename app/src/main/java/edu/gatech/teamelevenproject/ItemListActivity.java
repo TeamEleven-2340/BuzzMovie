@@ -57,6 +57,13 @@ public class ItemListActivity extends AppCompatActivity {
         }
         lv.setAdapter(arrayAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * Sets what happens when an item in the listview is clicked
+             * @param parent the view that the listview is using
+             * @param view the current view
+             * @param position position on the array
+             * @param id id of the each item
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Movie selectedMovie = movies.get(position);
