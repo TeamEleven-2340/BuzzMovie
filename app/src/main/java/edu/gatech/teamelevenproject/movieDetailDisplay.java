@@ -43,6 +43,10 @@ public class movieDetailDisplay extends AppCompatActivity {
         ratingView.setText(rating);
     }
 
+    /**
+     * Update the rating of the movie as the user inputs a rate
+     * @param v the current view
+     */
     public void onRateButtonClicked(View v) {
         float rating = ratingBar.getRating();
         float currentRating = movie.getRating() * movie.getPeopleRated();
