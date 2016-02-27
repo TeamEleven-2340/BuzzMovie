@@ -1,5 +1,7 @@
 package edu.gatech.teamelevenproject;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -10,6 +12,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +34,10 @@ import java.util.List;
 
 public class ItemListActivity extends AppCompatActivity {
 
-    private List<Movie> states;
+    private List<Movie> movies;
     private ListView lv;
+    private RequestQueue queue;
+    private String response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,20 +45,63 @@ public class ItemListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        queue = Volley.newRequestQueue(this);
         lv = (ListView) findViewById(R.id.content);
-        List<String> your_array_list = new ArrayList<String>();
-        your_array_list.add("foo");
-        your_array_list.add("bar");
-        states = (List<Movie>) getIntent().getSerializableExtra("states");
+        movies = (List<Movie>) getIntent().getSerializableExtra("movies");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.item_name);
 
 
-        for (Movie s : states) {
+        for (Movie s : movies) {
             Movies.addItem(s);
             arrayAdapter.add(s.toString());
         }
         lv.setAdapter(arrayAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Movie selectedMovie = movies.get(position);
+                String title = selectedMovie.getName();
+                title = title.replace(' ', '+');
+                String url = "http://www.omdbapi.com/?t=" + title + "&type=movie&y=&plot=short&r=json";
+                JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject resp) {
+                                JSONObject obj1 = resp;
+                                if (obj1 != null) {
+                                    Log.d("ZQWE", "ZQWE");
+                                    Movie s = new Movie();
+                                    assert obj1 != null;
+                                    s.setName(obj1.optString("Title"));
+                                    s.setGenre(obj1.optString("Genre"));
+                                    s.setLength(obj1.optString("Runtime"));
+                                    s.setReleased(obj1.optString("Released"));
+                                    s.setActors(obj1.optString("Actors"));
+                                    changeView(s);
+                                } else {
+                                    String text = "No Movies with the search term were found!";
+                                    Context context = getApplicationContext();
+                                    int duration = Toast.LENGTH_SHORT;
+                                    Toast t = Toast.makeText(context, text, duration);
+                                    t.show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
 
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                String response = "JSon Request Failed!!";
+                            }
+                        });
+                //this actually queues up the async response with Volley
+                queue.add(jsObjRequest);
+            }
+
+            private void changeView(Movie movie) {
+                Intent intent = new Intent(getBaseContext(), movieDetailDisplay.class);
+                intent.putExtra("movie", movie);
+                startActivity(intent);
+            }
+        });
     }
 }

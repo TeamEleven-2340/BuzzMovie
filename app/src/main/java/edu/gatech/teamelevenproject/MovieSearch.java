@@ -100,7 +100,6 @@ public class MovieSearch extends AppCompatActivity {
                 combinedterms += "+" + terms.get(i);
             }
         }
-        Log.d("EAGEAGEAG", combinedterms);
         String url = "http://www.omdbapi.com/?s=" + combinedterms + "&type=movie&y=&plot=short&r=json";
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -167,12 +166,12 @@ public class MovieSearch extends AppCompatActivity {
 
     /**
      * Change the view,
-     * @param states
+     * @param movies
      */
-    private void changeView(ArrayList<edu.gatech.teamelevenproject.Movie> states) {
+    private void changeView(ArrayList<edu.gatech.teamelevenproject.Movie> movies) {
         Intent intent = new Intent(this, ItemListActivity.class);
         //this is where we save the info.  note the State object must be Serializable
-        intent.putExtra("states", states);
+        intent.putExtra("movies", movies);
         startActivity(intent);
     }
 
