@@ -132,6 +132,9 @@ public class MovieSearch extends AppCompatActivity {
                                     s.setYear(jsonObject.optString("Year"));
                                     //save the object for later
                                     movies.add(s);
+                                    if (!Movies.ITEMS.contains(s)) {
+                                        Movies.ITEMS.add(s);
+                                    }
 
 
                                 } catch (JSONException e) {

@@ -15,6 +15,7 @@ public class movieDetailDisplay extends AppCompatActivity {
     private Movie movie;
     private RatingBar ratingBar;
     private TextView ratingView;
+    private String combinedterms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class movieDetailDisplay extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         movie = (Movie) getIntent().getSerializableExtra("movie");
+        combinedterms = (String) getIntent().getSerializableExtra("key");
         if (movie.getPeopleRated() == 0) {
             movie.setRating(0);
         }
@@ -34,7 +36,7 @@ public class movieDetailDisplay extends AppCompatActivity {
         ratingView = (TextView) findViewById(R.id.ratingView);
         Button ratingButton = (Button) findViewById(R.id.ratingButton);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        String rating = Float.toString(movie.getRating());
+        String rating = String.format("%.2g%n", movie.getRating());
         titleView.setText(movie.getName());
         genreView.setText(movie.getGenre());
         actorsView.setText(movie.getActors());
@@ -56,5 +58,6 @@ public class movieDetailDisplay extends AppCompatActivity {
         movie.setRating(rating);
         String ratingString = String.format("%.2g%n", rating);
         ratingView.setText(ratingString);
+        Movies.ITEM_MAP.put(combinedterms, movie);
     }
 }

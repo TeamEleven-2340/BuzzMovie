@@ -38,6 +38,7 @@ public class ItemListActivity extends AppCompatActivity {
     private ListView lv;
     private RequestQueue queue;
     private String response;
+    String combinedterms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,6 @@ public class ItemListActivity extends AppCompatActivity {
 
 
         for (Movie s : movies) {
-            Movies.addItem(s);
             arrayAdapter.add(s.toString());
         }
         lv.setAdapter(arrayAdapter);
@@ -66,24 +66,28 @@ public class ItemListActivity extends AppCompatActivity {
              */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Movie selectedMovie = movies.get(position);
+                final Movie selectedMovie = movies.get(position);
                 String title = selectedMovie.getName();
-                title = title.replace(' ', '+');
-                String url = "http://www.omdbapi.com/?t=" + title + "&type=movie&y=&plot=short&r=json";
+                combinedterms = title.replace(' ', '+');
+                String url = "http://www.omdbapi.com/?t=" + combinedterms + "&type=movie&y=&plot=short&r=json";
                 JsonObjectRequest jsObjRequest = new JsonObjectRequest
                         (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject resp) {
+                                String key = combinedterms;
                                 JSONObject obj1 = resp;
                                 if (obj1 != null) {
                                     Log.d("ZQWE", "ZQWE");
-                                    Movie s = new Movie();
                                     assert obj1 != null;
-                                    s.setName(obj1.optString("Title"));
-                                    s.setGenre(obj1.optString("Genre"));
-                                    s.setLength(obj1.optString("Runtime"));
-                                    s.setReleased(obj1.optString("Released"));
-                                    s.setActors(obj1.optString("Actors"));
+                                    selectedMovie.setName(obj1.optString("Title"));
+                                    selectedMovie.setGenre(obj1.optString("Genre"));
+                                    selectedMovie.setLength(obj1.optString("Runtime"));
+                                    selectedMovie.setReleased(obj1.optString("Released"));
+                                    selectedMovie.setActors(obj1.optString("Actors"));
+                                    if (!Movies.ITEM_MAP.containsKey(combinedterms)) {
+                                        Movies.ITEM_MAP.put(combinedterms, selectedMovie);
+                                    }
+                                    Movie s = Movies.ITEM_MAP.get(combinedterms);
                                     changeView(s);
                                 } else {
                                     String text = "No Movies with the search term were found!";
@@ -107,6 +111,7 @@ public class ItemListActivity extends AppCompatActivity {
             private void changeView(Movie movie) {
                 Intent intent = new Intent(getBaseContext(), movieDetailDisplay.class);
                 intent.putExtra("movie", movie);
+                intent.putExtra("key", combinedterms);
                 startActivity(intent);
             }
         });
