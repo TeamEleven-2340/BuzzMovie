@@ -25,6 +25,11 @@ public class User {
         password = p;
     }
 
+    /**
+     * Checks the password of a user.
+     * @param pass the inputted password
+     * @return whether the inputted password equals the user's password
+     */
     public boolean checkPassword(String pass) {
         return password.equals(pass);
     }

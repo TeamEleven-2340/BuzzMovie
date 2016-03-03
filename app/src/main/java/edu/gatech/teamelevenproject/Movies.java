@@ -24,7 +24,6 @@ public class Movies {
      * Add items to Movies array
      * @param item
      */
-
     public static void addItem(Movie item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.getName(), item);

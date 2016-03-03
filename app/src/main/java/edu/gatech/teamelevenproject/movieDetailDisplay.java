@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+/**
+ * Class that displays the details of a movie, such as its attributes, rating, etc.
+ */
 public class movieDetailDisplay extends AppCompatActivity {
 
     private Movie movie;

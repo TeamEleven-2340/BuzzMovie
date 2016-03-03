@@ -55,6 +55,7 @@ public class ItemListActivity extends AppCompatActivity {
         for (Movie s : movies) {
             arrayAdapter.add(s.toString());
         }
+
         lv.setAdapter(arrayAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
@@ -108,6 +109,11 @@ public class ItemListActivity extends AppCompatActivity {
                 queue.add(jsObjRequest);
             }
 
+
+            /**
+             * Changes the view
+             * @param movie the selected movie
+             */
             private void changeView(Movie movie) {
                 Intent intent = new Intent(getBaseContext(), movieDetailDisplay.class);
                 intent.putExtra("movie", movie);
