@@ -177,12 +177,6 @@ public class MovieSearch extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /**
-     * Change the view, specifically with going back out of the movie view.
-     * @param keycode will trigger a series of events if the key pressed is the back button
-     * @param event the event that happens
-     * @return whether the keycode was the backbutton
-     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
