@@ -16,9 +16,6 @@ import java.util.Map;
 public class recommendationActivity extends AppCompatActivity {
     private String major;
     private List<Movie> a;
-    private int c;
-    private int d;
-    private int e;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,27 +29,19 @@ public class recommendationActivity extends AppCompatActivity {
         a = Movies.ITEMS;
         if (major.equals("None")) {
             for (Movie b : a) {
-                c++;
                 if (b.getPeopleRated() != 0) {
                     arrayAdapter.add("Title: " + b.getName() + "\n" + "Ratings: " + b.getRating());
                 }
             }
         } else {
             for (Movie b : a) {
-                d++;
                 if (b.getRatingByMajors() != null) {
-                    e++;
                     if (b.getRatingByMajors().get(major) != null) {
-                        c++;
                         arrayAdapter.add(b.toString2(major));
                     }
                 }
             }
         }
-        Log.d("QWERTY", major);
-        Log.d("QWERTY", "" + c);
-        Log.d("QWERTY", "" + d);
-        Log.d("QWERTY", "" + e);
         listView.setAdapter(arrayAdapter);
     }
 

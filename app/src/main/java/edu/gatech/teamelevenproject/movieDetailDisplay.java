@@ -55,7 +55,6 @@ public class movieDetailDisplay extends AppCompatActivity {
      */
     public void onRateButtonClicked(View v) {
         String major = ufmdd.getCurrentUsername().major;
-        Log.d("QWSA", major);
         float majorRating = 0;
         float currentMajorRating;
         float rating = ratingBar.getRating();
@@ -71,7 +70,6 @@ public class movieDetailDisplay extends AppCompatActivity {
             } else {
                 movie.setPeopleByMajors(major);
                 movie.setRatingsByMajors(major, rating);
-                Log.d("QAZ", "" + movie.getRatingByMajors().get(major));
             }
         }
         float currentRating = movie.getRating() * movie.getPeopleRated();
