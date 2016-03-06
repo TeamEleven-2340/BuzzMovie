@@ -33,7 +33,6 @@ import java.util.Map;
 /**
  * MovieSearch defines the selection of movies.
  */
-
 public class MovieSearch extends AppCompatActivity {
 
     private RequestQueue queue;

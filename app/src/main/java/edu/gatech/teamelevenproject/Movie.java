@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class defines a movie to have a name and a year in which it was released.
+ * Class that defines a movie to have a name and a year in which it was released.
  */
 public class Movie implements Serializable {
     private String name;
