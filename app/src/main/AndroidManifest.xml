@@ -48,6 +48,10 @@
         <activity
             android:name=".movieDetailDisplay"
             android:label="Movie Details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".recommendationActivity"
+            android:label="Recommendations"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

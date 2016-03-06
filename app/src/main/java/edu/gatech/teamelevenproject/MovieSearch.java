@@ -9,7 +9,10 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * MovieSearch defines the selection of movies.
@@ -33,8 +38,10 @@ public class MovieSearch extends AppCompatActivity {
 
     private RequestQueue queue;
     private String response;
+    private String currentMajor;
     private String searchTerm;
     private EditText searcheditText;
+    Map<String, Movie> a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,20 @@ public class MovieSearch extends AppCompatActivity {
         setContentView(R.layout.activity_movie_search);
         queue = Volley.newRequestQueue(this);
         searcheditText = ((EditText) findViewById(R.id.searcheditText));
+        Spinner spinner = (Spinner) findViewById(R.id.majorfilter);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.majorsfilter, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                currentMajor = parent.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     @Override
@@ -176,6 +197,36 @@ public class MovieSearch extends AppCompatActivity {
         //this is where we save the info.  note the State object must be Serializable
         intent.putExtra("movies", movies);
         startActivity(intent);
+    }
+
+    public void RecommendButtonClicked(View view) {
+        Intent intent = new Intent(this, recommendationActivity.class);
+        intent.putExtra("major", currentMajor);
+        boolean a = false;
+        if (Movies.ITEMS.size() != 0) {
+            if (!currentMajor.equals("None")) {
+                for (int i = 0; i < Movies.ITEMS.size(); i++) {
+                    if (Movies.ITEMS.get(i).getPeopleByMajors().get(currentMajor) != null) {
+                        a = true;
+                    }
+                }
+            } else {
+                for (int i = 0; i < Movies.ITEMS.size(); i++) {
+                    if (Movies.ITEMS.get(i).getPeopleRated() != 0) {
+                        a = true;
+                    }
+                }
+            }
+        }
+        if (a) {
+            startActivity(intent);
+        } else {
+            String text = "No recommendation right now!";
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_SHORT;
+            Toast t = Toast.makeText(context, text, duration);
+            t.show();
+        }
     }
 
     @Override

@@ -1,6 +1,8 @@
 package edu.gatech.teamelevenproject;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class defines a movie to have a name and a year in which it was released.
@@ -13,6 +15,8 @@ public class Movie implements Serializable {
     private String length;
     private String released;
     private float rating;
+    private Map<String, Integer> majorPeopleRated = new HashMap<String, Integer>();
+    private Map majorRatings = new HashMap();
     private int peopleRated = 0;
 
 
@@ -144,12 +148,36 @@ public class Movie implements Serializable {
         return peopleRated;
     }
 
+    public void setRatingsByMajors(String key, float value) {
+        majorRatings.put(key, value);
+    }
+
+    public Map<String, Integer> getRatingByMajors() {
+        return majorRatings;
+    }
+
+    public void setPeopleByMajors(String key) {
+        int numberOfPeople = 0;
+        if (majorPeopleRated.get(key) != null) {
+            numberOfPeople = majorPeopleRated.get(key);
+        }
+        majorPeopleRated.put(key, numberOfPeople + 1);
+    }
+
+    public Map<String, Integer> getPeopleByMajors() {
+        return majorPeopleRated;
+    }
+
     /**
      * Print out the movie's name and year.
      * @return the movie's name and year
      */
     public String toString() {
         return "Title: " + name + "\n" +  "Year: " + year;
+    }
+
+    public String toString2(String major) {
+        return "Title: " + name + "\n" + "Ratings: " + getRatingByMajors().get(major);
     }
 
 }

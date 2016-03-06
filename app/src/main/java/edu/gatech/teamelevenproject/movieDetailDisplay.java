@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class movieDetailDisplay extends AppCompatActivity {
 
     private Movie movie;
     private RatingBar ratingBar;
     private TextView ratingView;
     private String combinedterms;
+    UserManagementFacade ufmdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class movieDetailDisplay extends AppCompatActivity {
         if (movie.getPeopleRated() == 0) {
             movie.setRating(0);
         }
+        ufmdd = new UserManager();
         TextView titleView = (TextView) findViewById(R.id.titleView);
         TextView genreView = (TextView) findViewById(R.id.genreView);
         TextView actorsView = (TextView) findViewById(R.id.actorsView);
@@ -50,7 +54,26 @@ public class movieDetailDisplay extends AppCompatActivity {
      * @param v the current view
      */
     public void onRateButtonClicked(View v) {
+        String major = ufmdd.getCurrentUsername().major;
+        Log.d("QWSA", major);
+        float majorRating = 0;
+        float currentMajorRating;
         float rating = ratingBar.getRating();
+        if (major != "") {
+            if (movie.getPeopleByMajors().get(major) != null) {
+                if (movie.getPeopleByMajors().containsKey(major)) {
+                    majorRating = movie.getRatingByMajors().get(major);
+                    currentMajorRating = movie.getPeopleByMajors().get(major) * majorRating;
+                    currentMajorRating += rating;
+                    movie.setPeopleByMajors(major);
+                    movie.setRatingsByMajors(major, currentMajorRating / movie.getPeopleByMajors().get(major));
+                }
+            } else {
+                movie.setPeopleByMajors(major);
+                movie.setRatingsByMajors(major, rating);
+                Log.d("QAZ", "" + movie.getRatingByMajors().get(major));
+            }
+        }
         float currentRating = movie.getRating() * movie.getPeopleRated();
         rating = currentRating + rating;
         movie.setPeopleRated(movie.getPeopleRated() + 1);
@@ -59,5 +82,12 @@ public class movieDetailDisplay extends AppCompatActivity {
         String ratingString = String.format("%.2g%n", rating);
         ratingView.setText(ratingString);
         Movies.ITEM_MAP.put(combinedterms, movie);
+        List<Movie> a = Movies.ITEMS;
+        for (int i = 0; i < a.size(); i++) {
+            if (a.get(i).getName().equals(movie.getName())) {
+                a.remove(i);
+            }
+        }
+        a.add(movie);
     }
 }

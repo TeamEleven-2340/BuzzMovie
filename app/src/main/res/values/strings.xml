@@ -7,4 +7,7 @@
     <string name="title_activity_edit_profile">EditProfileActivity</string>
     <string name="title_activity_item_list">ItemListActivity</string>
     <string name="title_activity_movie_detail_display">movieDetailDisplay</string>
+    <string name="title_activity_recommendation">recommendationActivity</string>
 </resources>
+
+
