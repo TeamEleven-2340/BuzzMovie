@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="majors">
+        <item></item>
+        <item>CS</item>
+        <item>ME</item>
+        <item>EE</item>
+        <item>CE</item>
+    </string-array>
+    <string-array name="majorsfilter">
+        <item>None</item>
+        <item>CS</item>
+        <item>ME</item>
+        <item>EE</item>
+        <item>CE</item>
+    </string-array>
+</resources>
