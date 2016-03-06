@@ -78,7 +78,6 @@ public class ItemListActivity extends AppCompatActivity {
                                 String key = combinedterms;
                                 JSONObject obj1 = resp;
                                 if (obj1 != null) {
-                                    Log.d("ZQWE", "ZQWE");
                                     assert obj1 != null;
                                     selectedMovie.setName(obj1.optString("Title"));
                                     selectedMovie.setGenre(obj1.optString("Genre"));
