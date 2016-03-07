@@ -55,13 +55,13 @@ public class movieDetailDisplay extends AppCompatActivity {
      */
     public void onRateButtonClicked(View v) {
         String major = ufmdd.getCurrentUsername().major;
-        float majorRating = 0;
-        float currentMajorRating;
-        float rating = ratingBar.getRating();
-        if (major != "") {
+        double majorRating;
+        double currentMajorRating;
+        double rating = ratingBar.getRating();
+        if (!major.equals("")) {
             if (movie.getPeopleByMajors().get(major) != null) {
                 if (movie.getPeopleByMajors().containsKey(major)) {
-                    majorRating = movie.getRatingByMajors().get(major);
+                    majorRating = movie.getRatingByMajors().get(major) + 0.0;
                     currentMajorRating = movie.getPeopleByMajors().get(major) * majorRating;
                     currentMajorRating += rating;
                     movie.setPeopleByMajors(major);
@@ -72,7 +72,7 @@ public class movieDetailDisplay extends AppCompatActivity {
                 movie.setRatingsByMajors(major, rating);
             }
         }
-        float currentRating = movie.getRating() * movie.getPeopleRated();
+        double currentRating = movie.getRating() * movie.getPeopleRated();
         rating = currentRating + rating;
         movie.setPeopleRated(movie.getPeopleRated() + 1);
         rating = rating / movie.getPeopleRated();

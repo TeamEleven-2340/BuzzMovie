@@ -14,9 +14,9 @@ public class Movie implements Serializable {
     private String actors;
     private String length;
     private String released;
-    private float rating;
-    private Map<String, Integer> majorPeopleRated = new HashMap<String, Integer>();
-    private Map majorRatings = new HashMap();
+    private double rating;
+    private Map<String, Integer> majorPeopleRated = new HashMap<>();
+    private Map<String, Double> majorRatings = new HashMap<>();
     private int peopleRated = 0;
 
 
@@ -120,7 +120,7 @@ public class Movie implements Serializable {
      * Set the rating of the movie
      * @param rating rating of the movie
      */
-    public void setRating(float rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
@@ -128,7 +128,7 @@ public class Movie implements Serializable {
      * Get the rating of the movie
      * @return rating of the movie
      */
-    public float getRating() {
+    public double getRating() {
         return rating;
     }
 
@@ -148,11 +148,11 @@ public class Movie implements Serializable {
         return peopleRated;
     }
 
-    public void setRatingsByMajors(String key, float value) {
+    public void setRatingsByMajors(String key, double value) {
         majorRatings.put(key, value);
     }
 
-    public Map<String, Integer> getRatingByMajors() {
+    public Map<String, Double> getRatingByMajors() {
         return majorRatings;
     }
 
