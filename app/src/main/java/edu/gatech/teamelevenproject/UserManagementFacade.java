@@ -68,10 +68,23 @@ public interface UserManagementFacade {
     void setBannedStatus(Boolean status);
 
     /**
-     * Sets the banned status of a given user.
+     * Gets the banned status of a given user.
      *
      */
     boolean getBannedStatus();
+
+    /**
+     * Sets the lock stasus of a given user.
+     *
+     * @param status lock stasus
+     */
+    void setLockStatus(Boolean status);
+
+    /**
+     * Gets the lock status of a given user.
+     *
+     */
+    boolean getLockStatus();
 
 
 }

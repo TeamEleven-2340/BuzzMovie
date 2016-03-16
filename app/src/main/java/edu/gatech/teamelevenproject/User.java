@@ -12,6 +12,7 @@ public class User {
     static String email = "";
     static String fullname = "";
     boolean banStatus;
+    boolean lockStatus;
     static String major = "";
     static String interest = "";
 
@@ -24,20 +25,49 @@ public class User {
         name = n;
         password = p;
         banStatus = false;
+        lockStatus = false;
     }
     public User() {
 
     }
 
+    /**
+     * Returns if User is an Admin
+     * @return Admin Status
+     */
     public boolean isAdminStatus(){
         return false;   }
 
+    /**
+     * Sets ban status of user
+     * @param status Status to be set
+     */
     public void setBanStatus(boolean status) {
         this.banStatus = status;
     }
 
+    /**
+     * Returns ban status of user
+     * @return Ban status of user
+     */
     public boolean getBanStatus() {
         return this.banStatus;
+    }
+
+    /**
+     * Sets lock status of user
+     * @param status Status to be set
+     */
+    public void setLockStatus(boolean status) {
+        this.lockStatus = status;
+    }
+
+    /**
+     * Returns lock status of user
+     * @return Lock status of user
+     */
+    public boolean getLockStatus() {
+        return this.lockStatus;
     }
 
     /**
@@ -49,7 +79,12 @@ public class User {
         return password.equals(pass);
     }
 
+    /**
+     * Returns string format of banned + locked status
+     * @return
+     */
     public String toStringBannedStatus() {
-        return name + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + Boolean.toString(banStatus);
+        return "User: " + name + " Ban Status: " + Boolean.toString(banStatus) +
+                " Lock Status: " + Boolean.toString(lockStatus);
     }
 }

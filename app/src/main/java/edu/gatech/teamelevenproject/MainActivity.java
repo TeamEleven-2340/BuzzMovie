@@ -19,6 +19,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         UserManagementFacade um = new UserManager();
         um.addAdmin("test", "pass");
+        if (um.findUserById("locked") == null) {
+            um.addUser("locked", "lock");
+            User user1 = um.findUserById("locked");
+            user1.setLockStatus(true);
+        }
+        if (um.findUserById("banned") == null) {
+            um.addUser("banned", "ban");
+
+            User user2 = um.findUserById("banned");
+            user2.setBanStatus(true);
+        }
+
         //User user1 = um.findUserById("test");
         //um.setCurrentUsername(user1);
     }

@@ -99,12 +99,29 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         currentUsername.setBanStatus(status);
 }
     /**
-     * Sets the banned stasus of a current user.
+     * Gets the banned stasus of a current user.
      *
      */
     public boolean getBannedStatus() {
         return currentUsername.getBanStatus();
     }
+
+    /**
+     * Sets the lock status of a given user.
+     *
+     * @param status lock stasus to be set
+     */
+    public void setLockStatus (Boolean status) {
+        currentUsername.setLockStatus(status);
+    }
+    /**
+     * Gets the lock stasus of a current user.
+     *
+     */
+    public boolean getLockStatus() {
+        return currentUsername.getLockStatus();
+    }
+
     /**
      * Creates the UserManager object.
      */

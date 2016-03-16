@@ -49,10 +49,36 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="Change Banned Status"
         android:id="@+id/setButton"
+        android:onClick="ButtonClicked"
+        android:layout_below="@+id/unlock"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lock Status: "
+        android:id="@+id/lock"
         android:layout_below="@+id/spinner2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lockStatus"
+        android:layout_below="@+id/spinner2"
+        android:layout_toRightOf="@+id/lock"
+        android:layout_toEndOf="@+id/lock" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unlock User"
+        android:id="@+id/unlock"
+        android:layout_below="@+id/lockStatus"
         android:layout_centerHorizontal="true"
-        android:onClick="ButtonClicked" />
+        android:onClick="unlockButton" />
 
 </RelativeLayout>

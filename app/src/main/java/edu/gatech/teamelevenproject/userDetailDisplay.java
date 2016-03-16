@@ -24,8 +24,10 @@ public class userDetailDisplay extends AppCompatActivity {
         setSupportActionBar(toolbar);
         String username = getIntent().getStringExtra("user");
         TextView username1 = (TextView) findViewById(R.id.username);
+        TextView lockStatusText = (TextView) findViewById(R.id.lockStatus);
         username1.setText(username);
         User curr = afepa.findUserById(username);
+        lockStatusText.setText(Boolean.toString(curr.getLockStatus()));
         afepa.setCurrentUsername(curr);
 
 
@@ -47,8 +49,19 @@ public class userDetailDisplay extends AppCompatActivity {
             }
         });
 
+        /**
+         * This button unlocks a user. It only changes user lock status to false
+         */
     }
-
+    public void unlockButton(View v) {
+        Boolean setStatus = false;
+        afepa.setLockStatus(setStatus);
+        Intent i = new Intent(this.getBaseContext(),AdminSearch.class);
+        startActivity(i);
+    }
+        /**
+         * This button changes a  users banned status based on what the admin selects
+         */
     public void ButtonClicked(View v) {
         Boolean setStatus = Boolean.parseBoolean(currentBanStatus);
         afepa.setBannedStatus(setStatus);

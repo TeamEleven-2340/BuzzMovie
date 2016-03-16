@@ -70,6 +70,12 @@ public class LoginActivity extends AppCompatActivity {
                 int duration = Toast.LENGTH_SHORT;
                 Toast t = Toast.makeText(context, text, duration);
                 t.show();
+            } else if (uf.getCurrentUsername().lockStatus == true) {
+                text = "Login Failure! Account is Locked!";
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast t = Toast.makeText(context, text, duration);
+                t.show();
             } else if (uf.getCurrentUsername().isAdminStatus() == true) {
                 text = "Admin Login Success!";
                 Context context = getApplicationContext();
