@@ -198,6 +198,10 @@ public class MovieSearch extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Button to get recommendation from system
+     * @param view Current view
+     */
     public void RecommendButtonClicked(View view) {
         Intent intent = new Intent(this, recommendationActivity.class);
         intent.putExtra("major", currentMajor);
