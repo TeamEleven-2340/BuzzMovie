@@ -11,7 +11,7 @@ public class User {
     String password;
     static String email = "";
     static String fullname = "";
-    static boolean banStatus = false;
+    boolean banStatus;
     static String major = "";
     static String interest = "";
 
@@ -23,6 +23,21 @@ public class User {
     public User(String n, String p) {
         name = n;
         password = p;
+        banStatus = false;
+    }
+    public User() {
+
+    }
+
+    public boolean isAdminStatus(){
+        return false;   }
+
+    public void setBanStatus(boolean status) {
+        this.banStatus = status;
+    }
+
+    public boolean getBanStatus() {
+        return this.banStatus;
     }
 
     /**
@@ -32,5 +47,9 @@ public class User {
      */
     public boolean checkPassword(String pass) {
         return password.equals(pass);
+    }
+
+    public String toStringBannedStatus() {
+        return name + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + Boolean.toString(banStatus);
     }
 }

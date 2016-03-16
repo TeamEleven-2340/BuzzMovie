@@ -1,6 +1,9 @@
 package edu.gatech.teamelevenproject;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -28,6 +31,14 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     }
 
     /**
+     * Getter method for a list of Users
+     * @return currentUsername the current username
+     */
+    public ArrayList<User> getUserList (){
+        return new ArrayList<User>(users.values());
+    }
+
+    /**
      * Finds a user in the database by its username
      * @param id the username
      * @return whether the specified id is in the list of registered users
@@ -43,6 +54,16 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      */
     public void addUser(String name, String pass) {
         User user = new User(name, pass);
+        users.put(name, user);
+    }
+
+    /**
+     * Adds a user to the database with the specified username and password.
+     * @param name the username inputted by the user
+     * @param pass the password inputted by the user
+     */
+    public void addAdmin(String name, String pass) {
+        Admin user = new Admin(name, pass);
         users.put(name, user);
     }
 
@@ -69,7 +90,21 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         User u = findUserById(name);
         return u == null;
     }
-
+    /**
+     * Sets the banned status of a given user.
+     *
+     * @param status ban stasus to be set
+     */
+    public void setBannedStatus (Boolean status) {
+        currentUsername.setBanStatus(status);
+}
+    /**
+     * Sets the banned stasus of a current user.
+     *
+     */
+    public boolean getBannedStatus() {
+        return currentUsername.getBanStatus();
+    }
     /**
      * Creates the UserManager object.
      */

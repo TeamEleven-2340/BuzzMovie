@@ -64,13 +64,29 @@ public class LoginActivity extends AppCompatActivity {
         if (af.handleLoginRequest(nameBox.getText().toString(), passBox.getText().toString())) {
             User loggedinUser = uf.findUserById(nameBox.getText().toString());
             uf.setCurrentUsername(loggedinUser);
-            text = "Login Success!";
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast t = Toast.makeText(context, text, duration);
-            t.show();
-            Intent i = new Intent(getBaseContext(), MovieSearch.class);
-            startActivity(i);
+            if (uf.getCurrentUsername().banStatus == true) {
+                text = "Login Failure! Account is Banned!";
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast t = Toast.makeText(context, text, duration);
+                t.show();
+            } else if (uf.getCurrentUsername().isAdminStatus() == true) {
+                text = "Admin Login Success!";
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast t = Toast.makeText(context, text, duration);
+                t.show();
+                Intent i = new Intent(getBaseContext(), AdminSearch.class);
+                startActivity(i);
+            } else {
+                text = "Login Success!";
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                Toast t = Toast.makeText(context, text, duration);
+                t.show();
+                Intent i = new Intent(getBaseContext(), MovieSearch.class);
+                startActivity(i);
+            }
         } else {
             text = "Login Failure!";
             Context context = getApplicationContext();

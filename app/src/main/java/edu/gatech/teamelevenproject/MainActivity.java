@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         UserManagementFacade um = new UserManager();
-        um.addUser("test", "pass");
+        um.addAdmin("test", "pass");
+        //User user1 = um.findUserById("test");
+        //um.setCurrentUsername(user1);
     }
 
     /**

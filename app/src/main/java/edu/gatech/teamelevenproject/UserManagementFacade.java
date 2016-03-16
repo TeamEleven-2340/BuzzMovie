@@ -1,5 +1,7 @@
 package edu.gatech.teamelevenproject;
 
+import java.util.ArrayList;
+
 /**
  * UserManagementFacade is an interface for UserManager.
  */
@@ -7,13 +9,23 @@ public interface UserManagementFacade {
 
     /**
      * Adds a user to the userlist.
+     *
      * @param name the user's username
      * @param pass the user's password
      */
     void addUser(String name, String pass);
 
     /**
+     * Adds a admin to the userlist.
+     *
+     * @param name the user's username
+     * @param pass the user's password
+     */
+    void addAdmin(String name, String pass);
+
+    /**
      * Handles a request for a user to register with a given password.
+     *
      * @param name the user's username
      * @param pass the user's password
      * @return whether the request is a valid request
@@ -22,6 +34,7 @@ public interface UserManagementFacade {
 
     /**
      * Finds a user with a given ID.
+     *
      * @param ID the inputted ID
      * @return the User with the same ID
      */
@@ -29,14 +42,36 @@ public interface UserManagementFacade {
 
     /**
      * Sets the username of a given user.
+     *
      * @param user the inputted user
      */
     void setCurrentUsername(User user);
 
     /**
      * Returns the username of a given user.
+     *
      * @return user the current user
      */
-    User getCurrentUsername ();
-}
+    User getCurrentUsername();
 
+    /**
+     * Getter method for a list of Users
+     * @return currentUsername the current username
+     */
+    public ArrayList<User> getUserList();
+
+    /**
+     * Sets the banned stasus of a given user.
+     *
+     * @param status banned stasus
+     */
+    void setBannedStatus(Boolean status);
+
+    /**
+     * Sets the banned status of a given user.
+     *
+     */
+    boolean getBannedStatus();
+
+
+}
