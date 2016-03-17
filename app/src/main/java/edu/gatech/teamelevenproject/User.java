@@ -9,12 +9,12 @@ import android.widget.Toast;
 public class User {
     String name;
     String password;
-    static String email = "";
-    static String fullname = "";
+    String email;
+    String fullname;
     boolean banStatus;
     boolean lockStatus;
-    static String major = "";
-    static String interest = "";
+    String major;
+    String interest;
 
     /**
      * Creates a user with a name and password.
@@ -26,6 +26,10 @@ public class User {
         password = p;
         banStatus = false;
         lockStatus = false;
+        email = "";
+        fullname = "";
+        major = "";
+        interest = "";
     }
     public User() {
 
