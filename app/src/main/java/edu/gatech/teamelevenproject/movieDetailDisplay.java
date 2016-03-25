@@ -31,7 +31,7 @@ public class movieDetailDisplay extends AppCompatActivity {
         if (movie.getPeopleRated() == 0) {
             movie.setRating(0);
         }
-        ufmdd = new UserManager();
+        ufmdd = new UserManager(this);
         TextView titleView = (TextView) findViewById(R.id.titleView);
         TextView genreView = (TextView) findViewById(R.id.genreView);
         TextView actorsView = (TextView) findViewById(R.id.actorsView);

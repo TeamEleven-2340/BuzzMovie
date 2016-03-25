@@ -35,7 +35,7 @@ public class AdminSearch extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         lv = (ListView) findViewById(R.id.userList);
-        UserManagementFacade um = new UserManager();
+        UserManagementFacade um = new UserManager(this);
         final ArrayList<User> userList = um.getUserList();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.item_name);

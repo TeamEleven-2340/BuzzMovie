@@ -55,8 +55,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void LoginButtonClicked(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        AuthenticationFacade af = new UserManager();
-        UserManagementFacade uf = new UserManager();
+        AuthenticationFacade af = new UserManager(this);
+        UserManagementFacade uf = new UserManager(this);
         EditText nameBox = (EditText) findViewById(R.id.idEditText);
         EditText passBox = (EditText) findViewById(R.id.passwordEditText);
         CharSequence text;

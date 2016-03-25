@@ -20,7 +20,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        UserManagementFacade ufpa = new UserManager();
+        UserManagementFacade ufpa = new UserManager(this);
         TextView namedisplayText = (TextView)findViewById(R.id.namedisplayText);
         TextView emaildisplayText = (TextView)findViewById(R.id.emaildisplayText);
         TextView usernamedisplayText = (TextView)findViewById(R.id.usernamedisplayText);

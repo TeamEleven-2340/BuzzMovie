@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void OnRegisterClicked(View v) {
         EditText registerNameBox = (EditText) findViewById(R.id.IDEditText);
         EditText registerPassBox = (EditText) findViewById(R.id.passwordEditText);
-        UserManagementFacade rg = new UserManager();
+        UserManagementFacade rg = new UserManager(this);
         CharSequence text;
 
         if (registerPassBox.getText().toString().equals("") || registerNameBox.getText().toString().equals("")) {

@@ -1,5 +1,13 @@
 package edu.gatech.teamelevenproject;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +21,21 @@ import java.util.Map;
 public class UserManager implements AuthenticationFacade, UserManagementFacade {
     private static Map<String, User> users = new HashMap<>();
     private static User currentUsername;
+    private DatabaseWrapper dbHelper;
+    private SQLiteDatabase database;
+    String[] columns = {
+            DatabaseWrapper.USERNAME,
+            DatabaseWrapper.PASSWORD
+    };
+
+
+    /**
+     * Creates the UserManager object.
+     */
+    public UserManager(Context context) throws SQLiteException {
+        dbHelper = new DatabaseWrapper(context);
+        database = dbHelper.getWritableDatabase();
+    }
 
     /**
      * Setter method for the current username of the user.
@@ -44,7 +67,30 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @return whether the specified id is in the list of registered users
      */
     public User findUserById(String id) {
-        return users.get(id);
+        List usernameList = new ArrayList();
+        List userList = new ArrayList();
+        SQLiteDatabase rdb = dbHelper.getReadableDatabase();
+        Cursor cursor = rdb.query(DatabaseWrapper.USER, columns, null, null, null, null, null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            String username = cursor.getString(0);
+            String password = cursor.getString(1);
+            User user = new User(username, password);
+            Log.d("useruser", username);
+            Log.d("useruser", password);
+            usernameList.add(username);
+            userList.add(user);
+            cursor.moveToNext();
+        }
+        if (usernameList.contains(id)) {
+            Log.d("useruser", id);
+            int i = usernameList.indexOf(id);
+            User foundUser = (User)userList.get(i);
+            return foundUser;
+        } else {
+            Log.d("not found", id);
+            return null;
+        }
     }
 
     /**
@@ -55,6 +101,12 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     public void addUser(String name, String pass) {
         User user = new User(name, pass);
         users.put(name, user);
+        ContentValues values = new ContentValues();
+        values.put(DatabaseWrapper.USERNAME, name);
+        values.put(DatabaseWrapper.PASSWORD, pass);
+        Log.d("useruser", values.toString());
+        String query = "INSERT INTO Users (Username,Password) VALUES('"+name+"', '"+pass+"');";
+        database.execSQL(query);
     }
 
     /**
@@ -120,12 +172,5 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      */
     public boolean getLockStatus() {
         return currentUsername.getLockStatus();
-    }
-
-    /**
-     * Creates the UserManager object.
-     */
-    public UserManager() {
-
     }
 }

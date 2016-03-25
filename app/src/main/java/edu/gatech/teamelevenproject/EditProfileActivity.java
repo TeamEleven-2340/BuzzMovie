@@ -37,7 +37,7 @@ public class EditProfileActivity extends AppCompatActivity {
     EditText emailEditText;
     EditText majorEditText;
     EditText interestEditText;
-    UserManagementFacade afepa = new UserManager();
+    UserManagementFacade afepa = new UserManager(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

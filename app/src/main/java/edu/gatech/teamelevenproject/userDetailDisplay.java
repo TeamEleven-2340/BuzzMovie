@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class userDetailDisplay extends AppCompatActivity {
     String currentBanStatus;
-    UserManagementFacade afepa = new UserManager();
+    UserManagementFacade afepa = new UserManager(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
