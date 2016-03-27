@@ -64,19 +64,19 @@ public class LoginActivity extends AppCompatActivity {
         if (af.handleLoginRequest(nameBox.getText().toString(), passBox.getText().toString())) {
             User loggedinUser = uf.findUserById(nameBox.getText().toString());
             uf.setCurrentUsername(loggedinUser);
-            if (uf.getCurrentUsername().banStatus == true) {
+            if (uf.getBannedStatus() == true) {
                 text = "Login Failure! Account is Banned!";
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;
                 Toast t = Toast.makeText(context, text, duration);
                 t.show();
-            } else if (uf.getCurrentUsername().lockStatus == true) {
+            } else if (uf.getLockStatus() == true) {
                 text = "Login Failure! Account is Locked!";
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;
                 Toast t = Toast.makeText(context, text, duration);
                 t.show();
-            } else if (uf.getCurrentUsername().isAdminStatus() == true) {
+            } else if (uf.isAdminStatus() == true) {
                 text = "Admin Login Success!";
                 Context context = getApplicationContext();
                 int duration = Toast.LENGTH_SHORT;

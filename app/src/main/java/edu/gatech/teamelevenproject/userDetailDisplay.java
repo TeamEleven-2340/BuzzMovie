@@ -14,11 +14,12 @@ import android.widget.TextView;
 
 public class userDetailDisplay extends AppCompatActivity {
     String currentBanStatus;
-    UserManagementFacade afepa = new UserManager(this);
+    UserManagementFacade afepa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        afepa = new UserManager(getBaseContext());
         setContentView(R.layout.activity_user_detail_display);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

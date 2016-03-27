@@ -15,6 +15,7 @@ public class User {
     boolean lockStatus;
     String major;
     String interest;
+    boolean adminStatus;
 
     /**
      * Creates a user with a name and password.
@@ -30,6 +31,7 @@ public class User {
         fullname = "";
         major = "";
         interest = "";
+        adminStatus = false;
     }
     public User() {
 
@@ -40,7 +42,8 @@ public class User {
      * @return Admin Status
      */
     public boolean isAdminStatus(){
-        return false;   }
+        return adminStatus;
+    }
 
     /**
      * Sets ban status of user

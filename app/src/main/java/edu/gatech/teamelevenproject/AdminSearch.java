@@ -37,14 +37,17 @@ public class AdminSearch extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.userList);
         UserManagementFacade um = new UserManager(this);
         final ArrayList<User> userList = um.getUserList();
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.item_name);
+        ArrayList<User> usersToRemove = new ArrayList<User>();
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.item_name);
 
         for (User s : userList) {
             if (!s.isAdminStatus()) {
                 arrayAdapter.add(s.toStringBannedStatus());
+            } else {
+                usersToRemove.add(s);
             }
         }
+        userList.removeAll(usersToRemove);
         if (arrayAdapter.isEmpty()) {
             arrayAdapter.add("User List is Empty");
         }

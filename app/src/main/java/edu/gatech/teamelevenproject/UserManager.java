@@ -25,7 +25,14 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     private SQLiteDatabase database;
     String[] columns = {
             DatabaseWrapper.USERNAME,
-            DatabaseWrapper.PASSWORD
+            DatabaseWrapper.PASSWORD,
+            DatabaseWrapper.EMAIL,
+            DatabaseWrapper.FULLNAME,
+            DatabaseWrapper.MAJOR,
+            DatabaseWrapper.INTEREST,
+            DatabaseWrapper.LOCKSTATUS,
+            DatabaseWrapper.BANSTATUS,
+            DatabaseWrapper.ADMINSTATUS
     };
 
 
@@ -42,7 +49,13 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @param user the current user
      */
     public void setCurrentUsername(User user) {
-        currentUsername = user;
+        ArrayList<User> userList = getUserList();
+        for (int i = 0; i < userList.size(); i++) {
+            User foundUser = userList.get(i);
+            if (foundUser.name.equals(user.name)) {
+                currentUsername = foundUser;
+            }
+        }
     }
 
     /**
@@ -58,7 +71,34 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @return currentUsername the current username
      */
     public ArrayList<User> getUserList (){
-        return new ArrayList<User>(users.values());
+        List usernameList = new ArrayList();
+        ArrayList userList = new ArrayList();
+        SQLiteDatabase rdb = dbHelper.getReadableDatabase();
+        Cursor cursor = rdb.query(DatabaseWrapper.USER, columns, null, null, null, null, null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            String username = cursor.getString(0);
+            String password = cursor.getString(1);
+            String email = cursor.getString(2);
+            String fullname = cursor.getString(3);
+            String major = cursor.getString(4);
+            String interest = cursor.getString(5);
+            String lockStatus = cursor.getString(6);
+            String banStatus = cursor.getString(7);
+            String adminStatus = cursor.getString(8);
+            User user = new User(username, password);
+            user.interest = interest;
+            user.fullname = fullname;
+            user.lockStatus = Boolean.parseBoolean(lockStatus);
+            user.banStatus = Boolean.parseBoolean(banStatus);
+            user.major = major;
+            user.email = email;
+            user.adminStatus = Boolean.parseBoolean(adminStatus);
+            usernameList.add(username);
+            userList.add(user);
+            cursor.moveToNext();
+        }
+        return userList;
     }
 
     /**
@@ -67,30 +107,14 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @return whether the specified id is in the list of registered users
      */
     public User findUserById(String id) {
-        List usernameList = new ArrayList();
-        List userList = new ArrayList();
-        SQLiteDatabase rdb = dbHelper.getReadableDatabase();
-        Cursor cursor = rdb.query(DatabaseWrapper.USER, columns, null, null, null, null, null);
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast()) {
-            String username = cursor.getString(0);
-            String password = cursor.getString(1);
-            User user = new User(username, password);
-            Log.d("useruser", username);
-            Log.d("useruser", password);
-            usernameList.add(username);
-            userList.add(user);
-            cursor.moveToNext();
+        ArrayList<User> userList = getUserList();
+        for (int i = 0; i < userList.size(); i++) {
+            User user = userList.get(i);
+            if (user.name.equals(id)) {
+                return user;
+            }
         }
-        if (usernameList.contains(id)) {
-            Log.d("useruser", id);
-            int i = usernameList.indexOf(id);
-            User foundUser = (User)userList.get(i);
-            return foundUser;
-        } else {
-            Log.d("not found", id);
-            return null;
-        }
+        return null;
     }
 
     /**
@@ -99,14 +123,15 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @param pass the password inputted by the user
      */
     public void addUser(String name, String pass) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         User user = new User(name, pass);
         users.put(name, user);
-        ContentValues values = new ContentValues();
-        values.put(DatabaseWrapper.USERNAME, name);
-        values.put(DatabaseWrapper.PASSWORD, pass);
-        Log.d("useruser", values.toString());
-        String query = "INSERT INTO Users (Username,Password) VALUES('"+name+"', '"+pass+"');";
+        String query = "INSERT INTO Users (Username,Password,Email,Fullname,Major,Interest,"
+                        + "Lockstatus,Banstatus,Adminstatus) VALUES('"+name+"', '"+pass+"','"+user.email+"','"+user.fullname+"',"
+                        + "'"+user.major+"','"+user.interest+"','"+Boolean.toString(user.lockStatus)+"'"
+                        + ",'"+Boolean.toString(user.banStatus)+"','"+"false"+"');";
         database.execSQL(query);
+        setCurrentUsername(user);
     }
 
     /**
@@ -115,9 +140,26 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @param pass the password inputted by the user
      */
     public void addAdmin(String name, String pass) {
-        Admin user = new Admin(name, pass);
+        User user = new User(name, pass);
         users.put(name, user);
+        users.get(name).adminStatus = true;
+        String query = "INSERT INTO Users (Username,Password,Email,Fullname,Major,Interest,"
+                + "Lockstatus,Banstatus,Adminstatus) VALUES('"+name+"', '"+pass+"','"+user.email+"','"+user.fullname+"',"
+                + "'"+user.major+"','"+user.interest+"','"+"false"+"'"
+                + ",'"+"false"+"','"+Boolean.toString(user.adminStatus)+"');";
+        database.execSQL(query);
+        setCurrentUsername(user);
     }
+
+    /**
+     * Returns if User is an Admin
+     * @return Admin Status
+     */
+    public boolean isAdminStatus(){
+        User user = findUserById(currentUsername.name);
+        return user.adminStatus;
+    }
+
 
     /**
      * Handles a request for a user to login. If either the username is invalid or the password
@@ -142,6 +184,22 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         User u = findUserById(name);
         return u == null;
     }
+
+    public void updateDatabase() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseWrapper.USERNAME, currentUsername.name);
+        values.put(DatabaseWrapper.PASSWORD, currentUsername.password);
+        values.put(DatabaseWrapper.BANSTATUS, Boolean.toString(currentUsername.banStatus));
+        values.put(DatabaseWrapper.LOCKSTATUS, Boolean.toString(currentUsername.lockStatus));
+        values.put(DatabaseWrapper.MAJOR, currentUsername.major);
+        values.put(DatabaseWrapper.EMAIL, currentUsername.email);
+        values.put(DatabaseWrapper.FULLNAME, currentUsername.fullname);
+        values.put(DatabaseWrapper.INTEREST, currentUsername.interest);
+        values.put(DatabaseWrapper.ADMINSTATUS, Boolean.toString(currentUsername.adminStatus));
+        String [] whereArgs = {currentUsername.name};
+        db.update(DatabaseWrapper.USER, values, DatabaseWrapper.USERNAME + "= ?", whereArgs);
+    }
     /**
      * Sets the banned status of a given user.
      *
@@ -149,28 +207,32 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      */
     public void setBannedStatus (Boolean status) {
         currentUsername.setBanStatus(status);
-}
+        updateDatabase();
+    }
     /**
      * Gets the banned stasus of a current user.
      *
      */
     public boolean getBannedStatus() {
-        return currentUsername.getBanStatus();
+        User user = findUserById(currentUsername.name);
+        return user.banStatus;
     }
 
     /**
      * Sets the lock status of a given user.
      *
-     * @param status lock stasus to be set
+     * @param status lock status to be set
      */
     public void setLockStatus (Boolean status) {
         currentUsername.setLockStatus(status);
+        updateDatabase();
     }
     /**
      * Gets the lock stasus of a current user.
      *
      */
     public boolean getLockStatus() {
-        return currentUsername.getLockStatus();
+        User user = findUserById(currentUsername.name);
+        return user.lockStatus;
     }
 }

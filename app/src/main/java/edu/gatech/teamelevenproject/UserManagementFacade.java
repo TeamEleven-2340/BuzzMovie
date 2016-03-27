@@ -23,6 +23,10 @@ public interface UserManagementFacade {
      */
     void addAdmin(String name, String pass);
 
+    boolean isAdminStatus();
+
+    void updateDatabase();
+
     /**
      * Handles a request for a user to register with a given password.
      *

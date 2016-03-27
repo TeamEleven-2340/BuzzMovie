@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import edu.gatech.teamelevenproject.R;
 
@@ -19,17 +20,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         UserManagementFacade um = new UserManager(this);
-        um.addAdmin("test", "pass");
+        if(um.findUserById("test") == null) {
+            um.addAdmin("test", "pass");
+        }
         if (um.findUserById("locked") == null) {
+            Log.d("QWERU", "QWERTU");
             um.addUser("locked", "lock");
-            User user1 = um.findUserById("locked");
-            user1.setLockStatus(true);
+            um.setLockStatus(true);
         }
         if (um.findUserById("banned") == null) {
+            Log.d("QWERTYU", "QWERTYU");
             um.addUser("banned", "ban");
-
-            User user2 = um.findUserById("banned");
-            user2.setBanStatus(true);
+            um.setBannedStatus(true);
         }
 
         //User user1 = um.findUserById("test");

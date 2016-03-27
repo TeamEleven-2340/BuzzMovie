@@ -37,7 +37,7 @@ public class EditProfileActivity extends AppCompatActivity {
     EditText emailEditText;
     EditText majorEditText;
     EditText interestEditText;
-    UserManagementFacade afepa = new UserManager(this);
+    UserManagementFacade afepa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class EditProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        afepa = new UserManager(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.majors, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -99,6 +100,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 t.show();
             } else {
                 afepa.getCurrentUsername().email = emailEditText.getText().toString();
+                afepa.updateDatabase();
                 Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
                 startActivity(intent);
             }
