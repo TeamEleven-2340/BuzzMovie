@@ -20,12 +20,23 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     public static final String ADMINSTATUS = "AdminStatus";
     private static final String DATABASE_NAME = "Users.db";
     private static final int DATABASE_VERSION = 1;
+    private static final String MOVIE = "Movie";
+    private static final String RATING = "Rating";
+    private static final String CSRATING = "CSRating";
+    private static final String MERATING = "MERating";
+    private static final String CERATING = "CERating";
+    private static final String EERATING = "EERating";
+
+
 
     private static final String DATABASE_CREATE = "CREATE TABLE " + USER
             + " (" + USERNAME + " text not null, " + PASSWORD + " text not null, " + EMAIL + " text not null, "
             + FULLNAME + " text not null, " + MAJOR + " text not null, " + INTEREST
             + " text not null, " + LOCKSTATUS + " text not null, " + BANSTATUS + " text not null, "
             + ADMINSTATUS + " text not null)";
+    private static final String MOVIEDATABASE_CREATE = "CREATE TABLE" + MOVIE + " (" + RATING + " text not null, "
+            + CSRATING + " text not null, " + MERATING + " text not null, " + CERATING + " text not null, " +
+            EERATING + " text not null)";
 
     public DatabaseWrapper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -34,11 +45,13 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DATABASE_CREATE);
+        db.execSQL(MOVIEDATABASE_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + USER);
+        db.execSQL("DROP TABLE IF EXISTS " + MOVIE);
         onCreate(db);
     }
 }
