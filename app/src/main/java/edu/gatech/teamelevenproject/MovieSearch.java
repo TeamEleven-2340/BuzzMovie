@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -205,17 +206,19 @@ public class MovieSearch extends AppCompatActivity {
     public void RecommendButtonClicked(View view) {
         Intent intent = new Intent(this, recommendationActivity.class);
         intent.putExtra("major", currentMajor);
+        List<Movie> movieList = Movies.getMovieList(this);
+        List<Movie> existingList = new ArrayList<Movie>();
         boolean a = false;
-        if (Movies.ITEMS.size() != 0) {
+        if (movieList.size() != 0) {
             if (!currentMajor.equals("None")) {
-                for (int i = 0; i < Movies.ITEMS.size(); i++) {
-                    if (Movies.ITEMS.get(i).getPeopleByMajors().get(currentMajor) != null) {
+                for (int i = 0; i < movieList.size(); i++) {
+                    if (movieList.get(i).getPeopleByMajors().get(currentMajor) != 0) {
                         a = true;
                     }
                 }
             } else {
-                for (int i = 0; i < Movies.ITEMS.size(); i++) {
-                    if (Movies.ITEMS.get(i).getPeopleRated() != 0) {
+                for (int i = 0; i < movieList.size(); i++) {
+                    if (movieList.get(i).getPeopleRated() != 0) {
                         a = true;
                     }
                 }

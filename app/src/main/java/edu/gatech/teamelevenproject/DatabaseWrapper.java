@@ -18,28 +18,34 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     public static final String INTEREST = "Interest";
     public static final String EMAIL = "Email";
     public static final String ADMINSTATUS = "AdminStatus";
-    private static final String DATABASE_NAME = "Users.db";
+    public static final String DATABASE_NAME = "Users.db";
+    public static final String DATABASEMOVIE_NAME = "Movie.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String MOVIE = "Movie";
-    private static final String RATING = "Rating";
-    private static final String CSRATING = "CSRating";
-    private static final String MERATING = "MERating";
-    private static final String CERATING = "CERating";
-    private static final String EERATING = "EERating";
-
-
+    public static final String MOVIE = "Movie";
+    public static final String MOVIENAME = "Name";
+    public static final String RATING = "Rating";
+    public static final String CSRATING = "CSRating";
+    public static final String MERATING = "MERating";
+    public static final String CERATING = "CERating";
+    public static final String EERATING = "EERating";
+    public static final String RATEDPEOPLE = "RatedPeople";
+    public static final String CSPEOPLERATED = "CSRatedPeople";
+    public static final String MEPEOPLERATED = "MERatedPeople";
+    public static final String CEPEOPLERATED = "CERatedPeople";
+    public static final String EEPEOPLERATED = "EERatedPeople";
 
     private static final String DATABASE_CREATE = "CREATE TABLE " + USER
             + " (" + USERNAME + " text not null, " + PASSWORD + " text not null, " + EMAIL + " text not null, "
             + FULLNAME + " text not null, " + MAJOR + " text not null, " + INTEREST
             + " text not null, " + LOCKSTATUS + " text not null, " + BANSTATUS + " text not null, "
             + ADMINSTATUS + " text not null)";
-    private static final String MOVIEDATABASE_CREATE = "CREATE TABLE" + MOVIE + " (" + RATING + " text not null, "
+    private static final String MOVIEDATABASE_CREATE = "CREATE TABLE " + MOVIE + " ("+MOVIENAME +" text not null, " + RATING + " text not null, "
             + CSRATING + " text not null, " + MERATING + " text not null, " + CERATING + " text not null, " +
-            EERATING + " text not null)";
+            EERATING + " text not null, " + RATEDPEOPLE + " text not null, " + CSPEOPLERATED + " text not null, " + MEPEOPLERATED
+            + " text not null, " + CEPEOPLERATED + " text not null, " + EEPEOPLERATED + " text not null)";
 
-    public DatabaseWrapper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public DatabaseWrapper(Context context, String name) {
+        super(context, name, null, DATABASE_VERSION);
     }
 
     @Override

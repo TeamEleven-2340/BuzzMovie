@@ -40,7 +40,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * Creates the UserManager object.
      */
     public UserManager(Context context) throws SQLiteException {
-        dbHelper = new DatabaseWrapper(context);
+        dbHelper = new DatabaseWrapper(context, DatabaseWrapper.DATABASE_NAME);
         database = dbHelper.getWritableDatabase();
     }
 

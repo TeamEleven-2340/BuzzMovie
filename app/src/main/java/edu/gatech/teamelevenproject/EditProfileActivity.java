@@ -51,6 +51,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 R.array.majors, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setSelection(adapter.getPosition(afepa.getCurrentUsername().major));
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

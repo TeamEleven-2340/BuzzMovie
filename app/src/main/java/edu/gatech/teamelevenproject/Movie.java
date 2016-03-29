@@ -156,12 +156,8 @@ public class Movie implements Serializable {
         return majorRatings;
     }
 
-    public void setPeopleByMajors(String key) {
-        int numberOfPeople = 0;
-        if (majorPeopleRated.get(key) != null) {
-            numberOfPeople = majorPeopleRated.get(key);
-        }
-        majorPeopleRated.put(key, numberOfPeople + 1);
+    public void setPeopleByMajors(String key, int i) {
+        majorPeopleRated.put(key, i);
     }
 
     public Map<String, Integer> getPeopleByMajors() {
