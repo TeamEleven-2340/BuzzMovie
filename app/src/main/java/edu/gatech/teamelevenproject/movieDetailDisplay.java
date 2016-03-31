@@ -115,6 +115,10 @@ public class movieDetailDisplay extends AppCompatActivity {
         }
     }
 
+    /**
+     * Add movie to the database
+     * @param movie movie that you are adding
+     */
     private void addMovie(Movie movie) {
         SQLiteDatabase db = moviedbHelper.getWritableDatabase();
         double csRating = 0;
@@ -155,6 +159,10 @@ public class movieDetailDisplay extends AppCompatActivity {
         db.execSQL(query);
     }
 
+    /**
+     * Update the database movie.db
+     * @param movie the movie that has to be updated
+     */
     private void updateMovie(Movie movie) {
         SQLiteDatabase db = moviedbHelper.getWritableDatabase();
         double csRating = 0;

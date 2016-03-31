@@ -148,18 +148,36 @@ public class Movie implements Serializable {
         return peopleRated;
     }
 
+    /**
+     * Set the rating of the moview by the major
+     * @param key major of the rating
+     * @param value rating
+     */
     public void setRatingsByMajors(String key, double value) {
         majorRatings.put(key, value);
     }
 
+    /**
+     * Get the rating of the movie according to the major
+     * @return the map of the rating and the major
+     */
     public Map<String, Double> getRatingByMajors() {
         return majorRatings;
     }
 
+    /**
+     * Set the major of the people who rated the movie
+     * @param key major of the people
+     * @param i number of the people who rated
+     */
     public void setPeopleByMajors(String key, int i) {
         majorPeopleRated.put(key, i);
     }
 
+    /**
+     * Get the major of people who rated the movie so far
+     * @return map of the major and the number of the people who rated the movie
+     */
     public Map<String, Integer> getPeopleByMajors() {
         return majorPeopleRated;
     }
@@ -172,6 +190,11 @@ public class Movie implements Serializable {
         return "Title: " + name + "\n" +  "Year: " + year;
     }
 
+    /**
+     * ToString method
+     * @param major major that we want to show
+     * @return the string with title rating and the major
+     */
     public String toString2(String major) {
         return "Title: " + name + "\n" + "Ratings: " + getRatingByMajors().get(major);
     }

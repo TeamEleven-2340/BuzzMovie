@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -185,6 +184,9 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         return u == null;
     }
 
+    /**
+     * Update the user database
+     */
     public void updateDatabase() {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();

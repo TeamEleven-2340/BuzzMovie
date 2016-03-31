@@ -54,6 +54,11 @@ public class userDetailDisplay extends AppCompatActivity {
          * This button unlocks a user. It only changes user lock status to false
          */
     }
+
+    /**
+     * unlocks the user
+     * @param v the current view
+     */
     public void unlockButton(View v) {
         Boolean setStatus = false;
         afepa.setLockStatus(setStatus);
