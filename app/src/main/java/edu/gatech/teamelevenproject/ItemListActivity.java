@@ -67,8 +67,8 @@ public class ItemListActivity extends AppCompatActivity {
                         (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject resp) {
-                                String key = combinedterms;
-                                JSONObject obj1 = resp;
+                                final String key = combinedterms;
+                                final  JSONObject obj1 = resp;
                                 if (obj1 != null) {
                                     assert obj1 != null;
                                     selectedMovie.setName(obj1.optString("Title"));
@@ -79,13 +79,13 @@ public class ItemListActivity extends AppCompatActivity {
                                     if (!Movies.ITEM_MAP.containsKey(combinedterms)) {
                                         Movies.ITEM_MAP.put(combinedterms, selectedMovie);
                                     }
-                                    Movie s = Movies.ITEM_MAP.get(combinedterms);
+                                    final Movie s = Movies.ITEM_MAP.get(combinedterms);
                                     changeView(s);
                                 } else {
-                                    String text = "No Movies with the search term were found!";
-                                    Context context = getApplicationContext();
-                                    int duration = Toast.LENGTH_SHORT;
-                                    Toast t = Toast.makeText(context, text, duration);
+                                    final String text = "No Movies with the search term were found!";
+                                    final Context context = getApplicationContext();
+                                    final int duration = Toast.LENGTH_SHORT;
+                                    final Toast t = Toast.makeText(context, text, duration);
                                     t.show();
                                 }
                             }
@@ -93,7 +93,7 @@ public class ItemListActivity extends AppCompatActivity {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                String response = "JSon Request Failed!!";
+                                final String response = "JSon Request Failed!!";
                             }
                         });
                 //this actually queues up the async response with Volley

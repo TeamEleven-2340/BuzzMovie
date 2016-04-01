@@ -61,7 +61,7 @@ public class movieDetailDisplay extends AppCompatActivity {
      * @param v the current view
      */
     public void onRateButtonClicked(View v) {
-        final String major = ufmdd.getCurrentUsername().major;
+        final String major = ufmdd.getCurrentUsername().getMajor();
         double majorRating;
         double currentMajorRating;
         double rating = ratingBar.getRating();

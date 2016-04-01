@@ -123,7 +123,7 @@ public class MovieSearch extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject resp) {
                         //handle a valid response coming back.  Getting this string mainly for debug
-                        String response = resp.toString();
+                        final String response = resp.toString();
                         //printing first 500 chars of the response.  Only want to do this for debug
                         //TextView view = (TextView) findViewById(R.id.textView2);
                         //view.setText(response.substring(0, 500));
@@ -135,15 +135,15 @@ public class MovieSearch extends AppCompatActivity {
 
                         assert obj1 != null;
                         //From that object, we extract the array of actual data labeled result
-                        JSONArray array = obj1.optJSONArray("Search");
+                        final JSONArray array = obj1.optJSONArray("Search");
                         if (array != null) {
-                            ArrayList<edu.gatech.teamelevenproject.Movie> movies = new ArrayList<>();
+                            final ArrayList<edu.gatech.teamelevenproject.Movie> movies = new ArrayList<>();
                             for (int i = 0; i < array.length(); i++) {
 
                                 try {
                                     //for each array element, we have to create an object
-                                    JSONObject jsonObject = array.getJSONObject(i);
-                                    Movie s = new Movie();
+                                    final JSONObject jsonObject = array.getJSONObject(i);
+                                    final Movie s = new Movie();
                                     assert jsonObject != null;
                                     s.setName(jsonObject.optString("Title"));
                                     s.setYear(jsonObject.optString("Year"));
@@ -163,10 +163,10 @@ public class MovieSearch extends AppCompatActivity {
                             //once we have all data, then go to list screen
                             changeView(movies);
                         } else {
-                            String text = "No Movies with the search term were found!";
-                            Context context = getApplicationContext();
-                            int duration = Toast.LENGTH_SHORT;
-                            Toast t = Toast.makeText(context, text, duration);
+                            final String text = "No Movies with the search term were found!";
+                            final Context context = getApplicationContext();
+                            final int duration = Toast.LENGTH_SHORT;
+                            final Toast t = Toast.makeText(context, text, duration);
                             t.show();
                         }
                     }
@@ -174,7 +174,7 @@ public class MovieSearch extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        String response = "JSon Request Failed!!";
+                        final String response = "JSon Request Failed!!";
                         //show error on phone
                         //TextView view = (TextView) findViewById(R.id.textView2);
                         //view.setText(response);

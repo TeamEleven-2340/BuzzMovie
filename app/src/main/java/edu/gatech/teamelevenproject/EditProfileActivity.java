@@ -42,7 +42,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 R.array.majors, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setSelection(adapter.getPosition(afepa.getCurrentUsername().major));
+        spinner.setSelection(adapter.getPosition(afepa.getCurrentUsername().getMajor()));
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -51,17 +51,17 @@ public class EditProfileActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                currentMajorSelected = afepa.getCurrentUsername().major;
+                currentMajorSelected = afepa.getCurrentUsername().getMajor();
             }
         });
         final TextView usernamedisplay = (TextView) findViewById(R.id.usernamedisplayText);
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         interestEditText = (EditText) findViewById(R.id.interestEditText);
-        final String email = afepa.getCurrentUsername().email;
-        final String name = afepa.getCurrentUsername().name;
-        final String fullname = afepa.getCurrentUsername().fullname;
-        final String interest = afepa.getCurrentUsername().interest;
+        final String email = afepa.getCurrentUsername().getEmail();
+        final String name = afepa.getCurrentUsername().getName();
+        final String fullname = afepa.getCurrentUsername().getFullname();
+        final String interest = afepa.getCurrentUsername().getInterest();
         emailEditText.setText(email);
         usernamedisplay.setText(name);
         nameEditText.setText(fullname);
@@ -79,18 +79,18 @@ public class EditProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         final int id = item.getItemId();
         if (id == R.id.done) {
-            afepa.getCurrentUsername().fullname = nameEditText.getText().toString();
-            afepa.getCurrentUsername().interest = interestEditText.getText().toString();
-            afepa.getCurrentUsername().major = currentMajorSelected;
+            afepa.getCurrentUsername().setFullname(nameEditText.getText().toString());
+            afepa.getCurrentUsername().setInterest(interestEditText.getText().toString());
+            afepa.getCurrentUsername().setInterest(currentMajorSelected);
             if (!(emailEditText.getText().toString().contains("@"))
-                    && !(emailEditText.getText().toString().equals(afepa.getCurrentUsername().email))) {
+                    && !(emailEditText.getText().toString().equals(afepa.getCurrentUsername().getEmail()))) {
                 final String text = "Not a valid email address!";
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
                 final Toast t = Toast.makeText(context, text, duration);
                 t.show();
             } else {
-                afepa.getCurrentUsername().email = emailEditText.getText().toString();
+                afepa.getCurrentUsername().setEmail(emailEditText.getText().toString());
                 afepa.updateDatabase();
                 final Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
                 startActivity(intent);

@@ -26,11 +26,11 @@ public class ProfileActivity extends AppCompatActivity {
         final TextView usernamedisplayText = (TextView)findViewById(R.id.usernamedisplayText);
         final TextView interestText = (TextView) findViewById(R.id.interestTextView);
         final TextView majorText = (TextView) findViewById(R.id.majorEditText);
-        emaildisplayText.setText(ufpa.getCurrentUsername().email);
-        usernamedisplayText.setText(ufpa.getCurrentUsername().name);
-        namedisplayText.setText(ufpa.getCurrentUsername().fullname);
-        interestText.setText(ufpa.getCurrentUsername().interest);
-        majorText.setText(ufpa.getCurrentUsername().major);
+        emaildisplayText.setText(ufpa.getCurrentUsername().getEmail());
+        usernamedisplayText.setText(ufpa.getCurrentUsername().getName());
+        namedisplayText.setText(ufpa.getCurrentUsername().getFullname());
+        interestText.setText(ufpa.getCurrentUsername().getInterest());
+        majorText.setText(ufpa.getCurrentUsername().getMajor());
     }
 
     @Override

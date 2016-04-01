@@ -60,7 +60,7 @@ public class AdminSearch extends AppCompatActivity {
              */
             private void changeView(User display) {
                 final Intent intent = new Intent(getBaseContext(), userDetailDisplay.class);
-                intent.putExtra("user", display.name);
+                intent.putExtra("user", display.getName());
                 startActivity(intent);
             }
         });

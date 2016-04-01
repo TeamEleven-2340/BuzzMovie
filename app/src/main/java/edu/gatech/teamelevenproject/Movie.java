@@ -30,10 +30,10 @@ public class Movie implements Serializable {
 
     /**
      * Set the name of a movie.
-     * @param name a String of the movie's name
+     * @param setname a String of the movie's name
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String setname) {
+        this.name = setname;
     }
 
     /**
@@ -46,18 +46,18 @@ public class Movie implements Serializable {
 
     /**
      * Set the year that a movie was released
-     * @param year a String of the movie's year
+     * @param setyear a String of the movie's year
      */
-    public void setYear(String year) {
-        this.year = year;
+    public void setYear(String setyear) {
+        this.year = setyear;
     }
 
     /**
      * Set the genre of the movie with information we get
-     * @param genre genre of the movie
+     * @param setgenre genre of the movie
      */
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenre(String setgenre) {
+        this.genre = setgenre;
     }
 
     /**
@@ -70,10 +70,10 @@ public class Movie implements Serializable {
 
     /**
      * Set the actors in the movie
-     * @param actors actors in the movie
+     * @param setactors actors in the movie
      */
-    public void setActors(String actors) {
-        this.actors = actors;
+    public void setActors(String setactors) {
+        this.actors = setactors;
     }
 
     /**
@@ -86,10 +86,10 @@ public class Movie implements Serializable {
 
     /**
      * Set the length of the movie
-     * @param length length of the movie
+     * @param setlength length of the movie
      */
-    public void setLength(String length) {
-        this.length = length;
+    public void setLength(String setlength) {
+        this.length = setlength;
     }
 
     /**
@@ -102,10 +102,10 @@ public class Movie implements Serializable {
 
     /**
      * Set the released date of the movie
-     * @param released released date of the movie
+     * @param setreleased released date of the movie
      */
-    public void setReleased(String released) {
-        this.released = released;
+    public void setReleased(String setreleased) {
+        this.released = setreleased;
     }
 
     /**
@@ -118,10 +118,10 @@ public class Movie implements Serializable {
 
     /**
      * Set the rating of the movie
-     * @param rating rating of the movie
+     * @param setrating rating of the movie
      */
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setRating(double setrating) {
+        this.rating = setrating;
     }
 
     /**
@@ -134,10 +134,10 @@ public class Movie implements Serializable {
 
     /**
      * Set the number of people who rated the movie
-     * @param peopleRated number of people who rated this movie so far
+     * @param setpeopleRated number of people who rated this movie so far
      */
-    public void setPeopleRated(int peopleRated) {
-        this.peopleRated = peopleRated;
+    public void setPeopleRated(int setpeopleRated) {
+        this.peopleRated = setpeopleRated;
     }
 
     /**

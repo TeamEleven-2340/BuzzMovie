@@ -6,15 +6,17 @@ package edu.gatech.teamelevenproject;
  */
 
 public class User {
-    String name;
-    String password;
-    String email;
-    String fullname;
-    boolean banStatus;
-    boolean lockStatus;
-    String major;
-    String interest;
-    boolean adminStatus;
+
+
+    private String name;
+    private String password;
+    private String email;
+    private String fullname;
+    private boolean banStatus;
+    private boolean lockStatus;
+    private String major;
+    private String interest;
+    private boolean adminStatus;
 
     /**
      * Creates a user with a name and password.
@@ -92,5 +94,65 @@ public class User {
     public String toStringBannedStatus() {
         return "User: " + name + " Ban Status: " + Boolean.toString(banStatus) +
                 " Lock Status: " + Boolean.toString(lockStatus);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String setname) {
+        this.name = setname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String setpassword) {
+        this.password = setpassword;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String setemail) {
+        this.email = setemail;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String setfullname) {
+        this.fullname = setfullname;
+    }
+
+    public boolean isBanStatus() {
+        return banStatus;
+    }
+
+    public boolean isLockStatus() {
+        return lockStatus;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String setmajor) {
+        this.major = setmajor;
+    }
+
+    public String getInterest() {
+        return interest;
+    }
+
+    public void setInterest(String setinterest) {
+        this.interest = setinterest;
+    }
+
+    public void setAdminStatus(boolean setadminStatus) {
+        this.adminStatus = setadminStatus;
     }
 }
