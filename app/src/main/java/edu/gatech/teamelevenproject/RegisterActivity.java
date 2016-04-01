@@ -3,11 +3,8 @@ package edu.gatech.teamelevenproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,7 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -31,32 +28,32 @@ public class RegisterActivity extends AppCompatActivity {
      * @param v the current view
      */
     public void OnRegisterClicked(View v) {
-        EditText registerNameBox = (EditText) findViewById(R.id.IDEditText);
-        EditText registerPassBox = (EditText) findViewById(R.id.passwordEditText);
-        UserManagementFacade rg = new UserManager(this);
+        final EditText registerNameBox = (EditText) findViewById(R.id.IDEditText);
+        final EditText registerPassBox = (EditText) findViewById(R.id.passwordEditText);
+        final UserManagementFacade rg = new UserManager(this);
         CharSequence text;
 
-        if (registerPassBox.getText().toString().equals("") || registerNameBox.getText().toString().equals("")) {
+        if ("".equals(registerPassBox.getText().toString()) || "".equals(registerNameBox.getText().toString())) {
             text = "No Username or Password Entered!";
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast t = Toast.makeText(context, text, duration);
+            final Context context = getApplicationContext();
+            final int duration = Toast.LENGTH_SHORT;
+            final Toast t = Toast.makeText(context, text, duration);
             t.show();
         } else {
             if (rg.handleRegisterRequest(registerNameBox.getText().toString(), registerPassBox.getText().toString())) {
                 text = "Register Success!";
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                Toast t = Toast.makeText(context, text, duration);
+                final Context context = getApplicationContext();
+                final int duration = Toast.LENGTH_SHORT;
+                final Toast t = Toast.makeText(context, text, duration);
                 t.show();
                 rg.addUser(registerNameBox.getText().toString(), registerPassBox.getText().toString());
-                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                final Intent intent = new Intent(getBaseContext(), LoginActivity.class);
                 startActivity(intent);
             } else {
                 text = "User already exists!";
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                Toast t = Toast.makeText(context, text, duration);
+                final Context context = getApplicationContext();
+                final int duration = Toast.LENGTH_SHORT;
+                final Toast t = Toast.makeText(context, text, duration);
                 t.show();
             }
         }

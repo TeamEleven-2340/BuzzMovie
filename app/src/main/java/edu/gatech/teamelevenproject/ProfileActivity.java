@@ -18,14 +18,14 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        UserManagementFacade ufpa = new UserManager(this);
-        TextView namedisplayText = (TextView)findViewById(R.id.namedisplayText);
-        TextView emaildisplayText = (TextView)findViewById(R.id.emaildisplayText);
-        TextView usernamedisplayText = (TextView)findViewById(R.id.usernamedisplayText);
-        TextView interestText = (TextView) findViewById(R.id.interestTextView);
-        TextView majorText = (TextView) findViewById(R.id.majorEditText);
+        final UserManagementFacade ufpa = new UserManager(this);
+        final TextView namedisplayText = (TextView)findViewById(R.id.namedisplayText);
+        final TextView emaildisplayText = (TextView)findViewById(R.id.emaildisplayText);
+        final TextView usernamedisplayText = (TextView)findViewById(R.id.usernamedisplayText);
+        final TextView interestText = (TextView) findViewById(R.id.interestTextView);
+        final TextView majorText = (TextView) findViewById(R.id.majorEditText);
         emaildisplayText.setText(ufpa.getCurrentUsername().email);
         usernamedisplayText.setText(ufpa.getCurrentUsername().name);
         namedisplayText.setText(ufpa.getCurrentUsername().fullname);
@@ -41,9 +41,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        final int id = item.getItemId();
         if (id == R.id.edit) {
-            Intent intent = new Intent(getBaseContext(), EditProfileActivity.class);
+            final Intent intent = new Intent(getBaseContext(), EditProfileActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

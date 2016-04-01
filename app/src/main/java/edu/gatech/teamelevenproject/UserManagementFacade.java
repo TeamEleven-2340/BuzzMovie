@@ -62,7 +62,7 @@ public interface UserManagementFacade {
      * Getter method for a list of Users
      * @return currentUsername the current username
      */
-    public ArrayList<User> getUserList();
+    ArrayList<User> getUserList();
 
     /**
      * Sets the banned stasus of a given user.

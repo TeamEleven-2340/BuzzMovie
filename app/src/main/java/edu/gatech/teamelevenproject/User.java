@@ -1,6 +1,5 @@
 package edu.gatech.teamelevenproject;
 
-import android.widget.Toast;
 
 /**
  * Class that defines the contents of a user.
@@ -88,7 +87,7 @@ public class User {
 
     /**
      * Returns string format of banned + locked status
-     * @return
+     * @return return string form of banned status
      */
     public String toStringBannedStatus() {
         return "User: " + name + " Ban Status: " + Boolean.toString(banStatus) +

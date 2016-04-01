@@ -1,13 +1,10 @@
 package edu.gatech.teamelevenproject;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import edu.gatech.teamelevenproject.R;
 
 /**
  * Main activity class.
@@ -19,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        UserManagementFacade um = new UserManager(this);
+        final UserManagementFacade um = new UserManager(this);
         if(um.findUserById("test") == null) {
             um.addAdmin("test", "pass");
         }
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view the current view
      */
     public void onLoginButtonClicked(View view) {
-        Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+        final Intent intent = new Intent(getBaseContext(), LoginActivity.class);
         startActivity(intent);
     }
 
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view the current view
      */
     public void onRegistrationButtonClicked(View view) {
-        Intent registerintent = new Intent (getBaseContext(), RegisterActivity.class);
+        final Intent registerintent = new Intent (getBaseContext(), RegisterActivity.class);
         startActivity(registerintent);
     }
 }

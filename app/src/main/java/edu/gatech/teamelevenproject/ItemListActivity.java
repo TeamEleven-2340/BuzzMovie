@@ -2,12 +2,9 @@ package edu.gatech.teamelevenproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,11 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,24 +29,22 @@ import java.util.List;
 public class ItemListActivity extends AppCompatActivity {
 
     private List<Movie> movies;
-    private ListView lv;
     private RequestQueue queue;
-    private String response;
-    String combinedterms;
+    private String combinedterms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         queue = Volley.newRequestQueue(this);
-        lv = (ListView) findViewById(R.id.content);
+        final ListView lv = (ListView) findViewById(R.id.content);
         movies = (List<Movie>) getIntent().getSerializableExtra("movies");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.item_name);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.item_name);
 
 
-        for (Movie s : movies) {
+        for (final Movie s : movies) {
             arrayAdapter.add(s.toString());
         }
 
@@ -68,10 +60,10 @@ public class ItemListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final Movie selectedMovie = movies.get(position);
-                String title = selectedMovie.getName();
+                final String title = selectedMovie.getName();
                 combinedterms = title.replace(' ', '+');
-                String url = "http://www.omdbapi.com/?t=" + combinedterms + "&type=movie&y=&plot=short&r=json";
-                JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                final String url = "http://www.omdbapi.com/?t=" + combinedterms + "&type=movie&y=&plot=short&r=json";
+                final JsonObjectRequest jsObjRequest = new JsonObjectRequest
                         (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject resp) {
@@ -114,7 +106,7 @@ public class ItemListActivity extends AppCompatActivity {
              * @param movie the selected movie
              */
             private void changeView(Movie movie) {
-                Intent intent = new Intent(getBaseContext(), movieDetailDisplay.class);
+                final Intent intent = new Intent(getBaseContext(), movieDetailDisplay.class);
                 intent.putExtra("movie", movie);
                 intent.putExtra("key", combinedterms);
                 startActivity(intent);

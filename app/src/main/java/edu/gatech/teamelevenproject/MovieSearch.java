@@ -27,9 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * MovieSearch defines the selection of movies.
@@ -37,11 +35,8 @@ import java.util.Map;
 public class MovieSearch extends AppCompatActivity {
 
     private RequestQueue queue;
-    private String response;
     private String currentMajor;
-    private String searchTerm;
     private EditText searcheditText;
-    Map<String, Movie> a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +44,8 @@ public class MovieSearch extends AppCompatActivity {
         setContentView(R.layout.activity_movie_search);
         queue = Volley.newRequestQueue(this);
         searcheditText = ((EditText) findViewById(R.id.searcheditText));
-        Spinner spinner = (Spinner) findViewById(R.id.majorfilter);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        final Spinner spinner = (Spinner) findViewById(R.id.majorfilter);
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.majorsfilter, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -73,19 +68,19 @@ public class MovieSearch extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         if (id == R.id.logout) {
-            Intent back = new Intent(getBaseContext(), MainActivity.class);
+            final Intent back = new Intent(getBaseContext(), MainActivity.class);
             back.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(back);
-            String text = "Logout Success!";
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast t = Toast.makeText(context, text, duration);
+            final String text = "Logout Success!";
+            final Context context = getApplicationContext();
+            final int duration = Toast.LENGTH_SHORT;
+            final Toast t = Toast.makeText(context, text, duration);
             t.show();
         } else if (id == R.id.profile) {
-             Intent profile = new Intent (getBaseContext(), ProfileActivity.class);
+            final Intent profile = new Intent (getBaseContext(), ProfileActivity.class);
             startActivity(profile);
         }
 
@@ -95,13 +90,13 @@ public class MovieSearch extends AppCompatActivity {
     /**
      * This method implements volley which allows us to use API into our app. Using the API, if there is an error we show error messages.
      * We also receive search words from the users to search the movies that they want to see.
-     * @param view
+     * @param view view
      */
     public void onGetMovie(View view) {
-        searchTerm = searcheditText.getText().toString();
+        final String searchTerm = searcheditText.getText().toString();
         int count = 1;
         String a = "";
-        ArrayList<String> terms = new ArrayList<>();
+        final ArrayList<String> terms = new ArrayList<>();
         while (count <= searchTerm.length()) {
             for (int i = 0; i < searchTerm.length(); i++) {
                 if (searchTerm.charAt(i) != ' ') {
@@ -121,13 +116,14 @@ public class MovieSearch extends AppCompatActivity {
                 combinedterms += "+" + terms.get(i);
             }
         }
-        String url = "http://www.omdbapi.com/?s=" + combinedterms + "&type=movie&y=&plot=short&r=json";
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+        final String url = "http://www.omdbapi.com/?s=" + combinedterms + "&type=movie&y=&plot=short&r=json";
+        final JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
                     @Override
                     public void onResponse(JSONObject resp) {
                         //handle a valid response coming back.  Getting this string mainly for debug
-                        response = resp.toString();
+                        String response = resp.toString();
                         //printing first 500 chars of the response.  Only want to do this for debug
                         //TextView view = (TextView) findViewById(R.id.textView2);
                         //view.setText(response.substring(0, 500));
@@ -178,7 +174,7 @@ public class MovieSearch extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        response = "JSon Request Failed!!";
+                        String response = "JSon Request Failed!!";
                         //show error on phone
                         //TextView view = (TextView) findViewById(R.id.textView2);
                         //view.setText(response);
@@ -190,10 +186,10 @@ public class MovieSearch extends AppCompatActivity {
 
     /**
      * Change the view,
-     * @param movies
+     * @param movies moveies to show
      */
     private void changeView(ArrayList<edu.gatech.teamelevenproject.Movie> movies) {
-        Intent intent = new Intent(this, ItemListActivity.class);
+        final Intent intent = new Intent(this, ItemListActivity.class);
         //this is where we save the info.  note the State object must be Serializable
         intent.putExtra("movies", movies);
         startActivity(intent);
@@ -204,13 +200,12 @@ public class MovieSearch extends AppCompatActivity {
      * @param view Current view
      */
     public void RecommendButtonClicked(View view) {
-        Intent intent = new Intent(this, recommendationActivity.class);
+        final Intent intent = new Intent(this, recommendationActivity.class);
         intent.putExtra("major", currentMajor);
-        List<Movie> movieList = Movies.getMovieList(this);
-        List<Movie> existingList = new ArrayList<Movie>();
+        final List<Movie> movieList = Movies.getMovieList(this);
         boolean a = false;
         if (movieList.size() != 0) {
-            if (!currentMajor.equals("None")) {
+            if (!"None".equals(currentMajor)) {
                 for (int i = 0; i < movieList.size(); i++) {
                     if (movieList.get(i).getPeopleByMajors().get(currentMajor) != 0) {
                         a = true;
@@ -227,10 +222,10 @@ public class MovieSearch extends AppCompatActivity {
         if (a) {
             startActivity(intent);
         } else {
-            String text = "No recommendation right now!";
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast t = Toast.makeText(context, text, duration);
+            final String text = "No recommendation right now!";
+            final Context context = getApplicationContext();
+            final int duration = Toast.LENGTH_SHORT;
+            final Toast t = Toast.makeText(context, text, duration);
             t.show();
         }
     }
@@ -239,7 +234,7 @@ public class MovieSearch extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            final Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(intent);
             return true;

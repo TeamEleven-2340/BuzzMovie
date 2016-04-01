@@ -34,15 +34,17 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     public static final String CEPEOPLERATED = "CERatedPeople";
     public static final String EEPEOPLERATED = "EERatedPeople";
 
+    private static final String tnn = " text not null, ";
+
     private static final String DATABASE_CREATE = "CREATE TABLE " + USER
-            + " (" + USERNAME + " text not null, " + PASSWORD + " text not null, " + EMAIL + " text not null, "
-            + FULLNAME + " text not null, " + MAJOR + " text not null, " + INTEREST
-            + " text not null, " + LOCKSTATUS + " text not null, " + BANSTATUS + " text not null, "
+            + " (" + USERNAME + tnn + PASSWORD + tnn + EMAIL + tnn
+            + FULLNAME + tnn + MAJOR + tnn + INTEREST
+            + tnn + LOCKSTATUS + tnn + BANSTATUS + tnn
             + ADMINSTATUS + " text not null)";
-    private static final String MOVIEDATABASE_CREATE = "CREATE TABLE " + MOVIE + " ("+MOVIENAME +" text not null, " + RATING + " text not null, "
-            + CSRATING + " text not null, " + MERATING + " text not null, " + CERATING + " text not null, " +
-            EERATING + " text not null, " + RATEDPEOPLE + " text not null, " + CSPEOPLERATED + " text not null, " + MEPEOPLERATED
-            + " text not null, " + CEPEOPLERATED + " text not null, " + EEPEOPLERATED + " text not null)";
+    private static final String MOVIEDATABASE_CREATE = "CREATE TABLE " + MOVIE + " ("+MOVIENAME +tnn + RATING + tnn
+            + CSRATING + tnn + MERATING + tnn + CERATING + tnn +
+            EERATING + tnn + RATEDPEOPLE + tnn + CSPEOPLERATED + tnn + MEPEOPLERATED
+            + tnn + CEPEOPLERATED + tnn + EEPEOPLERATED + " text not null)";
 
     public DatabaseWrapper(Context context, String name) {
         super(context, name, null, DATABASE_VERSION);

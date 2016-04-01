@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.Volley;
 
 /**
  * LoginActivity defines the actions that happen during login.
@@ -37,11 +36,11 @@ public class LoginActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.cancel) {
-            Intent back = new Intent(getBaseContext(), MainActivity.class);
+            final Intent back = new Intent(getBaseContext(), MainActivity.class);
             back.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(back);
         }
@@ -55,49 +54,49 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void LoginButtonClicked(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        AuthenticationFacade af = new UserManager(this);
-        UserManagementFacade uf = new UserManager(this);
-        EditText nameBox = (EditText) findViewById(R.id.idEditText);
-        EditText passBox = (EditText) findViewById(R.id.passwordEditText);
+        final AuthenticationFacade af = new UserManager(this);
+        final UserManagementFacade uf = new UserManager(this);
+        final EditText nameBox = (EditText) findViewById(R.id.idEditText);
+        final EditText passBox = (EditText) findViewById(R.id.passwordEditText);
         CharSequence text;
 
         if (af.handleLoginRequest(nameBox.getText().toString(), passBox.getText().toString())) {
-            User loggedinUser = uf.findUserById(nameBox.getText().toString());
+            final User loggedinUser = uf.findUserById(nameBox.getText().toString());
             uf.setCurrentUsername(loggedinUser);
-            if (uf.getBannedStatus() == true) {
+            if (uf.getBannedStatus()) {
                 text = "Login Failure! Account is Banned!";
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                Toast t = Toast.makeText(context, text, duration);
+                final Context context = getApplicationContext();
+                final int duration = Toast.LENGTH_SHORT;
+                final Toast t = Toast.makeText(context, text, duration);
                 t.show();
-            } else if (uf.getLockStatus() == true) {
+            } else if (uf.getLockStatus()) {
                 text = "Login Failure! Account is Locked!";
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                Toast t = Toast.makeText(context, text, duration);
+                final Context context = getApplicationContext();
+                final int duration = Toast.LENGTH_SHORT;
+                final Toast t = Toast.makeText(context, text, duration);
                 t.show();
-            } else if (uf.isAdminStatus() == true) {
+            } else if (uf.isAdminStatus()) {
                 text = "Admin Login Success!";
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                Toast t = Toast.makeText(context, text, duration);
+                final Context context = getApplicationContext();
+                final int duration = Toast.LENGTH_SHORT;
+                final Toast t = Toast.makeText(context, text, duration);
                 t.show();
-                Intent i = new Intent(getBaseContext(), AdminSearch.class);
+                final Intent i = new Intent(getBaseContext(), AdminSearch.class);
                 startActivity(i);
             } else {
                 text = "Login Success!";
-                Context context = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                Toast t = Toast.makeText(context, text, duration);
+                final Context context = getApplicationContext();
+                final int duration = Toast.LENGTH_SHORT;
+                final Toast t = Toast.makeText(context, text, duration);
                 t.show();
-                Intent i = new Intent(getBaseContext(), MovieSearch.class);
+                final Intent i = new Intent(getBaseContext(), MovieSearch.class);
                 startActivity(i);
             }
         } else {
             text = "Login Failure!";
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast t = Toast.makeText(context, text, duration);
+            final Context context = getApplicationContext();
+            final int duration = Toast.LENGTH_SHORT;
+            final Toast t = Toast.makeText(context, text, duration);
             t.show();
         }
     }

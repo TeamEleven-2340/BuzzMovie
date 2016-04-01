@@ -14,6 +14,10 @@ import java.util.Map;
  */
 public class Movies {
 
+    private Movies() {
+
+    }
+
     /**
      * An array of Movie objects.
      */
@@ -28,10 +32,10 @@ public class Movies {
      * @return Movies the list of movies
      */
     public static List<Movie> getMovieList (Context context){
-        List movieList = new ArrayList();
-        DatabaseWrapper moviedbHelper = new DatabaseWrapper(context, DatabaseWrapper.DATABASEMOVIE_NAME);
-        SQLiteDatabase rdb = moviedbHelper.getReadableDatabase();
-        String[] columns = {
+        final List movieList = new ArrayList();
+        final DatabaseWrapper moviedbHelper = new DatabaseWrapper(context, DatabaseWrapper.DATABASEMOVIE_NAME);
+        final SQLiteDatabase rdb = moviedbHelper.getReadableDatabase();
+        final String[] columns = {
                 DatabaseWrapper.MOVIENAME,
                 DatabaseWrapper.RATING,
                 DatabaseWrapper.CSRATING,
@@ -44,21 +48,21 @@ public class Movies {
                 DatabaseWrapper.CEPEOPLERATED,
                 DatabaseWrapper.EEPEOPLERATED
         };
-        Cursor cursor = rdb.query(DatabaseWrapper.MOVIE, columns, null, null, null, null, null);
+        final Cursor cursor = rdb.query(DatabaseWrapper.MOVIE, columns, null, null, null, null, null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
-            String name = cursor.getString(0);
-            String rating = cursor.getString(1);
-            String csRating = cursor.getString(2);
-            String meRating = cursor.getString(3);
-            String ceRating = cursor.getString(4);
-            String eeRating = cursor.getString(5);
-            String ratedPeople = cursor.getString(6);
-            String csRatedPeople = cursor.getString(7);
-            String meRatedPeople = cursor.getString(8);
-            String ceRatedPeople = cursor.getString(9);
-            String eeRatedPeople = cursor.getString(10);
-            Movie movie = new Movie();
+            final String name = cursor.getString(0);
+            final String rating = cursor.getString(1);
+            final String csRating = cursor.getString(2);
+            final String meRating = cursor.getString(2+1);
+            final String ceRating = cursor.getString(2+2);
+            final String eeRating = cursor.getString(2+2+1);
+            final String ratedPeople = cursor.getString(2+2+2);
+            final String csRatedPeople = cursor.getString(2+2+2+1);
+            final String meRatedPeople = cursor.getString(2+2+2+2);
+            final String ceRatedPeople = cursor.getString(2+2+2+2+1);
+            final String eeRatedPeople = cursor.getString(2+2+2+2+2);
+            final Movie movie = new Movie();
             movie.setName(name);
             movie.setRating(Double.parseDouble(rating));
             movie.setPeopleRated(Integer.parseInt(ratedPeople));
