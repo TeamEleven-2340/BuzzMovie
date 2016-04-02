@@ -69,6 +69,6 @@
         android:id="@+id/recButton"
         android:layout_below="@+id/majorfilter"
         android:layout_centerHorizontal="true"
-        android:onClick="RecommendButtonClicked" />
+        android:onClick="recommendButtonClicked" />
 
 </RelativeLayout>

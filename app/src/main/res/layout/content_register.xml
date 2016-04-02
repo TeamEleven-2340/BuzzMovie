@@ -61,7 +61,7 @@
         android:layout_below="@+id/passwordEditText"
         android:layout_toRightOf="@+id/passwordTextView"
         android:layout_toEndOf="@+id/passwordTextView"
-        android:onClick="OnRegisterClicked" />
+        android:onClick="onRegisterClicked" />
 
     <ImageView
         android:layout_width="wrap_content"

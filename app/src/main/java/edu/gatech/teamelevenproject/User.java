@@ -8,14 +8,41 @@ package edu.gatech.teamelevenproject;
 public class User {
 
 
+    /**
+     * Name of the user
+     */
     private String name;
+    /**
+     * password of the user
+     */
     private String password;
+    /**
+     * Email of the user
+     */
     private String email;
+    /**
+     * full name of the user
+     */
     private String fullname;
+    /**
+     * Ban status of the user
+     */
     private boolean banStatus;
+    /**
+     * Lock status of the user
+     */
     private boolean lockStatus;
+    /**
+     * Major of the user
+     */
     private String major;
+    /**
+     * Interest of the user
+     */
     private String interest;
+    /**
+     * Admin status of the user
+     */
     private boolean adminStatus;
 
     /**
@@ -34,6 +61,10 @@ public class User {
         interest = "";
         adminStatus = false;
     }
+
+    /**
+     * usused constructor
+     */
     public User() {
 
     }
@@ -96,62 +127,122 @@ public class User {
                 " Lock Status: " + Boolean.toString(lockStatus);
     }
 
+    /**
+     * get the name
+     * @return name of the user
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set the name of the user
+     * @param setname name of the user
+     */
     public void setName(String setname) {
         this.name = setname;
     }
 
+    /**
+     * get the password
+     * @return password of the user
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * set the password of the user
+     * @param setpassword password of the user
+     */
     public void setPassword(String setpassword) {
         this.password = setpassword;
     }
 
+    /**
+     * Get the email address of the user
+     * @return email of the user
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Set the email address of the user
+     * @param setemail email of the user
+     */
     public void setEmail(String setemail) {
         this.email = setemail;
     }
 
+    /**
+     * Get the full name of the user
+     * @return full name of the user
+     */
     public String getFullname() {
         return fullname;
     }
 
+    /**
+     * Set the full name of the user
+     * @param setfullname full name of the user
+     */
     public void setFullname(String setfullname) {
         this.fullname = setfullname;
     }
 
+    /**
+     * get the ban status of the user
+     * @return the ban status of the user
+     */
     public boolean isBanStatus() {
         return banStatus;
     }
 
+    /**
+     * get the lock status of the user
+     * @return the lock status of the user
+     */
     public boolean isLockStatus() {
         return lockStatus;
     }
 
+    /**
+     * Get the major of the user
+     * @return major of the user
+     */
     public String getMajor() {
         return major;
     }
 
+    /**
+     * Set the major of the user
+     * @param setmajor major of the user
+     */
     public void setMajor(String setmajor) {
         this.major = setmajor;
     }
 
+    /**
+     * Get the interest of the user
+     * @return interest of the user
+     */
     public String getInterest() {
         return interest;
     }
 
+    /**
+     * Set the interest of the user
+     * @param setinterest interest of the user
+     */
     public void setInterest(String setinterest) {
         this.interest = setinterest;
     }
 
+    /**
+     * Set the admin status of the user
+     * @param setadminStatus admin status of the user
+     */
     public void setAdminStatus(boolean setadminStatus) {
         this.adminStatus = setadminStatus;
     }

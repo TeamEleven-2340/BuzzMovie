@@ -12,8 +12,10 @@ import java.util.Map;
 /**
  * This class puts group of movies into an array called Movies.
  */
-public class Movies {
-
+public final class Movies {
+    /**
+     * usused constructor
+     */
     private Movies() {
 
     }
@@ -29,24 +31,23 @@ public class Movies {
     public static final Map<String, Movie> ITEM_MAP = new HashMap<>();
 
     /** Getter method for a list of Movies
+     * @param context context of this activity
      * @return Movies the list of movies
      */
-    public static List<Movie> getMovieList (Context context){
+    public static List<Movie> getMovieList (SQLiteDatabase rdb){
         final List movieList = new ArrayList();
-        final DatabaseWrapper moviedbHelper = new DatabaseWrapper(context, DatabaseWrapper.DATABASEMOVIE_NAME);
-        final SQLiteDatabase rdb = moviedbHelper.getReadableDatabase();
         final String[] columns = {
-                DatabaseWrapper.MOVIENAME,
-                DatabaseWrapper.RATING,
-                DatabaseWrapper.CSRATING,
-                DatabaseWrapper.MERATING,
-                DatabaseWrapper.CERATING,
-                DatabaseWrapper.EERATING,
-                DatabaseWrapper.RATEDPEOPLE,
-                DatabaseWrapper.CSPEOPLERATED,
-                DatabaseWrapper.MEPEOPLERATED,
-                DatabaseWrapper.CEPEOPLERATED,
-                DatabaseWrapper.EEPEOPLERATED
+            DatabaseWrapper.MOVIENAME,
+            DatabaseWrapper.RATING,
+            DatabaseWrapper.CSRATING,
+            DatabaseWrapper.MERATING,
+            DatabaseWrapper.CERATING,
+            DatabaseWrapper.EERATING,
+            DatabaseWrapper.RATEDPEOPLE,
+            DatabaseWrapper.CSPEOPLERATED,
+            DatabaseWrapper.MEPEOPLERATED,
+            DatabaseWrapper.CEPEOPLERATED,
+            DatabaseWrapper.EEPEOPLERATED
         };
         final Cursor cursor = rdb.query(DatabaseWrapper.MOVIE, columns, null, null, null, null, null);
         cursor.moveToFirst();

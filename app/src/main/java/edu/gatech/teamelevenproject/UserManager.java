@@ -15,29 +15,45 @@ import java.util.Map;
  */
 
 public class UserManager implements AuthenticationFacade, UserManagementFacade {
+    /**
+     * map that contains all the users
+     */
     private static Map<String, User> users = new HashMap<>();
+    /**
+     * currentUsername for the app
+     */
     private static User currentUsername;
+    /**
+     * private DatabaseWrapper for userManager
+     */
     private DatabaseWrapper dbHelper;
+    /**
+     * private databse that controls database in userManager
+     */
     private SQLiteDatabase database;
+    /**
+     * Columns of the database
+     */
     private String[] columns = {
-            DatabaseWrapper.USERNAME,
-            DatabaseWrapper.PASSWORD,
-            DatabaseWrapper.EMAIL,
-            DatabaseWrapper.FULLNAME,
-            DatabaseWrapper.MAJOR,
-            DatabaseWrapper.INTEREST,
-            DatabaseWrapper.LOCKSTATUS,
-            DatabaseWrapper.BANSTATUS,
-            DatabaseWrapper.ADMINSTATUS
+        DatabaseWrapper.USERNAME,
+        DatabaseWrapper.PASSWORD,
+        DatabaseWrapper.EMAIL,
+        DatabaseWrapper.FULLNAME,
+        DatabaseWrapper.MAJOR,
+        DatabaseWrapper.INTEREST,
+        DatabaseWrapper.LOCKSTATUS,
+        DatabaseWrapper.BANSTATUS,
+        DatabaseWrapper.ADMINSTATUS
     };
 
 
     /**
      * Creates the UserManager object.
+     * @param context context of the activity
      */
-    public UserManager(Context context) {
-        dbHelper = new DatabaseWrapper(context, DatabaseWrapper.DATABASE_NAME);
-        database = dbHelper.getWritableDatabase();
+    public UserManager(DatabaseWrapper dbHelper, SQLiteDatabase rdb) {
+        this.dbHelper = dbHelper;
+        database = rdb;
     }
 
     /**
@@ -69,8 +85,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     public ArrayList<User> getUserList (){
         final List usernameList = new ArrayList();
         final ArrayList userList = new ArrayList();
-        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
-        final Cursor cursor = rdb.query(DatabaseWrapper.USER, columns, null, null, null, null, null);
+        final Cursor cursor = database.query(DatabaseWrapper.USER, columns, null, null, null, null, null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
             final String username = cursor.getString(0);
@@ -210,7 +225,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     }
     /**
      * Gets the banned stasus of a current user.
-     *
+     * @return banned status of a current user
      */
     public boolean getBannedStatus() {
         return findUserById(currentUsername.getName()).getBanStatus();
@@ -226,8 +241,8 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         updateDatabase();
     }
     /**
-     * Gets the lock stasus of a current user.
-     *
+     * Gets the lock status of a current user.
+     * @return lock status of a current user
      */
     public boolean getLockStatus() {
         return findUserById(currentUsername.getName()).getLockStatus();

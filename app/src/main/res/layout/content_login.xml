@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:text="Log In"
         android:id="@+id/loginButton"
-        android:onClick="LoginButtonClicked"
+        android:onClick="loginButtonClicked"
         android:layout_below="@+id/passwordEditText"
         android:layout_alignRight="@+id/passwordEditText"
         android:layout_alignEnd="@+id/passwordEditText" />

@@ -2,7 +2,9 @@ package edu.gatech.teamelevenproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,12 +16,22 @@ import android.widget.Toast;
  */
 
 public class RegisterActivity extends AppCompatActivity {
+    /**
+     * DatabaseWrapper used in this activity
+     */
+    private DatabaseWrapper dbHelper;
+    /**
+     * SQLiteDatabase used in this activity
+     */
+    private SQLiteDatabase rdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        rdb = dbHelper.getReadableDatabase();
         setSupportActionBar(toolbar);
     }
 
@@ -27,10 +39,10 @@ public class RegisterActivity extends AppCompatActivity {
      * Defines what happens during a standard registration activity when the registration button is clicked.
      * @param v the current view
      */
-    public void OnRegisterClicked(View v) {
+    public void onRegisterClicked(View v) {
         final EditText registerNameBox = (EditText) findViewById(R.id.IDEditText);
         final EditText registerPassBox = (EditText) findViewById(R.id.passwordEditText);
-        final UserManagementFacade rg = new UserManager(this);
+        final UserManagementFacade rg = new UserManager(dbHelper, rdb);
         CharSequence text;
 
         if ("".equals(registerPassBox.getText().toString()) || "".equals(registerNameBox.getText().toString())) {

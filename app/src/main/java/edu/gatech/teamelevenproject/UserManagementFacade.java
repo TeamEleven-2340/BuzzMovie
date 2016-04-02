@@ -23,8 +23,15 @@ public interface UserManagementFacade {
      */
     void addAdmin(String name, String pass);
 
+    /**
+     * Get the admin status of the user
+     * @return admin status of the user
+     */
     boolean isAdminStatus();
 
+    /**
+     * Update the database
+     */
     void updateDatabase();
 
     /**
@@ -39,7 +46,7 @@ public interface UserManagementFacade {
     /**
      * Finds a user with a given ID.
      *
-     * @param ID the inputted ID
+     * @param id the inputted ID
      * @return the User with the same ID
      */
     User findUserById(String id);
@@ -73,20 +80,19 @@ public interface UserManagementFacade {
 
     /**
      * Gets the banned status of a given user.
-     *
+     * @return banned status of the user
      */
     boolean getBannedStatus();
 
     /**
-     * Sets the lock stasus of a given user.
-     *
+     * Sets the lock stasus of a given user
      * @param status lock stasus
      */
     void setLockStatus(Boolean status);
 
     /**
      * Gets the lock status of a given user.
-     *
+     * @return lock status of the user
      */
     boolean getLockStatus();
 

@@ -1,6 +1,7 @@
 package edu.gatech.teamelevenproject;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,13 +15,23 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    /**
+     * DatabaseWrapper used in this activity
+     */
+    private DatabaseWrapper dbHelper;
+    /**
+     * SQLiteDatabase used in this activity
+     */
+    private SQLiteDatabase rdb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final UserManagementFacade ufpa = new UserManager(this);
+        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        rdb = dbHelper.getReadableDatabase();
+        final UserManagementFacade ufpa = new UserManager(dbHelper, rdb);
         final TextView namedisplayText = (TextView)findViewById(R.id.namedisplayText);
         final TextView emaildisplayText = (TextView)findViewById(R.id.emaildisplayText);
         final TextView usernamedisplayText = (TextView)findViewById(R.id.usernamedisplayText);

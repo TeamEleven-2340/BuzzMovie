@@ -2,6 +2,7 @@ package edu.gatech.teamelevenproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -34,9 +35,26 @@ import java.util.List;
  */
 public class MovieSearch extends AppCompatActivity {
 
+    /**
+     * RequestQueue sued in this activity
+     */
     private RequestQueue queue;
+    /**
+     * the string that contains the current major
+     */
     private String currentMajor;
+    /**
+     * the editText of the movie search
+     */
     private EditText searcheditText;
+    /**
+     * DatabaseWrapper used in this activity
+     */
+    private DatabaseWrapper dbHelper;
+    /**
+     * SQLiteDatabase used in this activity
+     */
+    private SQLiteDatabase rdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,68 +136,67 @@ public class MovieSearch extends AppCompatActivity {
         }
         final String url = "http://www.omdbapi.com/?s=" + combinedterms + "&type=movie&y=&plot=short&r=json";
         final JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
-                    @Override
-                    public void onResponse(JSONObject resp) {
-                        //handle a valid response coming back.  Getting this string mainly for debug
-                        final String response = resp.toString();
-                        //printing first 500 chars of the response.  Only want to do this for debug
-                        //TextView view = (TextView) findViewById(R.id.textView2);
-                        //view.setText(response.substring(0, 500));
+            @Override
+            public void onResponse(JSONObject resp) {
+                //handle a valid response coming back.  Getting this string mainly for debug
+                final String response = resp.toString();
+                //printing first 500 chars of the response.  Only want to do this for debug
+                //TextView view = (TextView) findViewById(R.id.textView2);
+                //view.setText(response.substring(0, 500));
 
-                        //Now we parse the information.  Looking at the format, everything encapsulated in RestResponse object
-                        JSONObject obj1 = null;
+                //Now we parse the information.  Looking at the format, everything encapsulated in RestResponse object
+                JSONObject obj1 = null;
 
-                        obj1 = resp;
+                obj1 = resp;
 
-                        assert obj1 != null;
-                        //From that object, we extract the array of actual data labeled result
-                        final JSONArray array = obj1.optJSONArray("Search");
-                        if (array != null) {
-                            final ArrayList<edu.gatech.teamelevenproject.Movie> movies = new ArrayList<>();
-                            for (int i = 0; i < array.length(); i++) {
+        assert obj1 != null;
+                //From that object, we extract the array of actual data labeled result
+                final JSONArray array = obj1.optJSONArray("Search");
+                if (array != null) {
+                    final ArrayList<edu.gatech.teamelevenproject.Movie> movies = new ArrayList<>();
+                    for (int i = 0; i < array.length(); i++) {
 
-                                try {
-                                    //for each array element, we have to create an object
-                                    final JSONObject jsonObject = array.getJSONObject(i);
-                                    final Movie s = new Movie();
-                                    assert jsonObject != null;
-                                    s.setName(jsonObject.optString("Title"));
-                                    s.setYear(jsonObject.optString("Year"));
-                                    //save the object for later
-                                    movies.add(s);
-                                    if (!Movies.ITEMS.contains(s)) {
-                                        Movies.ITEMS.add(s);
-                                    }
-
-
-                                } catch (JSONException e) {
-                                    Log.d("VolleyApp", "Failed to get JSON object");
-                                    e.printStackTrace();
-                                }
+                        try {
+                            //for each array element, we have to create an object
+                            final JSONObject jsonObject = array.getJSONObject(i);
+                            final Movie s = new Movie();
+                            assert jsonObject != null;
+                            s.setName(jsonObject.optString("Title"));
+                            s.setYear(jsonObject.optString("Year"));
+                            //save the object for later
+                            movies.add(s);
+                            if (!Movies.ITEMS.contains(s)) {
+                                Movies.ITEMS.add(s);
                             }
 
-                            //once we have all data, then go to list screen
-                            changeView(movies);
-                        } else {
-                            final String text = "No Movies with the search term were found!";
-                            final Context context = getApplicationContext();
-                            final int duration = Toast.LENGTH_SHORT;
-                            final Toast t = Toast.makeText(context, text, duration);
-                            t.show();
+
+                        } catch (JSONException e) {
+                            Log.d("VolleyApp", "Failed to get JSON object");
                         }
                     }
-                }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        final String response = "JSon Request Failed!!";
-                        //show error on phone
-                        //TextView view = (TextView) findViewById(R.id.textView2);
-                        //view.setText(response);
-                    }
-                });
+                    //once we have all data, then go to list screen
+                    changeView(movies);
+                } else {
+                    final String text = "No Movies with the search term were found!";
+                    final Context context = getApplicationContext();
+                    final int duration = Toast.LENGTH_SHORT;
+                    final Toast t = Toast.makeText(context, text, duration);
+                    t.show();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                final String response = "JSon Request Failed!!";
+                //show error on phone
+                //TextView view = (TextView) findViewById(R.id.textView2);
+                //view.setText(response);
+            }
+        });
         //this actually queues up the async response with Volley
         queue.add(jsObjRequest);
     }
@@ -199,10 +216,12 @@ public class MovieSearch extends AppCompatActivity {
      * Button to get recommendation from system
      * @param view Current view
      */
-    public void RecommendButtonClicked(View view) {
-        final Intent intent = new Intent(this, recommendationActivity.class);
+    public void recommendButtonClicked(View view) {
+        final Intent intent = new Intent(this, RecommendationActivity.class);
         intent.putExtra("major", currentMajor);
-        final List<Movie> movieList = Movies.getMovieList(this);
+        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASEMOVIE_NAME);
+        rdb = dbHelper.getReadableDatabase();
+        final List<Movie> movieList = Movies.getMovieList(rdb);
         boolean a = false;
         if (movieList.size() != 0) {
             if (!"None".equals(currentMajor)) {
@@ -231,8 +250,7 @@ public class MovieSearch extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
             final Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );

@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="Change Banned Status"
         android:id="@+id/setButton"
-        android:onClick="ButtonClicked"
+        android:onClick="buttonClicked"
         android:layout_below="@+id/unlock"
         android:layout_centerHorizontal="true" />
 
