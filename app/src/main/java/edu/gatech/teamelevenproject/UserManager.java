@@ -30,7 +30,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     /**
      * private databse that controls database in userManager
      */
-    private SQLiteDatabase database;
+    private SQLiteDatabase rdb;
     /**
      * Columns of the database
      */
@@ -53,7 +53,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      */
     public UserManager(DatabaseWrapper dbHelper, SQLiteDatabase rdb) {
         this.dbHelper = dbHelper;
-        database = rdb;
+        this.rdb = rdb;
     }
 
     /**
@@ -85,7 +85,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     public ArrayList<User> getUserList (){
         final List usernameList = new ArrayList();
         final ArrayList userList = new ArrayList();
-        final Cursor cursor = database.query(DatabaseWrapper.USER, columns, null, null, null, null, null);
+        final Cursor cursor = rdb.query(DatabaseWrapper.USER, columns, null, null, null, null, null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
             final String username = cursor.getString(0);
@@ -141,7 +141,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
                         + "Lockstatus,Banstatus,Adminstatus) VALUES('"+name+"', '"+pass+comma+user.getEmail()+comma+user.getFullname()+"',"
                         + "'"+user.getMajor()+comma+user.getInterest()+comma+Boolean.toString(user.getLockStatus())+"'"
                         + ",'"+Boolean.toString(user.getBanStatus())+comma+"false"+"');";
-        database.execSQL(query);
+        rdb.execSQL(query);
         setCurrentUsername(user);
     }
 
@@ -159,7 +159,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
                 + "Lockstatus,Banstatus,Adminstatus) VALUES('"+name+"', '"+pass+comma+user.getEmail()+comma+user.getFullname()+"',"
                 + "'"+user.getMajor()+comma+user.getInterest()+comma+"false"+"'"
                 + ",'"+"false"+comma+Boolean.toString(user.isAdminStatus())+"');";
-        database.execSQL(query);
+        rdb.execSQL(query);
         setCurrentUsername(user);
     }
 
