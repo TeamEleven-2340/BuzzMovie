@@ -19,15 +19,6 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    /**
-     * DatabaseWrapper used in this activity
-     */
-    private DatabaseWrapper dbHelper;
-    /**
-     * SQLiteDatabase used in this activity
-     */
-    private SQLiteDatabase rdb;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +55,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void loginButtonClicked(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
-        rdb = dbHelper.getReadableDatabase();
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final AuthenticationFacade af = new UserManager(dbHelper, rdb);
         final UserManagementFacade uf = new UserManager(dbHelper, rdb);
         final EditText nameBox = (EditText) findViewById(R.id.idEditText);

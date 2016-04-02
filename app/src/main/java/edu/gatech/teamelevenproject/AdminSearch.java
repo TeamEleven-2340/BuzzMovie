@@ -14,14 +14,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class AdminSearch extends AppCompatActivity {
-    /**
-     * DatabaseWrapper used in this activity
-     */
-    private DatabaseWrapper dbHelper;
-    /**
-     * SQLiteDatabase used in this activity
-     */
-    private SQLiteDatabase rdb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +21,10 @@ public class AdminSearch extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ListView lv = (ListView) findViewById(R.id.userList);
-        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
-        rdb = dbHelper.getReadableDatabase();
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final UserManagementFacade um = new UserManager(dbHelper, rdb);
-        final ArrayList<User> userList = um.getUserList();
+        final ArrayList<User> userList = (ArrayList<User>)um.getUserList();
         final ArrayList<User> usersToRemove = new ArrayList<User>();
         final ArrayAdapter<String> arrayAdapter =
                 new ArrayAdapter<String>(this, R.layout.item_name);
@@ -51,19 +43,11 @@ public class AdminSearch extends AppCompatActivity {
         lv.setAdapter(arrayAdapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            /**
-             * Sets what happens when an item in the listview is clicked
-             * @param parent the view that the listview is using
-             * @param view the current view
-             * @param position position on the array
-             * @param id id of the each item
-             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final User clicked = userList.get(position);
                 changeView(clicked);
             }
-
             /**
              * Changes the view
              * @param display the selected movie

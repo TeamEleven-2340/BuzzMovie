@@ -1,6 +1,5 @@
 package edu.gatech.teamelevenproject;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -31,7 +30,7 @@ public final class Movies {
     public static final Map<String, Movie> ITEM_MAP = new HashMap<>();
 
     /** Getter method for a list of Movies
-     * @param context context of this activity
+     * @param rdb SQLiteDatabase of this activity
      * @return Movies the list of movies
      */
     public static List<Movie> getMovieList (SQLiteDatabase rdb){

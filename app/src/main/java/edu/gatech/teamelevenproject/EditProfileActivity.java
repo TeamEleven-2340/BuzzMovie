@@ -45,14 +45,7 @@ public class EditProfileActivity extends AppCompatActivity {
      * User Management Facade used in EditProfileActivity
      */
     private UserManagementFacade afepa;
-    /**
-     * DatabaseWrapper used in this activity
-     */
-    private DatabaseWrapper dbHelper;
-    /**
-     * SQLiteDatabase used in this activity
-     */
-    private SQLiteDatabase rdb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +53,8 @@ public class EditProfileActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
-        rdb = dbHelper.getReadableDatabase();
-        final UserManagementFacade um = new UserManager(dbHelper, rdb);
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         afepa = new UserManager(dbHelper, rdb);
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.majors, android.R.layout.simple_spinner_item);

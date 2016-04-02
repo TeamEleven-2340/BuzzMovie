@@ -15,22 +15,14 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    /**
-     * DatabaseWrapper used in this activity
-     */
-    private DatabaseWrapper dbHelper;
-    /**
-     * SQLiteDatabase used in this activity
-     */
-    private SQLiteDatabase rdb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
-        rdb = dbHelper.getReadableDatabase();
+        final  DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final UserManagementFacade ufpa = new UserManager(dbHelper, rdb);
         final TextView namedisplayText = (TextView)findViewById(R.id.namedisplayText);
         final TextView emaildisplayText = (TextView)findViewById(R.id.emaildisplayText);

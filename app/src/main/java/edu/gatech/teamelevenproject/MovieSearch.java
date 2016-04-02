@@ -47,14 +47,6 @@ public class MovieSearch extends AppCompatActivity {
      * the editText of the movie search
      */
     private EditText searcheditText;
-    /**
-     * DatabaseWrapper used in this activity
-     */
-    private DatabaseWrapper dbHelper;
-    /**
-     * SQLiteDatabase used in this activity
-     */
-    private SQLiteDatabase rdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,59 +127,9 @@ public class MovieSearch extends AppCompatActivity {
             }
         }
         final String url = "http://www.omdbapi.com/?s=" + combinedterms + "&type=movie&y=&plot=short&r=json";
+        final MovieResponseHandler responseHandler = new MovieResponseHandler();
         final JsonObjectRequest jsObjRequest = new JsonObjectRequest
-        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-            @Override
-            public void onResponse(JSONObject resp) {
-                //handle a valid response coming back.  Getting this string mainly for debug
-                final String response = resp.toString();
-                //printing first 500 chars of the response.  Only want to do this for debug
-                //TextView view = (TextView) findViewById(R.id.textView2);
-                //view.setText(response.substring(0, 500));
-
-                //Now we parse the information.  Looking at the format, everything encapsulated in RestResponse object
-                JSONObject obj1 = null;
-
-                obj1 = resp;
-
-        assert obj1 != null;
-                //From that object, we extract the array of actual data labeled result
-                final JSONArray array = obj1.optJSONArray("Search");
-                if (array != null) {
-                    final ArrayList<edu.gatech.teamelevenproject.Movie> movies = new ArrayList<>();
-                    for (int i = 0; i < array.length(); i++) {
-
-                        try {
-                            //for each array element, we have to create an object
-                            final JSONObject jsonObject = array.getJSONObject(i);
-                            final Movie s = new Movie();
-                            assert jsonObject != null;
-                            s.setName(jsonObject.optString("Title"));
-                            s.setYear(jsonObject.optString("Year"));
-                            //save the object for later
-                            movies.add(s);
-                            if (!Movies.ITEMS.contains(s)) {
-                                Movies.ITEMS.add(s);
-                            }
-
-
-                        } catch (JSONException e) {
-                            Log.d("VolleyApp", "Failed to get JSON object");
-                        }
-                    }
-
-                    //once we have all data, then go to list screen
-                    changeView(movies);
-                } else {
-                    final String text = "No Movies with the search term were found!";
-                    final Context context = getApplicationContext();
-                    final int duration = Toast.LENGTH_SHORT;
-                    final Toast t = Toast.makeText(context, text, duration);
-                    t.show();
-                }
-            }
-        }, new Response.ErrorListener() {
+        (Request.Method.GET, url, null, responseHandler, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -205,10 +147,10 @@ public class MovieSearch extends AppCompatActivity {
      * Change the view,
      * @param movies moveies to show
      */
-    private void changeView(ArrayList<edu.gatech.teamelevenproject.Movie> movies) {
+    private void changeView(List<Movie> movies) {
         final Intent intent = new Intent(this, ItemListActivity.class);
         //this is where we save the info.  note the State object must be Serializable
-        intent.putExtra("movies", movies);
+        intent.putExtra("movies", (ArrayList<Movie>)movies);
         startActivity(intent);
     }
 
@@ -219,8 +161,8 @@ public class MovieSearch extends AppCompatActivity {
     public void recommendButtonClicked(View view) {
         final Intent intent = new Intent(this, RecommendationActivity.class);
         intent.putExtra("major", currentMajor);
-        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASEMOVIE_NAME);
-        rdb = dbHelper.getReadableDatabase();
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASEMOVIE_NAME);
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final List<Movie> movieList = Movies.getMovieList(rdb);
         boolean a = false;
         if (movieList.size() != 0) {
@@ -258,5 +200,50 @@ public class MovieSearch extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+    class MovieResponseHandler implements Response.Listener<JSONObject> {
+
+        @Override
+        public void onResponse(JSONObject resp) {
+            JSONObject obj1 = null;
+
+            obj1 = resp;
+
+            assert obj1 != null;
+            //From that object, we extract the array of actual data labeled result
+            final JSONArray array = obj1.optJSONArray("Search");
+            if (array != null) {
+                final ArrayList<edu.gatech.teamelevenproject.Movie> movies = new ArrayList<>();
+                for (int i = 0; i < array.length(); i++) {
+
+                    try {
+                        //for each array element, we have to create an object
+                        final JSONObject jsonObject = array.getJSONObject(i);
+                        final Movie s = new Movie();
+                        assert jsonObject != null;
+                        s.setName(jsonObject.optString("Title"));
+                        s.setYear(jsonObject.optString("Year"));
+                        //save the object for later
+                        movies.add(s);
+                        if (!Movies.ITEMS.contains(s)) {
+                            Movies.ITEMS.add(s);
+                        }
+
+
+                    } catch (JSONException e) {
+                        Log.d("VolleyApp", "Failed to get JSON object");
+                    }
+                }
+
+                //once we have all data, then go to list screen
+                changeView(movies);
+            } else {
+                final String text = "No Movies with the search term were found!";
+                final Context context = getApplicationContext();
+                final int duration = Toast.LENGTH_SHORT;
+                final Toast t = Toast.makeText(context, text, duration);
+                t.show();
+            }
+        }
     }
 }

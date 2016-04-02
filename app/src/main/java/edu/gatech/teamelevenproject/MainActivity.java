@@ -12,20 +12,12 @@ import android.view.View;
  */
 
 public class MainActivity extends AppCompatActivity {
-    /**
-     * DatabaseWrapper used in this activity
-     */
-    private DatabaseWrapper dbHelper;
-    /**
-     * SQLiteDatabase used in this activity
-     */
-    private SQLiteDatabase rdb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
-        rdb = dbHelper.getReadableDatabase();
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final UserManagementFacade um = new UserManager(dbHelper, rdb);
         if(um.findUserById("test") == null) {
             um.addAdmin("test", "pass");

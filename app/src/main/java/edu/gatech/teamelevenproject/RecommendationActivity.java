@@ -11,14 +11,6 @@ import android.widget.ListView;
 import java.util.List;
 
 public class RecommendationActivity extends AppCompatActivity {
-    /**
-     * DatabaseWrapper used in this activity
-     */
-    private DatabaseWrapper dbHelper;
-    /**
-     * SQLiteDatabase used in this activity
-     */
-    private SQLiteDatabase rdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +22,8 @@ public class RecommendationActivity extends AppCompatActivity {
         final String major = (String) getIntent().getSerializableExtra("major");
         Log.d("QWERTY", (String) getIntent().getSerializableExtra("major"));
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.item_name);
-        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASEMOVIE_NAME);
-        rdb = dbHelper.getReadableDatabase();
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASEMOVIE_NAME);
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final List<Movie> a = Movies.getMovieList(rdb);
         if ("None".equals(major)) {
             for (final Movie b : a) {

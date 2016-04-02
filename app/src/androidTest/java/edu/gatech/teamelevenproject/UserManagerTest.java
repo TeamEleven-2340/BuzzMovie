@@ -1,12 +1,8 @@
 package edu.gatech.teamelevenproject;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-
-import junit.framework.TestCase;
-
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -35,7 +31,7 @@ public class UserManagerTest extends AndroidTestCase {
         SQLiteDatabase rdb = db.getReadableDatabase();
         UserManager userManager = new UserManager(db, rdb);
         userManager.addUser("Name", "pass");
-        ArrayList<User> userList = userManager.getUserList();
+        ArrayList<User> userList = (ArrayList<User>) userManager.getUserList();
         for (int i = 0; i < userList.size(); i++) {
             if (userManager.getUserList().get(i).getName().equals(noName)) {
                 System.out.println(noName + " exists!");

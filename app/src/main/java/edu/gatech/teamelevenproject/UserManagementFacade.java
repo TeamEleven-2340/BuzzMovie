@@ -1,6 +1,6 @@
 package edu.gatech.teamelevenproject;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * UserManagementFacade is an interface for UserManager.
@@ -69,7 +69,7 @@ public interface UserManagementFacade {
      * Getter method for a list of Users
      * @return currentUsername the current username
      */
-    ArrayList<User> getUserList();
+    List<User> getUserList();
 
     /**
      * Sets the banned stasus of a given user.

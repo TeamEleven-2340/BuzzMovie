@@ -20,20 +20,12 @@ public class UserDetailDisplay extends AppCompatActivity {
      * User management facade used in UserDetailDisplay
      */
     private UserManagementFacade afepa;
-    /**
-     * DatabaseWrapper used in this activity
-     */
-    private DatabaseWrapper dbHelper;
-    /**
-     * SQLiteDatabase used in this activity
-     */
-    private SQLiteDatabase rdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
-        rdb = dbHelper.getReadableDatabase();
+        final  DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         afepa = new UserManager(dbHelper, rdb);
         setContentView(R.layout.activity_user_detail_display);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

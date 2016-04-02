@@ -1,7 +1,6 @@
 package edu.gatech.teamelevenproject;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -49,11 +48,12 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
 
     /**
      * Creates the UserManager object.
-     * @param context context of the activity
+     * @param databaseHelper SQLiteOpenHelper
+     * @param database SQLiteDatabase
      */
-    public UserManager(DatabaseWrapper dbHelper, SQLiteDatabase rdb) {
-        this.dbHelper = dbHelper;
-        this.rdb = rdb;
+    public UserManager(DatabaseWrapper databaseHelper, SQLiteDatabase database) {
+        this.dbHelper = databaseHelper;
+        this.rdb = database;
     }
 
     /**
@@ -61,7 +61,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @param user the current user
      */
     public void setCurrentUsername(User user) {
-        final ArrayList<User> userList = getUserList();
+        final ArrayList<User> userList = (ArrayList<User>)getUserList();
         for (int i = 0; i < userList.size(); i++) {
             final User foundUser = userList.get(i);
             if (foundUser.getName().equals(user.getName())) {
@@ -82,7 +82,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * Getter method for a list of Users
      * @return currentUsername the current username
      */
-    public ArrayList<User> getUserList (){
+    public List<User> getUserList (){
         final List usernameList = new ArrayList();
         final ArrayList userList = new ArrayList();
         final Cursor cursor = rdb.query(DatabaseWrapper.USER, columns, null, null, null, null, null);
@@ -118,7 +118,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @return whether the specified id is in the list of registered users
      */
     public User findUserById(String id) {
-        final ArrayList<User> userList = getUserList();
+        final ArrayList<User> userList = (ArrayList<User>) getUserList();
         for (int i = 0; i < userList.size(); i++) {
             final User user = userList.get(i);
             if (user.getName().equals(id)) {
