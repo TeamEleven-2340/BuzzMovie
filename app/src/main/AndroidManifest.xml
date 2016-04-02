@@ -46,10 +46,6 @@
             android:label="Movie Lists"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MovieDetailDisplay"
-            android:label="Movie Details"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".RecommendationActivity"
             android:label="Recommendations"
             android:theme="@style/AppTheme.NoActionBar" />
