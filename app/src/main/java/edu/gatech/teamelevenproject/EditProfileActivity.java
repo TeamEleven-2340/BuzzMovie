@@ -2,6 +2,7 @@ package edu.gatech.teamelevenproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,12 +25,34 @@ import android.widget.Toast;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    /**
+     * major of the user
+     */
     private String currentMajorSelected = "";
+    /**
+     * EditText of the name
+     */
     private EditText nameEditText;
+    /**
+     * EditText of the email
+     */
     private EditText emailEditText;
+    /**
+     * EditText of the interest
+     */
     private EditText interestEditText;
+    /**
+     * User Management Facade used in EditProfileActivity
+     */
     private UserManagementFacade afepa;
-
+    /**
+     * DatabaseWrapper used in this activity
+     */
+    private DatabaseWrapper dbHelper;
+    /**
+     * SQLiteDatabase used in this activity
+     */
+    private SQLiteDatabase rdb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +60,10 @@ public class EditProfileActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        afepa = new UserManager(this);
+        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        rdb = dbHelper.getReadableDatabase();
+        final UserManagementFacade um = new UserManager(dbHelper, rdb);
+        afepa = new UserManager(dbHelper, rdb);
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.majors, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -100,8 +126,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
             final Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
             startActivity(intent);

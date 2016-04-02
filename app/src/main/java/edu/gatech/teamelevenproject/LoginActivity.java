@@ -2,6 +2,7 @@ package edu.gatech.teamelevenproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,6 +18,15 @@ import android.widget.Toast;
  */
 
 public class LoginActivity extends AppCompatActivity {
+
+    /**
+     * DatabaseWrapper used in this activity
+     */
+    private DatabaseWrapper dbHelper;
+    /**
+     * SQLiteDatabase used in this activity
+     */
+    private SQLiteDatabase rdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +62,12 @@ public class LoginActivity extends AppCompatActivity {
      * Defines what happens during a standard login activity when the login button is clicked.
      * @param v the current view
      */
-    public void LoginButtonClicked(View v) {
+    public void loginButtonClicked(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        final AuthenticationFacade af = new UserManager(this);
-        final UserManagementFacade uf = new UserManager(this);
+        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        rdb = dbHelper.getReadableDatabase();
+        final AuthenticationFacade af = new UserManager(dbHelper, rdb);
+        final UserManagementFacade uf = new UserManager(dbHelper, rdb);
         final EditText nameBox = (EditText) findViewById(R.id.idEditText);
         final EditText passBox = (EditText) findViewById(R.id.passwordEditText);
         CharSequence text;

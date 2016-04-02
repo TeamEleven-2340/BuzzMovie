@@ -28,8 +28,17 @@ import java.util.List;
 
 public class ItemListActivity extends AppCompatActivity {
 
+    /**
+     * List of movies
+     */
     private List<Movie> movies;
+    /**
+     * RequestQueue used in ItemListActivity
+     */
     private RequestQueue queue;
+    /**
+     * String that contains the name of the movie
+     */
     private String combinedterms;
 
     @Override
@@ -64,38 +73,38 @@ public class ItemListActivity extends AppCompatActivity {
                 combinedterms = title.replace(' ', '+');
                 final String url = "http://www.omdbapi.com/?t=" + combinedterms + "&type=movie&y=&plot=short&r=json";
                 final JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject resp) {
-                                final String key = combinedterms;
-                                final  JSONObject obj1 = resp;
-                                if (obj1 != null) {
-                                    assert obj1 != null;
-                                    selectedMovie.setName(obj1.optString("Title"));
-                                    selectedMovie.setGenre(obj1.optString("Genre"));
-                                    selectedMovie.setLength(obj1.optString("Runtime"));
-                                    selectedMovie.setReleased(obj1.optString("Released"));
-                                    selectedMovie.setActors(obj1.optString("Actors"));
-                                    if (!Movies.ITEM_MAP.containsKey(combinedterms)) {
-                                        Movies.ITEM_MAP.put(combinedterms, selectedMovie);
-                                    }
-                                    final Movie s = Movies.ITEM_MAP.get(combinedterms);
-                                    changeView(s);
-                                } else {
-                                    final String text = "No Movies with the search term were found!";
-                                    final Context context = getApplicationContext();
-                                    final int duration = Toast.LENGTH_SHORT;
-                                    final Toast t = Toast.makeText(context, text, duration);
-                                    t.show();
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject resp) {
+                            final String key = combinedterms;
+                            final  JSONObject obj1 = resp;
+                            if (obj1 != null) {
+                                assert obj1 != null;
+                                selectedMovie.setName(obj1.optString("Title"));
+                                selectedMovie.setGenre(obj1.optString("Genre"));
+                                selectedMovie.setLength(obj1.optString("Runtime"));
+                                selectedMovie.setReleased(obj1.optString("Released"));
+                                selectedMovie.setActors(obj1.optString("Actors"));
+                                if (!Movies.ITEM_MAP.containsKey(combinedterms)) {
+                                    Movies.ITEM_MAP.put(combinedterms, selectedMovie);
                                 }
+                                final Movie s = Movies.ITEM_MAP.get(combinedterms);
+                                changeView(s);
+                            } else {
+                                final String text = "No Movies with the search term were found!";
+                                final Context context = getApplicationContext();
+                                final int duration = Toast.LENGTH_SHORT;
+                                final Toast t = Toast.makeText(context, text, duration);
+                                t.show();
                             }
-                        }, new Response.ErrorListener() {
+                        }
+                    }, new Response.ErrorListener() {
 
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                final String response = "JSon Request Failed!!";
-                            }
-                        });
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            final String response = "JSon Request Failed!!";
+                        }
+                    });
                 //this actually queues up the async response with Volley
                 queue.add(jsObjRequest);
             }
@@ -106,7 +115,7 @@ public class ItemListActivity extends AppCompatActivity {
              * @param movie the selected movie
              */
             private void changeView(Movie movie) {
-                final Intent intent = new Intent(getBaseContext(), movieDetailDisplay.class);
+                final Intent intent = new Intent(getBaseContext(), MovieDetailDisplay.class);
                 intent.putExtra("movie", movie);
                 intent.putExtra("key", combinedterms);
                 startActivity(intent);

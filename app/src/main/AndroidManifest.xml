@@ -59,7 +59,7 @@
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".userDetailDisplay"
+            android:name=".UserDetailDisplay"
             android:label="@string/title_activity_user_detail_display"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar"></activity>
