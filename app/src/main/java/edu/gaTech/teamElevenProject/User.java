@@ -80,7 +80,7 @@ public class User {
      * Returns if User is an Admin
      * @return Admin Status
      */
-    public boolean isAdminStatus(){
+    public boolean isAdminStatus() {
         return adminStatus;
     }
 
@@ -131,7 +131,7 @@ public class User {
      */
     public String toStringBannedStatus() {
         return "User: " + name
-                + " Ban Status: "+ Boolean.toString(banStatus)
+                + " Ban Status: " + Boolean.toString(banStatus)
                 + " Lock Status: " + Boolean.toString(lockStatus);
     }
 

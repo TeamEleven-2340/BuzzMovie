@@ -26,7 +26,7 @@ public class AdminSearch extends AppCompatActivity {
                 = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final UserManagementFacade um = new UserManager(dbHelper, rdb);
-        final ArrayList<User> userList = (ArrayList<User>)um.getUserList();
+        final ArrayList<User> userList = (ArrayList<User>) um.getUserList();
         final ArrayList<User> usersToRemove = new ArrayList<User>();
         final ArrayAdapter<String> arrayAdapter =
                 new ArrayAdapter<String>(this, R.layout.item_name);
@@ -68,10 +68,10 @@ public class AdminSearch extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             final Intent intent
                     = new Intent(getBaseContext(), MainActivity.class);
-            intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             return true;
         }

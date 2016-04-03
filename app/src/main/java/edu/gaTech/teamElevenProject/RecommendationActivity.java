@@ -20,7 +20,7 @@ public class RecommendationActivity extends AppCompatActivity {
                 = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ListView listView
-                = (ListView)findViewById(R.id.recListView);
+                = (ListView) findViewById(R.id.recListView);
         final String major
                 = (String) getIntent().getSerializableExtra("major");
         Log.d("QWERTY", (String) getIntent()
@@ -28,7 +28,8 @@ public class RecommendationActivity extends AppCompatActivity {
         final ArrayAdapter<String> arrayAdapter
                 = new ArrayAdapter<String>(this, R.layout.item_name);
         final DatabaseWrapper dbHelper
-                = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_MOVIE_NAME);
+                = new DatabaseWrapper(this,
+                DatabaseWrapper.DATABASE_MOVIE_NAME);
         final SQLiteDatabase rdb
                 = dbHelper.getReadableDatabase();
         final List<Movie> a = Movies.getMovieList(rdb);

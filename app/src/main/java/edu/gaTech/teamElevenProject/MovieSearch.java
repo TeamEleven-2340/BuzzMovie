@@ -55,7 +55,7 @@ public class MovieSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_search);
         queue = Volley.newRequestQueue(this);
-        searcheditText= ((EditText) findViewById(R.id.searchEditText));
+        searcheditText = ((EditText) findViewById(R.id.searchEditText));
         final Spinner spinner
                 = (Spinner) findViewById(R.id.majorFilter);
         final ArrayAdapter<CharSequence> adapter
@@ -100,7 +100,7 @@ public class MovieSearch extends AppCompatActivity {
             final Toast t = Toast.makeText(context, text, duration);
             t.show();
         } else if (id == R.id.profile) {
-            final Intent profile = new Intent (getBaseContext(),
+            final Intent profile = new Intent(getBaseContext(),
                     ProfileActivity.class);
             startActivity(profile);
         }
@@ -144,17 +144,17 @@ public class MovieSearch extends AppCompatActivity {
         final MovieResponseHandler responseHandler
                 = new MovieResponseHandler();
         final JsonObjectRequest jsObjRequest
-                = new JsonObjectRequest
-        (Request.Method.GET, url, null, responseHandler, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                final String response = "JSon Request Failed!!";
-                //show error on phone
-                //TextView view = (TextView) findViewById(R.id.textView2);
-                //view.setText(response);
-            }
-        });
+                = new JsonObjectRequest(Request.Method.GET, url,
+                null, responseHandler, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        final String response = "JSon Request Failed!!";
+                        // show error on phone
+                        //TextView view
+                        // = (TextView) findViewById(R.id.textView2);
+                        //view.setText(response);
+                    }
+                });
         //this actually queues up the async response with Volley
         queue.add(jsObjRequest);
     }
@@ -165,8 +165,9 @@ public class MovieSearch extends AppCompatActivity {
      */
     private void changeView(List<Movie> movies) {
         final Intent intent = new Intent(this, ItemListActivity.class);
-        //this is where we save the info.  note the State object must be Serializable
-        intent.putExtra("movies", (ArrayList<Movie>)movies);
+        // this is where we save the info
+        // note the State object must be Serializable
+        intent.putExtra("movies", (ArrayList<Movie>) movies);
         startActivity(intent);
     }
 
@@ -187,7 +188,8 @@ public class MovieSearch extends AppCompatActivity {
         if (movieList.size() != 0) {
             if (!"None".equals(currentMajor)) {
                 for (int i = 0; i < movieList.size(); i++) {
-                    if (movieList.get(i).getPeopleByMajors().get(currentMajor) != 0) {
+                    if (movieList.get(i).getPeopleByMajors()
+                            .get(currentMajor) != 0) {
                         a = true;
                     }
                 }
@@ -212,10 +214,10 @@ public class MovieSearch extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             final Intent intent = new Intent(getBaseContext(),
                     MainActivity.class);
-            intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             return true;
         }
@@ -260,7 +262,8 @@ public class MovieSearch extends AppCompatActivity {
                 //once we have all data, then go to list screen
                 changeView(movies);
             } else {
-                final String text = "No Movies with the search term were found!";
+                final String text = "No Movies with the search "
+                    + "term were found!";
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
                 final Toast t = Toast.makeText(context, text, duration);

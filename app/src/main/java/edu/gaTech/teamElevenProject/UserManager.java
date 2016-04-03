@@ -68,7 +68,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      */
     public void setCurrentUsername(User user) {
         final ArrayList<User> userList
-                = (ArrayList<User>)getUserList();
+                = (ArrayList<User>) getUserList();
         for (int i = 0; i < userList.size(); i++) {
             final User foundUser = userList.get(i);
             if (foundUser.getName()
@@ -97,16 +97,16 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
                 = rdb.query(DatabaseWrapper.USER,
                 columns, null, null, null, null, null);
         cursor.moveToFirst();
-        while(!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast()) {
             final String username = cursor.getString(0);
             final String password = cursor.getString(1);
             final String email = cursor.getString(2);
-            final String fullname = cursor.getString(2+1);
-            final String major = cursor.getString(2+2);
-            final String interest = cursor.getString(2+2+1);
-            final String lockStatus = cursor.getString(2+2+2);
-            final String banStatus = cursor.getString(2+2+2+1);
-            final String adminStatus = cursor.getString(2+2+2+2);
+            final String fullname = cursor.getString(3);
+            final String major = cursor.getString(4);
+            final String interest = cursor.getString(5);
+            final String lockStatus = cursor.getString(6);
+            final String banStatus = cursor.getString(7);
+            final String adminStatus = cursor.getString(8);
             final User user = new User(username, password);
             user.setInterest(interest);
             user.setFullName(fullname);
@@ -149,12 +149,14 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         users.put(name, user);
         final String comma = "','";
         final String query = "INSERT INTO Users (Username,Password,Email,"
-                        + "Fullname,Major,Interest,Lockstatus,Banstatus,Adminstatus) "
-                        + "VALUES('" + name + "', '" + pass + comma + user.getEmail()
-                        + comma + user.getFullName() + "'," + "'" + user.getMajor()
+                        + "Fullname,Major,Interest,Lockstatus,Banstatus,"
+                        + "Adminstatus) VALUES('" + name + "', '"
+                        + pass + comma + user.getEmail() + comma
+                        + user.getFullName() + "'," + "'" + user.getMajor()
                         + comma + user.getInterest() + comma
                         + Boolean.toString(user.getLockStatus()) + "'" + ",'"
-                        + Boolean.toString(user.getBanStatus()) + comma + "false" + "');";
+                        + Boolean.toString(user.getBanStatus()) + comma
+                        + "false" + "');";
         rdb.execSQL(query);
         setCurrentUsername(user);
     }
@@ -170,11 +172,13 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         users.get(name).setAdminStatus(true);
         final String comma = "','";
         final String query = "INSERT INTO Users (Username,Password,Email,"
-                + "Fullname,Major,Interest,Lockstatus,Banstatus,Adminstatus) "
-                + "VALUES('" + name + "', '" + pass + comma + user.getEmail()
-                + comma + user.getFullName() + "'," + "'" + user.getMajor()
-                + comma + user.getInterest() + comma + "false" + "'" + ",'"
-                + "false" + comma + Boolean.toString(user.isAdminStatus()) + "');";
+                + "Fullname,Major,Interest,Lockstatus,Banstatus,"
+                + "Adminstatus) VALUES('" + name + "', '"
+                + pass + comma + user.getEmail() + comma
+                + user.getFullName() + "'," + "'" + user.getMajor()
+                + comma + user.getInterest() + comma
+                + "false" + "'" + ",'" + "false" + comma
+                + Boolean.toString(user.isAdminStatus()) + "');";
         rdb.execSQL(query);
         setCurrentUsername(user);
     }
@@ -183,7 +187,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * Returns if User is an Admin
      * @return Admin Status
      */
-    public boolean isAdminStatus(){
+    public boolean isAdminStatus() {
         return findUserById(currentUsername.getName())
                 .isAdminStatus();
     }
@@ -243,14 +247,14 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
                 Boolean.toString(currentUsername.isAdminStatus()));
         final String [] whereArgs = {currentUsername.getName()};
         db.update(DatabaseWrapper.USER, values,
-                DatabaseWrapper.USERNAME+ "= ?", whereArgs);
+                DatabaseWrapper.USERNAME + "= ?", whereArgs);
     }
     /**
      * Sets the banned status of a given user.
      *
      * @param status ban status to be set
      */
-    public void setBannedStatus (Boolean status) {
+    public void setBannedStatus(Boolean status) {
         currentUsername.setBanStatus(status);
         updateDatabase();
     }
@@ -268,7 +272,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      *
      * @param status lock status to be set
      */
-    public void setLockStatus (Boolean status) {
+    public void setLockStatus(Boolean status) {
         currentUsername.setLockStatus(status);
         updateDatabase();
     }

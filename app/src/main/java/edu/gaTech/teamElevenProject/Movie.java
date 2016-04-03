@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class that defines a movie to have a name and a year in which it was released.
+ * Class that defines a movie to have a name
+ * and a year in which it was released.
  */
 public class Movie implements Serializable {
     /**
@@ -225,7 +226,7 @@ public class Movie implements Serializable {
      * @return the movie's name and year
      */
     public String toString() {
-        return "Title: " + name+ "\n"
+        return "Title: " + name + "\n"
                 + "Year: " + year;
     }
 
@@ -235,7 +236,7 @@ public class Movie implements Serializable {
      * @return the string with title rating and the major
      */
     public String toString2(String major) {
-        return "Title: " + name + "\n"+ "Ratings: "
+        return "Title: " + name + "\n" + "Ratings: "
                 + getRatingByMajors().get(major);
     }
 

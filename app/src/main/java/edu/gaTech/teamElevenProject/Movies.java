@@ -34,36 +34,36 @@ public final class Movies {
      * @param rdb SQLiteDatabase of this activity
      * @return Movies the list of movies
      */
-    public static List<Movie> getMovieList (SQLiteDatabase rdb) {
+    public static List<Movie> getMovieList(SQLiteDatabase rdb) {
         final List movieList = new ArrayList();
         final String[] columns = {
             DatabaseWrapper.MOVIE_NAME,
             DatabaseWrapper.RATING,
-            DatabaseWrapper.csRating,
-            DatabaseWrapper.meRating,
-            DatabaseWrapper.ceRating,
-            DatabaseWrapper.eeRating,
-            DatabaseWrapper.ratedPeople,
-            DatabaseWrapper.cePeopleRated,
-            DatabaseWrapper.mePeopleRated,
-            DatabaseWrapper.cePeopleRated,
-            DatabaseWrapper.eePeopleRated
+            DatabaseWrapper.CSRATING,
+            DatabaseWrapper.MERATING,
+            DatabaseWrapper.CERATING,
+            DatabaseWrapper.EERATING,
+            DatabaseWrapper.RATEDPEOPLE,
+            DatabaseWrapper.CSPEOPLERATED,
+            DatabaseWrapper.MEPEOPLERATED,
+            DatabaseWrapper.CEPEOPLERATED,
+            DatabaseWrapper.EEPEOPLERATED
         };
         final Cursor cursor = rdb.query(DatabaseWrapper.MOVIE,
                 columns, null, null, null, null, null);
         cursor.moveToFirst();
-        while(!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast()) {
             final String name = cursor.getString(0);
             final String rating = cursor.getString(1);
             final String csRating = cursor.getString(2);
-            final String meRating = cursor.getString(2+1);
-            final String ceRating = cursor.getString(2+2);
-            final String eeRating = cursor.getString(2+2+1);
-            final String ratedPeople = cursor.getString(2+2+2);
-            final String csRatedPeople = cursor.getString(2+2+2+1);
-            final String meRatedPeople = cursor.getString(2+2+2+2);
-            final String ceRatedPeople = cursor.getString(2+2+2+2+1);
-            final String eeRatedPeople = cursor.getString(2+2+2+2+2);
+            final String meRating = cursor.getString(3);
+            final String ceRating = cursor.getString(4);
+            final String eeRating = cursor.getString(5);
+            final String ratedPeople = cursor.getString(6);
+            final String csRatedPeople = cursor.getString(7);
+            final String meRatedPeople = cursor.getString(8);
+            final String ceRatedPeople = cursor.getString(9);
+            final String eeRatedPeople = cursor.getString(10);
             final Movie movie = new Movie();
             movie.setName(name);
             movie.setRating(Double.parseDouble(rating));

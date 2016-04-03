@@ -64,7 +64,8 @@ public class UserDetailDisplay extends AppCompatActivity {
                                        View view,
                                        int position,
                                        long id) {
-                currentBanStatus = parent.getItemAtPosition(position).toString();
+                currentBanStatus = parent
+                        .getItemAtPosition(position).toString();
             }
 
             @Override
@@ -76,12 +77,13 @@ public class UserDetailDisplay extends AppCompatActivity {
         });
 
         /**
-         * This button unlocks a user. It only changes user lock status to false
+         * This button unlocks a user. It only changes
+         * user lock status to false
          */
     }
 
     /**
-     * unlocks the user
+     * Unlocks the user.
      * @param v the current view
      */
     public void unlockButton(View v) {
@@ -91,10 +93,12 @@ public class UserDetailDisplay extends AppCompatActivity {
                 AdminSearch.class);
         startActivity(i);
     }
-        /**
-         * This button changes a  users banned status based on what the admin selects
-         * @param v current view
-         */
+
+    /**
+     * This button changes a user/s banned status based
+     * on what the admin selects
+     * @param v current view
+     */
     public void buttonClicked(View v) {
         final Boolean setStatus = Boolean
                 .parseBoolean(currentBanStatus);

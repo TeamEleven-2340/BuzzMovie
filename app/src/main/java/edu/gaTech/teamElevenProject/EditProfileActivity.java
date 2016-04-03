@@ -19,8 +19,8 @@ import android.widget.Toast;
 
 
 /**
- * Class that allows the user to edit his or her profile, which contains the users email,
- * username, and full name.
+ * Class that allows the user to edit his or her profile,
+ * which contains the users email, username, and full name.
  */
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -67,7 +67,8 @@ public class EditProfileActivity extends AppCompatActivity {
         final ArrayAdapter<CharSequence> adapter
                 = ArrayAdapter.createFromResource(this,
                 R.array.majors, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setSelection(adapter.getPosition(userFacade
                 .getCurrentUsername().getMajor()));
@@ -143,7 +144,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             final Intent intent = new Intent(getBaseContext(),
                     ProfileActivity.class);
             startActivity(intent);

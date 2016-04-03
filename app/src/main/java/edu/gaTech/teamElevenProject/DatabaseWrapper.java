@@ -32,17 +32,17 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     /**
      * User database column name
      */
-    public static final String banStatus = "banStatus";
+    public static final String BANSTATUS = "banStatus";
 
     /**
      * User database column name
      */
-    public static final String lockStatus = "lockStatus";
+    public static final String LOCKSTATUS = "lockStatus";
 
     /**
      * User database column name
      */
-    public static final String fullName = "fullName";
+    public static final String FULLNAME = "fullName";
 
     /**
      * User database column name
@@ -57,7 +57,7 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     /**
      * User database column name
      */
-    public static final String adminStatus = "AdminStatus";
+    public static final String ADMINSTATUS = "AdminStatus";
 
     /**
      * User database column name
@@ -92,32 +92,32 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     /**
      * Movie database column name
      */
-    public static final String csRating = "CSRating";
+    public static final String CSRATING = "CSRating";
 
     /**
      * Movie database column name
      */
-    public static final String meRating = "MERating";
+    public static final String MERATING = "MERating";
 
     /**
      * Movie database column name
      */
-    public static final String ceRating = "CERating";
+    public static final String CERATING = "CERating";
 
     /**
      * Movie database column name
      */
-    public static final String eeRating = "EERating";
+    public static final String EERATING = "EERating";
 
     /**
      * Movie database column name
      */
-    public static final String ratedPeople = "RatedPeople";
+    public static final String RATEDPEOPLE = "RatedPeople";
 
     /**
      * Movie database column name
      */
-    public static final String csPeopleRated = "CSRatedPeople";
+    public static final String CSPEOPLERATED = "CSRatedPeople";
 
     /**
      * Movie database column name
@@ -126,17 +126,17 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     /**
      * Movie database column name
      */
-    public static final String mePeopleRated = "MERatedPeople";
+    public static final String MEPEOPLERATED = "MERatedPeople";
 
     /**
      * Movie database column name
      */
-    public static final String cePeopleRated = "CERatedPeople";
+    public static final String CEPEOPLERATED = "CERatedPeople";
 
     /**
      * Movie database column name
      */
-    public static final String eePeopleRated = "EERatedPeople";
+    public static final String EEPEOPLERATED = "EERatedPeople";
 
     /**
      * String name
@@ -148,19 +148,19 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
      */
     private static final String DATABASE_CREATE = "CREATE TABLE "
             + USER + " (" + USERNAME + TNN + PASSWORD + TNN
-            + EMAIL + TNN + fullName + TNN + MAJOR + TNN
-            + INTEREST + TNN + lockStatus + TNN + banStatus
-            + TNN + adminStatus + " text not null)";
+            + EMAIL + TNN + FULLNAME + TNN + MAJOR + TNN
+            + INTEREST + TNN + LOCKSTATUS + TNN + BANSTATUS
+            + TNN + ADMINSTATUS + " text not null)";
 
     /**
      * Database creation for Movie.db
      */
     private static final String MOVIE_DATABASE_CREATE
             = "CREATE TABLE " + MOVIE + " (" + MOVIE_NAME
-            + TNN + RATING + TNN + csRating + TNN + meRating
-            + TNN + ceRating + TNN + eeRating + TNN + ratedPeople
-            + TNN + csPeopleRated + TNN + mePeopleRated + TNN
-            + cePeopleRated + TNN + eePeopleRated + " text not null)";
+            + TNN + RATING + TNN + CSRATING + TNN + MERATING
+            + TNN + CERATING + TNN + EERATING + TNN + RATEDPEOPLE
+            + TNN + CSPEOPLERATED + TNN + MEPEOPLERATED
+            + TNN + CEPEOPLERATED + TNN + EEPEOPLERATED + " text not null)";
 
     /**
      * Constructor

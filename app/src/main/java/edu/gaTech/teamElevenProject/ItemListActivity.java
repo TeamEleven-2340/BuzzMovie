@@ -90,13 +90,14 @@ public class ItemListActivity extends AppCompatActivity {
             combinedterms = title.replace(' ', '+');
             final String url = "http://www.omdbapi.com/?t="
                     + combinedterms + "&type=movie&y=&plot=short&r=json";
-            final JsonObjectRequest jsObjRequest = new JsonObjectRequest
-            (Request.Method.GET, url, null, responseHandler, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    final String response = "JSon Request Failed!!";
-                }
-            });
+            final JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request
+                    .Method.GET, url, null, responseHandler,
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            final String response = "JSon Request Failed!!";
+                        }
+                    });
             //this actually queues up the async response with Volley
             queue.add(jsObjRequest);
         }
@@ -130,7 +131,8 @@ public class ItemListActivity extends AppCompatActivity {
                 final Movie s = Movies.ITEM_MAP.get(combinedterms);
                 changeView(s);
             } else {
-                final String text = "No Movies with the search term were found!";
+                final String text = "No Movies with the "
+                    + "search term were found!";
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
                 final Toast t = Toast.makeText(context, text, duration);

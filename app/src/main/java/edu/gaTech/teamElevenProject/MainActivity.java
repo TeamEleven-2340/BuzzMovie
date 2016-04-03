@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 .getReadableDatabase();
         final UserManagementFacade um
                 = new UserManager(dbHelper, rdb);
-        if(um.findUserById("test") == null) {
+        if (um.findUserById("test") == null) {
             um.addAdmin("test", "pass");
         }
         if (um.findUserById("locked") == null) {
@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onRegistrationButtonClicked(View view) {
         final Intent registerintent
-                = new Intent (getBaseContext(),
-                RegisterActivity.class);
+                = new Intent(getBaseContext(), RegisterActivity.class);
         startActivity(registerintent);
     }
 }

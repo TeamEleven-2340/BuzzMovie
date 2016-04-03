@@ -10,7 +10,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 /**
- * ProfileActivity defines the actions that happen during the visitation of a user's profile.
+ * ProfileActivity defines the actions that happen
+ * during the visitation of a user's profile.
  */
 
 public class ProfileActivity extends AppCompatActivity {
@@ -29,11 +30,11 @@ public class ProfileActivity extends AppCompatActivity {
         final UserManagementFacade ufpa
                 = new UserManager(dbHelper, rdb);
         final TextView namedisplayText
-                = (TextView)findViewById(R.id.nameDisplayText);
+                = (TextView) findViewById(R.id.nameDisplayText);
         final TextView emaildisplayText
-                = (TextView)findViewById(R.id.emailDisplayText);
+                = (TextView) findViewById(R.id.emailDisplayText);
         final TextView usernamedisplayText
-                = (TextView)findViewById(R.id.userNameDisplayText);
+                = (TextView) findViewById(R.id.userNameDisplayText);
         final TextView interestText
                 = (TextView) findViewById(R.id.interestTextView);
         final TextView majorText

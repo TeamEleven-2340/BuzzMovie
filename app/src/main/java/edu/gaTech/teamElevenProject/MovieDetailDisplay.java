@@ -118,8 +118,8 @@ public class MovieDetailDisplay extends AppCompatActivity {
                     currentMajorRating += rating;
                     movie.setPeopleByMajors(major,
                             movie.getPeopleByMajors().get(major) + 1);
-                    movie.setRatingsByMajors(major,
-                            currentMajorRating/ movie.getPeopleByMajors().get(major));
+                    movie.setRatingsByMajors(major, currentMajorRating
+                            / movie.getPeopleByMajors().get(major));
                 }
             } else {
                 movie.setPeopleByMajors(major, 1);
@@ -170,7 +170,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
         double meRating = 0;
         double eeRating = 0;
         double ceRating = 0;
-        final int ratedPeople= mov.getPeopleRated();
+        final int ratedPeople = mov.getPeopleRated();
         int csRated = 0;
         int meRated = 0;
         int ceRated = 0;
@@ -252,16 +252,17 @@ public class MovieDetailDisplay extends AppCompatActivity {
         final ContentValues values = new ContentValues();
         values.put(DatabaseWrapper.MOVIE_NAME, mov.getName());
         values.put(DatabaseWrapper.RATING, mov.getRating());
-        values.put(DatabaseWrapper.csRating, csRating);
-        values.put(DatabaseWrapper.meRating, meRating);
-        values.put(DatabaseWrapper.ceRating, ceRating);
-        values.put(DatabaseWrapper.eeRating, eeRating);
-        values.put(DatabaseWrapper.ratedPeople, ratedPeople);
-        values.put(DatabaseWrapper.csPeopleRated, csRated);
-        values.put(DatabaseWrapper.mePeopleRated, meRated);
-        values.put(DatabaseWrapper.cePeopleRated, ceRated);
-        values.put(DatabaseWrapper.eePeopleRated, eeRated);
+        values.put(DatabaseWrapper.CSRATING, csRating);
+        values.put(DatabaseWrapper.MERATING, meRating);
+        values.put(DatabaseWrapper.CERATING, ceRating);
+        values.put(DatabaseWrapper.EERATING, eeRating);
+        values.put(DatabaseWrapper.RATEDPEOPLE, ratedPeople);
+        values.put(DatabaseWrapper.CSPEOPLERATED, csRated);
+        values.put(DatabaseWrapper.MEPEOPLERATED, meRated);
+        values.put(DatabaseWrapper.CEPEOPLERATED, ceRated);
+        values.put(DatabaseWrapper.EEPEOPLERATED, eeRated);
         final String[] whereArgs = {mov.getName()};
-        db.update(DatabaseWrapper.MOVIE, values, DatabaseWrapper.MOVIE_NAME + "= ?", whereArgs);
+        db.update(DatabaseWrapper.MOVIE, values, DatabaseWrapper
+                .MOVIE_NAME + "= ?", whereArgs);
     }
 }

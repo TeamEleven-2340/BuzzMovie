@@ -3,7 +3,7 @@ package edu.gaTech.teamElevenProject;
 /**
  * Created by Admin on 3/7/2016.
  */
-public class Admin extends User{
+public class Admin extends User {
 
     /**
      * name of the admin
@@ -20,7 +20,7 @@ public class Admin extends User{
      * @param n name
      * @param p password
      */
-    public Admin (String n, String p) {
+    public Admin(String n, String p) {
         this.name = n;
         this.password = p;
     }
