@@ -39,10 +39,12 @@ public class MovieSearch extends AppCompatActivity {
      * RequestQueue sued in this activity
      */
     private RequestQueue queue;
+
     /**
      * the string that contains the current major
      */
     private String currentMajor;
+
     /**
      * the editText of the movie search
      */
@@ -53,15 +55,22 @@ public class MovieSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_search);
         queue = Volley.newRequestQueue(this);
-        searcheditText = ((EditText) findViewById(R.id.searchEditText));
-        final Spinner spinner = (Spinner) findViewById(R.id.majorFilter);
-        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        searcheditText= ((EditText) findViewById(R.id.searchEditText));
+        final Spinner spinner
+                = (Spinner) findViewById(R.id.majorFilter);
+        final ArrayAdapter<CharSequence> adapter
+                = ArrayAdapter.createFromResource(this,
                 R.array.majorsFilter, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setOnItemSelectedListener(new AdapterView
+                .OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View view,
+                                       int position,
+                                       long id) {
                 currentMajor = parent.getItemAtPosition(position).toString();
             }
             @Override
@@ -81,8 +90,9 @@ public class MovieSearch extends AppCompatActivity {
         final int id = item.getItemId();
 
         if (id == R.id.logout) {
-            final Intent back = new Intent(getBaseContext(), MainActivity.class);
-            back.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
+            final Intent back = new Intent(getBaseContext(),
+                    MainActivity.class);
+            back.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(back);
             final String text = "Logout Success!";
             final Context context = getApplicationContext();
@@ -90,7 +100,8 @@ public class MovieSearch extends AppCompatActivity {
             final Toast t = Toast.makeText(context, text, duration);
             t.show();
         } else if (id == R.id.profile) {
-            final Intent profile = new Intent (getBaseContext(), ProfileActivity.class);
+            final Intent profile = new Intent (getBaseContext(),
+                    ProfileActivity.class);
             startActivity(profile);
         }
 
@@ -98,8 +109,10 @@ public class MovieSearch extends AppCompatActivity {
     }
 
     /**
-     * This method implements volley which allows us to use API into our app. Using the API, if there is an error we show error messages.
-     * We also receive search words from the users to search the movies that they want to see.
+     * This method implements volley which allows us to use API
+     * into our app. Using the API, if there is an error we show
+     * error messages. We also receive search words from the
+     * users to search the movies that they want to see.
      * @param view view
      */
     public void onGetMovie(View view) {
@@ -126,9 +139,12 @@ public class MovieSearch extends AppCompatActivity {
                 combinedterms += "+" + terms.get(i);
             }
         }
-        final String url = "http://www.omdbapi.com/?s=" + combinedterms + "&type=movie&y=&plot=short&r=json";
-        final MovieResponseHandler responseHandler = new MovieResponseHandler();
-        final JsonObjectRequest jsObjRequest = new JsonObjectRequest
+        final String url = "http://www.omdbapi.com/?s="
+                + combinedterms + "&type=movie&y=&plot=short&r=json";
+        final MovieResponseHandler responseHandler
+                = new MovieResponseHandler();
+        final JsonObjectRequest jsObjRequest
+                = new JsonObjectRequest
         (Request.Method.GET, url, null, responseHandler, new Response.ErrorListener() {
 
             @Override
@@ -159,9 +175,12 @@ public class MovieSearch extends AppCompatActivity {
      * @param view Current view
      */
     public void recommendButtonClicked(View view) {
-        final Intent intent = new Intent(this, RecommendationActivity.class);
+        final Intent intent
+                = new Intent(this, RecommendationActivity.class);
         intent.putExtra("major", currentMajor);
-        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_MOVIE_NAME);
+        final DatabaseWrapper dbHelper
+                = new DatabaseWrapper(this,
+                DatabaseWrapper.DATABASE_MOVIE_NAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final List<Movie> movieList = Movies.getMovieList(rdb);
         boolean a = false;
@@ -194,7 +213,8 @@ public class MovieSearch extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
-            final Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            final Intent intent = new Intent(getBaseContext(),
+                    MainActivity.class);
             intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(intent);
             return true;
@@ -210,10 +230,12 @@ public class MovieSearch extends AppCompatActivity {
             obj1 = resp;
 
             assert obj1 != null;
-            //From that object, we extract the array of actual data labeled result
+            // From that object, we extract the array of actual
+            // data labeled result
             final JSONArray array = obj1.optJSONArray("Search");
             if (array != null) {
-                final ArrayList<edu.gaTech.teamElevenProject.Movie> movies = new ArrayList<>();
+                final ArrayList<edu.gaTech.teamElevenProject.Movie> movies
+                        = new ArrayList<>();
                 for (int i = 0; i < array.length(); i++) {
 
                     try {

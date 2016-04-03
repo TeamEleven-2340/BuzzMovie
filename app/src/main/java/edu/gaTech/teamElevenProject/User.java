@@ -7,39 +7,46 @@ package edu.gaTech.teamElevenProject;
 
 public class User {
 
-
     /**
      * Name of the user
      */
     private String name;
+
     /**
      * password of the user
      */
     private String password;
+
     /**
      * Email of the user
      */
     private String email;
+
     /**
      * full name of the user
      */
     private String fullName;
+
     /**
      * Ban status of the user
      */
     private boolean banStatus;
+
     /**
      * Lock status of the user
      */
     private boolean lockStatus;
+
     /**
      * Major of the user
      */
     private String major;
+
     /**
      * Interest of the user
      */
     private String interest;
+
     /**
      * Admin status of the user
      */
@@ -123,8 +130,9 @@ public class User {
      * @return return string form of banned status
      */
     public String toStringBannedStatus() {
-        return "User: " + name + " Ban Status: " + Boolean.toString(banStatus) +
-                " Lock Status: " + Boolean.toString(lockStatus);
+        return "User: " + name
+                + " Ban Status: "+ Boolean.toString(banStatus)
+                + " Lock Status: " + Boolean.toString(lockStatus);
     }
 
     /**

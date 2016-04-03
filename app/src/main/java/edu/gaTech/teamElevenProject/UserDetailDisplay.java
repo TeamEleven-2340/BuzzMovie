@@ -24,36 +24,54 @@ public class UserDetailDisplay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final  DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
-        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
+        final  DatabaseWrapper dbHelper
+                = new DatabaseWrapper(this,
+                DatabaseWrapper.DATABASE_NAME);
+        final SQLiteDatabase rdb
+                = dbHelper.getReadableDatabase();
         afepa = new UserManager(dbHelper, rdb);
         setContentView(R.layout.activity_user_detail_display);
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar
+                = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final String username = getIntent().getStringExtra("user");
-        final TextView username1 = (TextView) findViewById(R.id.username);
-        final TextView lockStatusText = (TextView) findViewById(R.id.lockStatus);
+        final String username
+                = getIntent().getStringExtra("user");
+        final TextView username1
+                = (TextView) findViewById(R.id.username);
+        final TextView lockStatusText
+                = (TextView) findViewById(R.id.lockStatus);
         username1.setText(username);
         final User curr = afepa.findUserById(username);
-        lockStatusText.setText(Boolean.toString(curr.getLockStatus()));
+        lockStatusText.setText(Boolean
+                .toString(curr.getLockStatus()));
         afepa.setCurrentUsername(curr);
 
 
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner2);
-        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        final Spinner spinner
+                = (Spinner) findViewById(R.id.spinner2);
+        final ArrayAdapter<CharSequence> adapter
+                = ArrayAdapter.createFromResource(this,
                 R.array.banStatus, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setSelection(adapter.getPosition(Boolean.toString(afepa.getCurrentUsername().getBanStatus())));
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setSelection(adapter.getPosition(Boolean.
+                toString(afepa.getCurrentUsername().getBanStatus())));
+        spinner.setOnItemSelectedListener(new AdapterView
+                .OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View view,
+                                       int position,
+                                       long id) {
                 currentBanStatus = parent.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                currentBanStatus = Boolean.toString(afepa.getCurrentUsername().getBanStatus());
+                currentBanStatus
+                        = Boolean.toString(afepa.getCurrentUsername()
+                        .getBanStatus());
             }
         });
 
@@ -69,7 +87,8 @@ public class UserDetailDisplay extends AppCompatActivity {
     public void unlockButton(View v) {
         final Boolean setStatus = false;
         afepa.setLockStatus(setStatus);
-        final Intent i = new Intent(this.getBaseContext(),AdminSearch.class);
+        final Intent i = new Intent(this.getBaseContext(),
+                AdminSearch.class);
         startActivity(i);
     }
         /**
@@ -77,9 +96,11 @@ public class UserDetailDisplay extends AppCompatActivity {
          * @param v current view
          */
     public void buttonClicked(View v) {
-        final Boolean setStatus = Boolean.parseBoolean(currentBanStatus);
+        final Boolean setStatus = Boolean
+                .parseBoolean(currentBanStatus);
         afepa.setBannedStatus(setStatus);
-        final Intent i = new Intent(this.getBaseContext(),AdminSearch.class);
+        final Intent i = new Intent(this.getBaseContext(),
+                AdminSearch.class);
         startActivity(i);
     }
 

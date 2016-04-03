@@ -12,6 +12,7 @@ import java.util.Map;
  * This class puts group of movies into an array called Movies.
  */
 public final class Movies {
+
     /**
      * usused constructor
      */
@@ -33,7 +34,7 @@ public final class Movies {
      * @param rdb SQLiteDatabase of this activity
      * @return Movies the list of movies
      */
-    public static List<Movie> getMovieList (SQLiteDatabase rdb){
+    public static List<Movie> getMovieList (SQLiteDatabase rdb) {
         final List movieList = new ArrayList();
         final String[] columns = {
             DatabaseWrapper.MOVIE_NAME,
@@ -48,7 +49,8 @@ public final class Movies {
             DatabaseWrapper.cePeopleRated,
             DatabaseWrapper.eePeopleRated
         };
-        final Cursor cursor = rdb.query(DatabaseWrapper.MOVIE, columns, null, null, null, null, null);
+        final Cursor cursor = rdb.query(DatabaseWrapper.MOVIE,
+                columns, null, null, null, null, null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
             final String name = cursor.getString(0);
