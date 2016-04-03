@@ -29,18 +29,22 @@ public class EditProfileActivity extends AppCompatActivity {
      * major of the user
      */
     private String currentMajorSelected = "";
+
     /**
      * EditText of the name
      */
     private EditText nameEditText;
+
     /**
      * EditText of the email
      */
     private EditText emailEditText;
+
     /**
      * EditText of the interest
      */
     private EditText interestEditText;
+
     /**
      * User Management Facade used in EditProfileActivity
      */
@@ -50,29 +54,42 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar
+                = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
-        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
+        final Spinner spinner
+                = (Spinner) findViewById(R.id.spinner);
+        final DatabaseWrapper dbHelper
+                = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        final SQLiteDatabase rdb
+                = dbHelper.getReadableDatabase();
         userFacade = new UserManager(dbHelper, rdb);
-        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        final ArrayAdapter<CharSequence> adapter
+                = ArrayAdapter.createFromResource(this,
                 R.array.majors, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setSelection(adapter.getPosition(userFacade.getCurrentUsername().getMajor()));
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setSelection(adapter.getPosition(userFacade
+                .getCurrentUsername().getMajor()));
+        spinner.setOnItemSelectedListener(new AdapterView
+                .OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currentMajorSelected = parent.getItemAtPosition(position).toString();
+            public void onItemSelected(AdapterView<?> parent,
+                                       View view,
+                                       int position,
+                                       long id) {
+                currentMajorSelected
+                        = parent.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                currentMajorSelected = userFacade.getCurrentUsername().getMajor();
+                currentMajorSelected
+                        = userFacade.getCurrentUsername().getMajor();
             }
         });
-        final TextView userNameDisplay = (TextView) findViewById(R.id.userNameDisplayText);
+        final TextView userNameDisplay
+                = (TextView) findViewById(R.id.userNameDisplayText);
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         interestEditText = (EditText) findViewById(R.id.interestEditText);
@@ -88,7 +105,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu; this adds items to the
+        // action bar if it is present.
         getMenuInflater().inflate(R.menu.editprofile_main, menu);
         return true;
     }
@@ -97,20 +115,26 @@ public class EditProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         final int id = item.getItemId();
         if (id == R.id.done) {
-            userFacade.getCurrentUsername().setFullName(nameEditText.getText().toString());
-            userFacade.getCurrentUsername().setInterest(interestEditText.getText().toString());
-            userFacade.getCurrentUsername().setInterest(currentMajorSelected);
+            userFacade.getCurrentUsername()
+                    .setFullName(nameEditText.getText().toString());
+            userFacade.getCurrentUsername()
+                    .setInterest(interestEditText.getText().toString());
+            userFacade.getCurrentUsername()
+                    .setInterest(currentMajorSelected);
             if (!(emailEditText.getText().toString().contains("@"))
-                    && !(emailEditText.getText().toString().equals(userFacade.getCurrentUsername().getEmail()))) {
+                    && !(emailEditText.getText().toString()
+                    .equals(userFacade.getCurrentUsername().getEmail()))) {
                 final String text = "Not a valid email address!";
                 final Context context = getApplicationContext();
                 final int duration = Toast.LENGTH_SHORT;
                 final Toast t = Toast.makeText(context, text, duration);
                 t.show();
             } else {
-                userFacade.getCurrentUsername().setEmail(emailEditText.getText().toString());
+                userFacade.getCurrentUsername()
+                        .setEmail(emailEditText.getText().toString());
                 userFacade.updateDatabase();
-                final Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+                final Intent intent = new Intent(getBaseContext(),
+                        ProfileActivity.class);
                 startActivity(intent);
             }
         }
@@ -120,7 +144,8 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
-            final Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
+            final Intent intent = new Intent(getBaseContext(),
+                    ProfileActivity.class);
             startActivity(intent);
             return true;
         }
