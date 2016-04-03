@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username:"
+        android:text="@string/userName"
         android:id="@+id/UserNameText"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email:"
+        android:text="@string/email1"
         android:id="@+id/emailText"
         android:layout_below="@+id/userNameDisplayText"
         android:layout_alignParentLeft="true"
@@ -52,7 +52,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name:"
+        android:text="@string/name4"
         android:id="@+id/nameText"
         android:layout_below="@+id/emailEditText"
         android:layout_alignParentLeft="true"
@@ -71,7 +71,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Major:"
+        android:text="@string/major"
         android:id="@+id/majorText"
         android:layout_below="@+id/nameEditText"
         android:layout_alignParentLeft="true"
@@ -80,7 +80,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Interests:"
+        android:text="@string/interest"
         android:id="@+id/interestText"
         android:layout_below="@+id/spinner"
         android:layout_alignParentLeft="true"
@@ -92,7 +92,8 @@
         android:id="@+id/interestEditText"
         android:layout_below="@+id/interestText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:inputType="textPassword" />
 
     <Spinner
         android:layout_width="wrap_content"

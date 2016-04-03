@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Welcome to BuzzMovie!"
+        android:text="@string/welcomeToBuzzMovie"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -30,7 +30,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log in"
+        android:text="@string/logIn"
         android:id="@+id/button"
         android:layout_marginLeft="43dp"
         android:layout_marginStart="43dp"
@@ -45,7 +45,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="@string/registration"
         android:id="@+id/RegistrationButton"
         android:layout_alignTop="@+id/button"
         android:layout_alignRight="@+id/textView"
@@ -64,5 +64,6 @@
         android:src = "@drawable/main_background"
         android:id="@+id/MainBuzzLogo"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/yellowJacketLogo" />
 </RelativeLayout>

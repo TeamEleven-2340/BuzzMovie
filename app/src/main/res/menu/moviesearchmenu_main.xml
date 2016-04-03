@@ -5,13 +5,13 @@
     <item
         android:id="@+id/logout"
         android:orderInCategory="200"
-        android:title="Log Out"
+        android:title="@string/logOut"
         app:showAsAction="never" />
 
     <item
         android:id = "@+id/profile"
         android:orderInCategory="100"
-        android:title="View Profile"
+        android:title="@string/viewProfile"
         app:showAsAction = "never"
         />
 

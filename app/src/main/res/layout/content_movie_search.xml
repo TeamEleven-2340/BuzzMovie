@@ -14,7 +14,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:text="@string/search"
         android:id="@+id/movieSearchButton"
         android:onClick="onGetMovie"
         android:layout_below="@+id/searchEditText"
@@ -29,13 +29,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:inputType="textPassword" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter a Movie Search:"
+        android:text="@string/EnterAMovieSearch"
         android:id="@+id/textView3"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -46,7 +47,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Movie Recommendation"
+        android:text="@string/movieRecommendation"
         android:id="@+id/movieRecText"
         android:layout_below="@+id/movieSearchButton"
         android:layout_alignParentLeft="false"
@@ -65,7 +66,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get It!"
+        android:text="@string/getIt"
         android:id="@+id/recButton"
         android:layout_below="@+id/majorFilter"
         android:layout_centerHorizontal="true"

@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title: "
+        android:text="@string/title"
         android:id="@+id/titleDisplay"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -25,7 +25,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Genre: "
+        android:text="@string/genre1"
         android:id="@+id/genreDisplay"
         android:layout_below="@+id/titleView"
         android:layout_alignParentLeft="true"
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actors: "
+        android:text="@string/actors"
         android:id="@+id/actorsDisplay"
         android:layout_below="@+id/genreView"
         android:layout_alignParentLeft="true"
@@ -46,7 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Length: "
+        android:text="@string/length"
         android:id="@+id/lengthDisplay"
         android:layout_below="@+id/actorsView"
         android:layout_alignParentLeft="true"
@@ -56,7 +56,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Released: "
+        android:text="@string/released"
         android:id="@+id/releasedDisplay"
         android:layout_below="@+id/lengthView"
         android:layout_alignParentLeft="true"
@@ -66,7 +66,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rating: "
+        android:text="@string/rating"
         android:id="@+id/ratingDisplay"
         android:layout_below="@+id/releasedView"
         android:layout_alignParentLeft="true"
@@ -141,7 +141,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rate It!"
+        android:text="@string/rateIt"
         android:id="@+id/ratingButton"
         android:layout_below="@+id/ratingBar"
         android:layout_alignParentLeft="true"

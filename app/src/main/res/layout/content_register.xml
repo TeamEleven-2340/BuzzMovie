@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/name2"
         android:ems="10"
         android:id="@+id/IDEditText"
         android:layout_below="@+id/LogIn"
@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
+        android:text="@string/password1"
         android:id="@+id/passwordTextView"
         android:layout_below="@+id/IDEditText"
         android:layout_alignParentLeft="true"
@@ -46,7 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID"
+        android:text="@string/id1"
         android:id="@+id/LogIn"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -56,7 +56,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/register"
         android:id="@+id/RegisterButton"
         android:layout_below="@+id/passwordEditText"
         android:layout_toRightOf="@+id/passwordTextView"
@@ -69,6 +69,7 @@
         android:id="@+id/RegisterBuzzLogo"
         android:src="@drawable/main_background"
         android:layout_below="@+id/RegisterButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/yellowJacketLogo" />
 
 </RelativeLayout>

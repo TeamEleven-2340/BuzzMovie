@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username:"
+        android:text="@string/userName1"
         android:id="@+id/usernameText"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -32,7 +32,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="email:"
+        android:text="@string/email"
         android:id="@+id/emailText"
         android:layout_below="@+id/userNameDisplayText"
         android:layout_alignParentLeft="true"
@@ -49,7 +49,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name:"
+        android:text="@string/name3"
         android:id="@+id/nameText"
         android:layout_below="@+id/EmailDisplayText"
         android:layout_alignParentLeft="true"
@@ -70,12 +70,13 @@
         android:src="@drawable/main_background"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/yellowJacketLogo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Major:"
+        android:text="@string/major1"
         android:id="@+id/majorText"
         android:layout_below="@+id/nameDisplayText"
         android:layout_alignParentLeft="true"
@@ -92,7 +93,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Interests:"
+        android:text="@string/interest1"
         android:id="@+id/interestText"
         android:layout_below="@+id/majorEditText"
         android:layout_alignParentLeft="true"

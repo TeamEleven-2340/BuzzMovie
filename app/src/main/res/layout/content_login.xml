@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID"
+        android:text="@string/id"
         android:id="@+id/idText"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/name"
         android:ems="10"
         android:id="@+id/idEditText"
         android:layout_below="@+id/idText"
@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
+        android:text="@string/password"
         android:id="@+id/passwordText"
         android:layout_below="@+id/idEditText"
         android:layout_alignParentLeft="true"
@@ -52,7 +52,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log In"
+        android:text="@string/logIn1"
         android:id="@+id/loginButton"
         android:onClick="loginButtonClicked"
         android:layout_below="@+id/passwordEditText"
@@ -65,5 +65,6 @@
         android:src = "@drawable/main_background"
         android:id="@+id/LoginBuzzLogo"
         android:layout_below="@+id/loginButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/yellowJacketLogo" />
 </RelativeLayout>
