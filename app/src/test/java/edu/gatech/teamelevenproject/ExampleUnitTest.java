@@ -1,4 +1,4 @@
-package edu.gatech.teamelevenproject;
+package edu.gaTech.teamElevenProject;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
