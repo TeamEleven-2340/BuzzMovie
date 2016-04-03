@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.gatech.teamelevenproject">
+    package="edu.gaTech.teamElevenProject">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="edu.gaTech.teamElevenProject.MainActivity"
             android:label="Team Eleven Project">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,45 +21,45 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="edu.gaTech.teamElevenProject.LoginActivity"
             android:label="Log In" />
         <activity
-            android:name=".MovieSearch"
+            android:name="edu.gaTech.teamElevenProject.MovieSearch"
             android:label="Movie Search" />
         <activity
-            android:name=".RegisterActivity"
+            android:name="edu.gaTech.teamElevenProject.RegisterActivity"
             android:label="Registration"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ProfileActivity"
+            android:name="edu.gaTech.teamElevenProject.ProfileActivity"
             android:label="Profile"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name="edu.gaTech.teamElevenProject.EditProfileActivity"
             android:label="Edit Profile"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ItemListActivity"
+            android:name="edu.gaTech.teamElevenProject.ItemListActivity"
             android:label="Movie Lists"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MovieDetailDisplay"
+            android:name="edu.gaTech.teamElevenProject.MovieDetailDisplay"
             android:label="Movie Details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RecommendationActivity"
+            android:name="edu.gaTech.teamElevenProject.RecommendationActivity"
             android:label="Recommendations"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AdminSearch"
+            android:name="edu.gaTech.teamElevenProject.AdminSearch"
             android:label="@string/title_activity_admin_search"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".UserDetailDisplay"
+            android:name="edu.gaTech.teamElevenProject.UserDetailDisplay"
             android:label="@string/title_activity_user_detail_display"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar"></activity>
