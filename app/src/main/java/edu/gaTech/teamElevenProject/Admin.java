@@ -4,10 +4,12 @@ package edu.gaTech.teamElevenProject;
  * Created by Admin on 3/7/2016.
  */
 public class Admin extends User{
+
     /**
      * name of the admin
      */
     private String name;
+
     /**
      * password of the admin
      */

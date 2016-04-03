@@ -14,6 +14,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class AdminSearch extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,8 @@ public class AdminSearch extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ListView lv = (ListView) findViewById(R.id.userList);
-        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        final DatabaseWrapper dbHelper
+                = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final UserManagementFacade um = new UserManager(dbHelper, rdb);
         final ArrayList<User> userList = (ArrayList<User>)um.getUserList();
@@ -44,7 +46,10 @@ public class AdminSearch extends AppCompatActivity {
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent,
+                                    View view,
+                                    int position,
+                                    long id) {
                 final User clicked = userList.get(position);
                 changeView(clicked);
             }
@@ -53,7 +58,8 @@ public class AdminSearch extends AppCompatActivity {
              * @param display the selected movie
              */
             private void changeView(User display) {
-                final Intent intent = new Intent(getBaseContext(), UserDetailDisplay.class);
+                final Intent intent
+                        = new Intent(getBaseContext(), UserDetailDisplay.class);
                 intent.putExtra("user", display.getName());
                 startActivity(intent);
             }
@@ -63,7 +69,8 @@ public class AdminSearch extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
-            final Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            final Intent intent
+                    = new Intent(getBaseContext(), MainActivity.class);
             intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(intent);
             return true;
