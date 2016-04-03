@@ -7,7 +7,7 @@
         <item>EE</item>
         <item>CE</item>
     </string-array>
-    <string-array name="majorsfilter">
+    <string-array name="majorsFilter">
         <item>None</item>
         <item>CS</item>
         <item>ME</item>

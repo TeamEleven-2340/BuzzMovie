@@ -8,22 +8,22 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.gatech.teamelevenproject.MovieSelector"
+    tools:context="edu.gaTech.teamElevenProject.MovieSelector"
     tools:showIn="@layout/activity_movie_search">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search"
-        android:id="@+id/moviesearchButton"
+        android:id="@+id/movieSearchButton"
         android:onClick="onGetMovie"
-        android:layout_below="@+id/searcheditText"
+        android:layout_below="@+id/searchEditText"
         android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/searcheditText"
+        android:id="@+id/searchEditText"
         android:layout_marginTop="23dp"
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
@@ -47,8 +47,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Movie Recommendation"
-        android:id="@+id/movierecText"
-        android:layout_below="@+id/moviesearchButton"
+        android:id="@+id/movieRecText"
+        android:layout_below="@+id/movieSearchButton"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:gravity="center" />
@@ -56,8 +56,8 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/majorfilter"
-        android:layout_below="@+id/movierecText"
+        android:id="@+id/majorFilter"
+        android:layout_below="@+id/movieRecText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:spinnerMode="dropdown" />
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:text="Get It!"
         android:id="@+id/recButton"
-        android:layout_below="@+id/majorfilter"
+        android:layout_below="@+id/majorFilter"
         android:layout_centerHorizontal="true"
         android:onClick="recommendButtonClicked" />
 

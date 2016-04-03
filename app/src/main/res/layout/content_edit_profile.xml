@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="edu.gatech.teamelevenproject.EditProfileActivity"
+    tools:context="edu.gaTech.teamElevenProject.EditProfileActivity"
     tools:showIn="@layout/activity_edit_profile">
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/usernamedisplayText"
+        android:id="@+id/userNameDisplayText"
         android:layout_below="@+id/UserNameText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="Email:"
         android:id="@+id/emailText"
-        android:layout_below="@+id/usernamedisplayText"
+        android:layout_below="@+id/userNameDisplayText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
