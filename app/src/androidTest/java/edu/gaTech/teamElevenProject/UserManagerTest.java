@@ -6,7 +6,7 @@ import android.test.RenamingDelegatingContext;
 
 import java.util.ArrayList;
 /**
- * Created by Admin on 4/1/2016.
+ * Created by Daniel on 4/1/2016.
  */
 public class UserManagerTest extends AndroidTestCase {
     private DatabaseWrapper db;
