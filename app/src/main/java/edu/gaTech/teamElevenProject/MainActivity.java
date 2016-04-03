@@ -16,9 +16,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
-        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
-        final UserManagementFacade um = new UserManager(dbHelper, rdb);
+        final DatabaseWrapper dbHelper
+                = new DatabaseWrapper(this,
+                DatabaseWrapper.DATABASE_NAME);
+        final SQLiteDatabase rdb = dbHelper
+                .getReadableDatabase();
+        final UserManagementFacade um
+                = new UserManager(dbHelper, rdb);
         if(um.findUserById("test") == null) {
             um.addAdmin("test", "pass");
         }
@@ -42,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
      * @param view the current view
      */
     public void onLoginButtonClicked(View view) {
-        final Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+        final Intent intent
+                = new Intent(getBaseContext(),
+                LoginActivity.class);
         startActivity(intent);
     }
 
@@ -51,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
      * @param view the current view
      */
     public void onRegistrationButtonClicked(View view) {
-        final Intent registerintent = new Intent (getBaseContext(), RegisterActivity.class);
+        final Intent registerintent
+                = new Intent (getBaseContext(),
+                RegisterActivity.class);
         startActivity(registerintent);
     }
 }

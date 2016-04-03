@@ -27,7 +27,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu; this adds items to the action
+        // bar if it is present.
         getMenuInflater().inflate(R.menu.loginactivity_main, menu);
         return true;
     }
@@ -41,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.cancel) {
-            final Intent back = new Intent(getBaseContext(), MainActivity.class);
+            final Intent back = new Intent(getBaseContext(),
+                    MainActivity.class);
             back.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(back);
         }
@@ -50,21 +52,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * Defines what happens during a standard login activity when the login button is clicked.
+     * Defines what happens during a standard login activity
+     * when the login button is clicked.
      * @param v the current view
      */
     public void loginButtonClicked(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+        final DatabaseWrapper dbHelper
+                = new DatabaseWrapper(this,
+                DatabaseWrapper.DATABASE_NAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
-        final AuthenticationFacade af = new UserManager(dbHelper, rdb);
-        final UserManagementFacade uf = new UserManager(dbHelper, rdb);
+        final AuthenticationFacade af
+                = new UserManager(dbHelper, rdb);
+        final UserManagementFacade uf
+                = new UserManager(dbHelper, rdb);
         final EditText nameBox = (EditText) findViewById(R.id.idEditText);
         final EditText passBox = (EditText) findViewById(R.id.passwordEditText);
         CharSequence text;
 
-        if (af.handleLoginRequest(nameBox.getText().toString(), passBox.getText().toString())) {
-            final User loggedinUser = uf.findUserById(nameBox.getText().toString());
+        if (af.handleLoginRequest(nameBox.getText().toString(),
+                passBox.getText().toString())) {
+            final User loggedinUser
+                    = uf.findUserById(nameBox.getText().toString());
             uf.setCurrentUsername(loggedinUser);
             if (uf.getBannedStatus()) {
                 text = "Login Failure! Account is Banned!";
@@ -84,7 +93,8 @@ public class LoginActivity extends AppCompatActivity {
                 final int duration = Toast.LENGTH_SHORT;
                 final Toast t = Toast.makeText(context, text, duration);
                 t.show();
-                final Intent i = new Intent(getBaseContext(), AdminSearch.class);
+                final Intent i = new Intent(getBaseContext(),
+                        AdminSearch.class);
                 startActivity(i);
             } else {
                 text = "Login Success!";
@@ -92,7 +102,8 @@ public class LoginActivity extends AppCompatActivity {
                 final int duration = Toast.LENGTH_SHORT;
                 final Toast t = Toast.makeText(context, text, duration);
                 t.show();
-                final Intent i = new Intent(getBaseContext(), MovieSearch.class);
+                final Intent i = new Intent(getBaseContext(),
+                        MovieSearch.class);
                 startActivity(i);
             }
         } else {

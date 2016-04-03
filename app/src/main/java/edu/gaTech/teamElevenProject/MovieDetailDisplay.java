@@ -17,46 +17,56 @@ public class MovieDetailDisplay extends AppCompatActivity {
      * current movie
      */
     private Movie movie;
+
     /**
      * Bar that shows rating
      */
     private RatingBar ratingBar;
+
     /**
      * Text view that prints rating
      */
     private TextView ratingView;
+
     /**
      * The title of the movie
      */
     private String combinedterms;
+
     /**
      * User management facade used in this activity
      */
     private UserManagementFacade ufmdd;
+
     /**
      * DatabaseWrapper used in this activity
      */
     private DatabaseWrapper moviedbHelper;
+
     /**
      * SQLiteDatabase used in this activity
      */
     private SQLiteDatabase rdb;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail_display);
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar
+                = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        moviedbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_MOVIE_NAME);
+        moviedbHelper = new DatabaseWrapper(this,
+                DatabaseWrapper.DATABASE_MOVIE_NAME);
         rdb = moviedbHelper.getReadableDatabase();
-        movie = (Movie) getIntent().getSerializableExtra("movie");
-        combinedterms = (String) getIntent().getSerializableExtra("key");
-        final List<Movie> movieList = Movies.getMovieList(rdb);
+        movie = (Movie) getIntent().
+                getSerializableExtra("movie");
+        combinedterms = (String) getIntent().
+                getSerializableExtra("key");
+        final List<Movie> movieList
+                = Movies.getMovieList(rdb);
         for (int i = 0; i < movieList.size(); i++) {
-            if (movie.getName().equals(movieList.get(i).getName())) {
+            if (movie.getName().equals(movieList.
+                    get(i).getName())) {
                 movie = movieList.get(i);
             }
         }
@@ -64,11 +74,16 @@ public class MovieDetailDisplay extends AppCompatActivity {
             movie.setRating(0);
         }
         ufmdd = new UserManager(moviedbHelper, rdb);
-        final TextView titleView = (TextView) findViewById(R.id.titleView);
-        final TextView genreView = (TextView) findViewById(R.id.genreView);
-        final TextView actorsView = (TextView) findViewById(R.id.actorsView);
-        final TextView lengthView = (TextView) findViewById(R.id.lengthView);
-        final TextView releasedView = (TextView) findViewById(R.id.releasedView);
+        final TextView titleView
+                = (TextView) findViewById(R.id.titleView);
+        final TextView genreView
+                = (TextView) findViewById(R.id.genreView);
+        final TextView actorsView
+                = (TextView) findViewById(R.id.actorsView);
+        final TextView lengthView
+                = (TextView) findViewById(R.id.lengthView);
+        final TextView releasedView
+                = (TextView) findViewById(R.id.releasedView);
         ratingView = (TextView) findViewById(R.id.ratingView);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         final String rating = String.format("%.2g%n", movie.getRating());
@@ -85,25 +100,35 @@ public class MovieDetailDisplay extends AppCompatActivity {
      * @param v the current view
      */
     public void onRateButtonClicked(View v) {
-        final String major = ufmdd.getCurrentUsername().getMajor();
+        final String major
+                = ufmdd.getCurrentUsername().getMajor();
         double majorRating;
         double currentMajorRating;
         double rating = ratingBar.getRating();
         if (!"".equals(major)) {
-            if (movie.getPeopleByMajors().get(major) != null) {
-                if (movie.getPeopleByMajors().containsKey(major)) {
-                    majorRating = movie.getRatingByMajors().get(major) + 0.0;
-                    currentMajorRating = movie.getPeopleByMajors().get(major) * majorRating;
+            if (movie.getPeopleByMajors()
+                    .get(major) != null) {
+                if (movie.getPeopleByMajors()
+                        .containsKey(major)) {
+                    majorRating = movie.getRatingByMajors()
+                            .get(major) + 0.0;
+                    currentMajorRating = movie
+                            .getPeopleByMajors().get(major)
+                            * majorRating;
                     currentMajorRating += rating;
-                    movie.setPeopleByMajors(major, movie.getPeopleByMajors().get(major) + 1);
-                    movie.setRatingsByMajors(major, currentMajorRating / movie.getPeopleByMajors().get(major));
+                    movie.setPeopleByMajors(major,
+                            movie.getPeopleByMajors().get(major) + 1);
+                    movie.setRatingsByMajors(major,
+                            currentMajorRating/ movie.getPeopleByMajors().get(major));
                 }
             } else {
                 movie.setPeopleByMajors(major, 1);
                 movie.setRatingsByMajors(major, rating);
             }
         }
-        final double currentRating = movie.getRating() * movie.getPeopleRated();
+        final double currentRating
+                = movie.getRating()
+                * movie.getPeopleRated();
         rating = currentRating + rating;
         movie.setPeopleRated(movie.getPeopleRated() + 1);
         rating = rating / movie.getPeopleRated();
@@ -113,7 +138,8 @@ public class MovieDetailDisplay extends AppCompatActivity {
         Movies.ITEM_MAP.put(combinedterms, movie);
         final List<Movie> a = Movies.ITEMS;
         for (int i = 0; i < a.size(); i++) {
-            if (a.get(i).getName().equals(movie.getName())) {
+            if (a.get(i).getName()
+                    .equals(movie.getName())) {
                 a.remove(i);
             }
         }
@@ -121,7 +147,8 @@ public class MovieDetailDisplay extends AppCompatActivity {
         final List<Movie> movieList = Movies.getMovieList(rdb);
         Boolean movieExist = false;
         for (int i = 0; i < movieList.size(); i++) {
-            if (movieList.get(i).getName().equals(movie.getName())) {
+            if (movieList.get(i).getName()
+                    .equals(movie.getName())) {
                 movieExist = true;
             }
         }
@@ -137,12 +164,13 @@ public class MovieDetailDisplay extends AppCompatActivity {
      * @param mov movie that you are adding
      */
     private void addMovie(Movie mov) {
-        final SQLiteDatabase db = moviedbHelper.getWritableDatabase();
+        final SQLiteDatabase db
+                = moviedbHelper.getWritableDatabase();
         double csRating = 0;
         double meRating = 0;
         double eeRating = 0;
         double ceRating = 0;
-        final int ratedPeople = mov.getPeopleRated();
+        final int ratedPeople= mov.getPeopleRated();
         int csRated = 0;
         int meRated = 0;
         int ceRated = 0;
@@ -169,11 +197,20 @@ public class MovieDetailDisplay extends AppCompatActivity {
         }
 
         final String comma = "','";
-        final String query = "INSERT INTO Movie (Name,Rating,CSRating,MERating,CERating,"
-                + "EERating,RatedPeople,CSRatedPeople,MERatedPeople,CERatedPeople,EERatedPeople) VALUES('"+mov.getName()+comma+mov.getRating()+"',"
-                + "'"+Double.toString(csRating)+comma+Double.toString(meRating)+comma+Double.toString(ceRating)+"',"
-                + "'"+Double.toString(eeRating)+comma+Integer.toString(ratedPeople)+comma+Integer.toString(csRated)+"',"
-                +"'"+Integer.toString(meRated)+comma+Integer.toString(ceRated)+comma+Integer.toString(eeRated)+"');";
+        final String query = "INSERT INTO Movie (Name,Rating,"
+                + "CSRating,MERating,CERating,EERating,"
+                + "RatedPeople,CSRatedPeople,MERatedPeople,"
+                + "CERatedPeople,EERatedPeople) VALUES('" + mov.getName()
+                + comma + mov.getRating() + "',"
+                + "'" + Double.toString(csRating) + comma
+                + Double.toString(meRating) + comma
+                + Double.toString(ceRating) + "'," + "'"
+                + Double.toString(eeRating) + comma
+                + Integer.toString(ratedPeople) + comma
+                + Integer.toString(csRated) + "'," + "'"
+                + Integer.toString(meRated) + comma
+                + Integer.toString(ceRated) + comma
+                + Integer.toString(eeRated) + "');";
         db.execSQL(query);
     }
 

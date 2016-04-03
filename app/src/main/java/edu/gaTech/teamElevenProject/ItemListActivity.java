@@ -32,10 +32,12 @@ public class ItemListActivity extends AppCompatActivity {
      * List of movies
      */
     private List<Movie> movies;
+
     /**
      * RequestQueue used in ItemListActivity
      */
     private RequestQueue queue;
+
     /**
      * String that contains the name of the movie
      */
@@ -47,11 +49,14 @@ public class ItemListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_list);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final MyClickHandler clickHandler = new MyClickHandler();
+        final MyClickHandler clickHandler
+                = new MyClickHandler();
         queue = Volley.newRequestQueue(this);
         final ListView lv = (ListView) findViewById(R.id.content);
-        movies = (List<Movie>) getIntent().getSerializableExtra("movies");
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.item_name);
+        movies = (List<Movie>) getIntent()
+                .getSerializableExtra("movies");
+        final ArrayAdapter<String> arrayAdapter
+                = new ArrayAdapter<String>(this, R.layout.item_name);
 
 
         for (final Movie s : movies) {
@@ -66,19 +71,25 @@ public class ItemListActivity extends AppCompatActivity {
      * @param movie the selected movie
      */
     private void changeView(Movie movie) {
-        final Intent intent = new Intent(getBaseContext(), MovieDetailDisplay.class);
+        final Intent intent = new Intent(getBaseContext(),
+                MovieDetailDisplay.class);
         intent.putExtra("movie", movie);
         intent.putExtra("key", combinedterms);
         startActivity(intent);
     }
     class MyClickHandler implements AdapterView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        public void onItemClick(AdapterView<?> parent,
+                                View view,
+                                int position,
+                                long id) {
             final Movie selectedMovie = movies.get(position);
-            final MyResponseHandler responseHandler = new MyResponseHandler(selectedMovie);
+            final MyResponseHandler responseHandler
+                    = new MyResponseHandler(selectedMovie);
             final String title = selectedMovie.getName();
             combinedterms = title.replace(' ', '+');
-            final String url = "http://www.omdbapi.com/?t=" + combinedterms + "&type=movie&y=&plot=short&r=json";
+            final String url = "http://www.omdbapi.com/?t="
+                    + combinedterms + "&type=movie&y=&plot=short&r=json";
             final JsonObjectRequest jsObjRequest = new JsonObjectRequest
             (Request.Method.GET, url, null, responseHandler, new Response.ErrorListener() {
                 @Override

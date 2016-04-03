@@ -12,43 +12,51 @@ public class Movie implements Serializable {
      * Name of the movie
      */
     private String name;
+
     /**
      * year of the movie released
      */
     private String year;
+
     /**
      * Genre of the movie
      */
     private String genre;
+
     /**
      * Actors in the movie
      */
     private String actors;
+
     /**
      * Length of the movie
      */
     private String length;
+
     /**
      * Year movie was released
      */
     private String released;
+
     /**
      * Ratings of the movie
      */
     private double rating;
+
     /**
      * Major of the people who rated the movie
      */
     private Map<String, Integer> majorPeopleRated = new HashMap<>();
+
     /**
      * Ratings of the movie by major
      */
     private Map<String, Double> majorRatings = new HashMap<>();
+
     /**
      * Number of the people who rated by majors
      */
     private int peopleRated = 0;
-
 
     /**
      * Return the name of a movie.
@@ -217,7 +225,8 @@ public class Movie implements Serializable {
      * @return the movie's name and year
      */
     public String toString() {
-        return "Title: " + name + "\n" +  "Year: " + year;
+        return "Title: " + name+ "\n"
+                + "Year: " + year;
     }
 
     /**
@@ -226,7 +235,8 @@ public class Movie implements Serializable {
      * @return the string with title rating and the major
      */
     public String toString2(String major) {
-        return "Title: " + name + "\n" + "Ratings: " + getRatingByMajors().get(major);
+        return "Title: " + name + "\n"+ "Ratings: "
+                + getRatingByMajors().get(major);
     }
 
 }
