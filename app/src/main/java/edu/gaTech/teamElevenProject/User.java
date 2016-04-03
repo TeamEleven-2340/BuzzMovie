@@ -70,7 +70,7 @@ public class User {
     }
 
     /**
-     * usused constructor
+     * unused constructor
      */
     public User() {
 
@@ -145,10 +145,10 @@ public class User {
 
     /**
      * Set the name of the user
-     * @param setname name of the user
+     * @param name name of the user
      */
-    public void setName(String setname) {
-        this.name = setname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -161,10 +161,10 @@ public class User {
 
     /**
      * set the password of the user
-     * @param setpassword password of the user
+     * @param password password of the user
      */
-    public void setPassword(String setpassword) {
-        this.password = setpassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
@@ -177,10 +177,10 @@ public class User {
 
     /**
      * Set the email address of the user
-     * @param setemail email of the user
+     * @param email email of the user
      */
-    public void setEmail(String setemail) {
-        this.email = setemail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -193,10 +193,10 @@ public class User {
 
     /**
      * Set the full name of the user
-     * @param setfullName full name of the user
+     * @param fullName full name of the user
      */
-    public void setFullName(String setfullName) {
-        this.fullName = setfullName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     /**
@@ -225,10 +225,10 @@ public class User {
 
     /**
      * Set the major of the user
-     * @param setmajor major of the user
+     * @param major major of the user
      */
-    public void setMajor(String setmajor) {
-        this.major = setmajor;
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     /**
@@ -241,17 +241,17 @@ public class User {
 
     /**
      * Set the interest of the user
-     * @param setinterest interest of the user
+     * @param interest interest of the user
      */
-    public void setInterest(String setinterest) {
-        this.interest = setinterest;
+    public void setInterest(String interest) {
+        this.interest = interest;
     }
 
     /**
      * Set the admin status of the user
-     * @param setadminStatus admin status of the user
+     * @param adminStatus admin status of the user
      */
-    public void setAdminStatus(boolean setadminStatus) {
-        this.adminStatus = setadminStatus;
+    public void setAdminStatus(boolean adminStatus) {
+        this.adminStatus = adminStatus;
     }
 }

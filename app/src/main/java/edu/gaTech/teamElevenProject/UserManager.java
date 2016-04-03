@@ -31,7 +31,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     private DatabaseWrapper dbHelper;
 
     /**
-     * private databse that controls database in userManager
+     * private database that controls database in userManager
      */
     private SQLiteDatabase rdb;
 
@@ -248,14 +248,14 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     /**
      * Sets the banned status of a given user.
      *
-     * @param status ban stasus to be set
+     * @param status ban status to be set
      */
     public void setBannedStatus (Boolean status) {
         currentUsername.setBanStatus(status);
         updateDatabase();
     }
     /**
-     * Gets the banned stasus of a current user.
+     * Gets the banned status of a current user.
      * @return banned status of a current user
      */
     public boolean getBannedStatus() {

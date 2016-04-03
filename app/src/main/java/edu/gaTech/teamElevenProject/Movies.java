@@ -14,7 +14,7 @@ import java.util.Map;
 public final class Movies {
 
     /**
-     * usused constructor
+     * unused constructor
      */
     private Movies() {
 

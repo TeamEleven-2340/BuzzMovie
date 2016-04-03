@@ -161,7 +161,7 @@ public class MovieSearch extends AppCompatActivity {
 
     /**
      * Change the view,
-     * @param movies moveies to show
+     * @param movies movies to show
      */
     private void changeView(List<Movie> movies) {
         final Intent intent = new Intent(this, ItemListActivity.class);

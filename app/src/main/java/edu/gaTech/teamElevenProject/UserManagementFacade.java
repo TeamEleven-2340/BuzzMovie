@@ -72,9 +72,9 @@ public interface UserManagementFacade {
     List<User> getUserList();
 
     /**
-     * Sets the banned stasus of a given user.
+     * Sets the banned status of a given user.
      *
-     * @param status banned stasus
+     * @param status banned status
      */
     void setBannedStatus(Boolean status);
 
@@ -85,8 +85,8 @@ public interface UserManagementFacade {
     boolean getBannedStatus();
 
     /**
-     * Sets the lock stasus of a given user
-     * @param status lock stasus
+     * Sets the lock status of a given user
+     * @param status lock status
      */
     void setLockStatus(Boolean status);
 
