@@ -181,7 +181,7 @@ public class MovieSearch extends AppCompatActivity {
         intent.putExtra("major", currentMajor);
         final DatabaseWrapper dbHelper
                 = new DatabaseWrapper(this,
-                DatabaseWrapper.DATABASE_MOVIE_NAME);
+                DatabaseWrapper.databaseMovieName);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final List<Movie> movieList = Movies.getMovieList(rdb);
         boolean a = false;

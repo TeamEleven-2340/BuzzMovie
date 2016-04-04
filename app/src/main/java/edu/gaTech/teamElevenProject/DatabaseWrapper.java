@@ -12,112 +12,112 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     /**
      * User database column name
      */
-    public static final String USER = "Users";
+    public static final String user = "Users";
 
     /**
      * User database column name
      */
-    public static final String USERNAME = "Username";
+    public static final String userName = "Username";
 
     /**
      * User database column name
      */
-    public static final String PASSWORD = "Password";
+    public static final String passWord = "Password";
 
     /**
      * User database column name
      */
-    public static final String MAJOR = "Major";
+    public static final String major = "Major";
 
     /**
      * User database column name
      */
-    public static final String BANSTATUS = "banStatus";
+    public static final String banStatus = "banStatus";
 
     /**
      * User database column name
      */
-    public static final String LOCKSTATUS = "lockStatus";
+    public static final String lockStatus = "lockStatus";
 
     /**
      * User database column name
      */
-    public static final String FULLNAME = "fullName";
+    public static final String fullName = "fullName";
 
     /**
      * User database column name
      */
-    public static final String INTEREST = "Interest";
+    public static final String interest = "Interest";
 
     /**
      * User database column name
      */
-    public static final String EMAIL = "Email";
+    public static final String email = "Email";
 
     /**
      * User database column name
      */
-    public static final String ADMINSTATUS = "AdminStatus";
+    public static final String adminStatus = "AdminStatus";
 
     /**
      * User database column name
      */
-    public static final String DATABASE_NAME = "Users.db";
+    public static final String databaseName = "Users.db";
 
     /**
      * User database name
      */
-    public static final String DATABASE_MOVIE_NAME = "Movie.db";
+    public static final String databaseMovieName = "Movie.db";
 
     /**
      * User database version
      */
-    private static final int DATABASE_VERSION = 1;
+    private static final int databaseVersion = 1;
 
     /**
      * Movie database column name
      */
-    public static final String MOVIE = "Movie";
+    public static final String movie = "Movie";
 
     /**
      * Movie database column name
      */
-    public static final String MOVIE_NAME = "Name";
+    public static final String movieName = "Name";
 
     /**
      * Movie database column name
      */
-    public static final String RATING = "Rating";
+    public static final String rating = "Rating";
 
     /**
      * Movie database column name
      */
-    public static final String CSRATING = "CSRating";
+    public static final String csRating = "CSRating";
 
     /**
      * Movie database column name
      */
-    public static final String MERATING = "MERating";
+    public static final String meRating = "MERating";
 
     /**
      * Movie database column name
      */
-    public static final String CERATING = "CERating";
+    public static final String ceRating = "CERating";
 
     /**
      * Movie database column name
      */
-    public static final String EERATING = "EERating";
+    public static final String eeRating = "EERating";
 
     /**
      * Movie database column name
      */
-    public static final String RATEDPEOPLE = "RatedPeople";
+    public static final String ratedPeople = "RatedPeople";
 
     /**
      * Movie database column name
      */
-    public static final String CSPEOPLERATED = "CSRatedPeople";
+    public static final String csRatedPeople = "CSRatedPeople";
 
     /**
      * Movie database column name
@@ -126,41 +126,41 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     /**
      * Movie database column name
      */
-    public static final String MEPEOPLERATED = "MERatedPeople";
+    public static final String meRatedPeople = "MERatedPeople";
 
     /**
      * Movie database column name
      */
-    public static final String CEPEOPLERATED = "CERatedPeople";
+    public static final String ceRatedPeople = "CERatedPeople";
 
     /**
      * Movie database column name
      */
-    public static final String EEPEOPLERATED = "EERatedPeople";
+    public static final String eeRatedPeople = "EERatedPeople";
 
     /**
      * String name
      */
-    private static final String TNN = " text not null, ";
+    private static final String tnn = " text not null, ";
 
     /**
      * Database creation for Users.db
      */
-    private static final String DATABASE_CREATE = "CREATE TABLE "
-            + USER + " (" + USERNAME + TNN + PASSWORD + TNN
-            + EMAIL + TNN + FULLNAME + TNN + MAJOR + TNN
-            + INTEREST + TNN + LOCKSTATUS + TNN + BANSTATUS
-            + TNN + ADMINSTATUS + " text not null)";
+    private static final String databaseCreate = "CREATE TABLE "
+            + user + " (" + userName + tnn + passWord + tnn
+            + email + tnn + fullName + tnn + major + tnn
+            + interest + tnn + lockStatus + tnn + banStatus
+            + tnn + adminStatus + " text not null)";
 
     /**
      * Database creation for Movie.db
      */
-    private static final String MOVIE_DATABASE_CREATE
-            = "CREATE TABLE " + MOVIE + " (" + MOVIE_NAME
-            + TNN + RATING + TNN + CSRATING + TNN + MERATING
-            + TNN + CERATING + TNN + EERATING + TNN + RATEDPEOPLE
-            + TNN + CSPEOPLERATED + TNN + MEPEOPLERATED
-            + TNN + CEPEOPLERATED + TNN + EEPEOPLERATED + " text not null)";
+    private static final String movieDatabaseCreate
+            = "CREATE TABLE " + movie + " (" + movieName
+            + tnn + rating + tnn + csRating + tnn + meRating
+            + tnn + ceRating + tnn + eeRating + tnn + ratedPeople
+            + tnn + csRatedPeople + tnn + meRatedPeople
+            + tnn + ceRatedPeople + tnn + eeRatedPeople + " text not null)";
 
     /**
      * Constructor
@@ -168,21 +168,21 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
      * @param name name of the database
      */
     public DatabaseWrapper(Context context, String name) {
-        super(context, name, null, DATABASE_VERSION);
+        super(context, name, null, databaseVersion);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(DATABASE_CREATE);
-        db.execSQL(MOVIE_DATABASE_CREATE);
+        db.execSQL(databaseCreate);
+        db.execSQL(movieDatabaseCreate);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db,
                           int oldVersion,
                           int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + USER);
-        db.execSQL("DROP TABLE IF EXISTS " + MOVIE);
+        db.execSQL("DROP TABLE IF EXISTS " + user);
+        db.execSQL("DROP TABLE IF EXISTS " + movie);
         onCreate(db);
     }
 }

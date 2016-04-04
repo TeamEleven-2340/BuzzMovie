@@ -60,7 +60,7 @@ public class EditProfileActivity extends AppCompatActivity {
         final Spinner spinner
                 = (Spinner) findViewById(R.id.spinner);
         final DatabaseWrapper dbHelper
-                = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+                = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
         final SQLiteDatabase rdb
                 = dbHelper.getReadableDatabase();
         userFacade = new UserManager(dbHelper, rdb);

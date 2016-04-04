@@ -24,7 +24,7 @@ public class ProfileActivity extends AppCompatActivity {
                 = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final  DatabaseWrapper dbHelper
-                = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+                = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
         final SQLiteDatabase rdb
                 = dbHelper.getReadableDatabase();
         final UserManagementFacade ufpa

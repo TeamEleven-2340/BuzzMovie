@@ -26,7 +26,7 @@ public class UserDetailDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         final  DatabaseWrapper dbHelper
                 = new DatabaseWrapper(this,
-                DatabaseWrapper.DATABASE_NAME);
+                DatabaseWrapper.databaseName);
         final SQLiteDatabase rdb
                 = dbHelper.getReadableDatabase();
         afepa = new UserManager(dbHelper, rdb);

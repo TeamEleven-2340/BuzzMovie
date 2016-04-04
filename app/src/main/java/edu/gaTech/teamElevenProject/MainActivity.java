@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final DatabaseWrapper dbHelper
                 = new DatabaseWrapper(this,
-                DatabaseWrapper.DATABASE_NAME);
+                DatabaseWrapper.databaseName);
         final SQLiteDatabase rdb = dbHelper
                 .getReadableDatabase();
         final UserManagementFacade um

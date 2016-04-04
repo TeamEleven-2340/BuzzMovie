@@ -37,19 +37,19 @@ public final class Movies {
     public static List<Movie> getMovieList(SQLiteDatabase rdb) {
         final List movieList = new ArrayList();
         final String[] columns = {
-            DatabaseWrapper.MOVIE_NAME,
-            DatabaseWrapper.RATING,
-            DatabaseWrapper.CSRATING,
-            DatabaseWrapper.MERATING,
-            DatabaseWrapper.CERATING,
-            DatabaseWrapper.EERATING,
-            DatabaseWrapper.RATEDPEOPLE,
-            DatabaseWrapper.CSPEOPLERATED,
-            DatabaseWrapper.MEPEOPLERATED,
-            DatabaseWrapper.CEPEOPLERATED,
-            DatabaseWrapper.EEPEOPLERATED
+            DatabaseWrapper.movieName,
+            DatabaseWrapper.rating,
+            DatabaseWrapper.csRating,
+            DatabaseWrapper.meRating,
+            DatabaseWrapper.ceRating,
+            DatabaseWrapper.eeRating,
+            DatabaseWrapper.ratedPeople,
+            DatabaseWrapper.csRatedPeople,
+            DatabaseWrapper.meRatedPeople,
+            DatabaseWrapper.ceRatedPeople,
+            DatabaseWrapper.eeRatedPeople
         };
-        final Cursor cursor = rdb.query(DatabaseWrapper.MOVIE,
+        final Cursor cursor = rdb.query(DatabaseWrapper.movie,
                 columns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {

@@ -29,7 +29,7 @@ public class RecommendationActivity extends AppCompatActivity {
                 = new ArrayAdapter<String>(this, R.layout.item_name);
         final DatabaseWrapper dbHelper
                 = new DatabaseWrapper(this,
-                DatabaseWrapper.DATABASE_MOVIE_NAME);
+                DatabaseWrapper.databaseMovieName);
         final SQLiteDatabase rdb
                 = dbHelper.getReadableDatabase();
         final List<Movie> a = Movies.getMovieList(rdb);

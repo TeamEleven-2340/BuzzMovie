@@ -39,15 +39,15 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * Columns of the database
      */
     private String[] columns = {
-        DatabaseWrapper.USERNAME,
-        DatabaseWrapper.PASSWORD,
-        DatabaseWrapper.EMAIL,
-        DatabaseWrapper.FULLNAME,
-        DatabaseWrapper.MAJOR,
-        DatabaseWrapper.INTEREST,
-        DatabaseWrapper.LOCKSTATUS,
-        DatabaseWrapper.BANSTATUS,
-        DatabaseWrapper.ADMINSTATUS
+        DatabaseWrapper.userName,
+        DatabaseWrapper.passWord,
+        DatabaseWrapper.email,
+        DatabaseWrapper.fullName,
+        DatabaseWrapper.major,
+        DatabaseWrapper.interest,
+        DatabaseWrapper.lockStatus,
+        DatabaseWrapper.banStatus,
+        DatabaseWrapper.adminStatus
     };
 
 
@@ -94,7 +94,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         final List usernameList = new ArrayList();
         final ArrayList userList = new ArrayList();
         final Cursor cursor
-                = rdb.query(DatabaseWrapper.USER,
+                = rdb.query(DatabaseWrapper.user,
                 columns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -227,27 +227,27 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
                 = dbHelper.getWritableDatabase();
         final ContentValues values
                 = new ContentValues();
-        values.put(DatabaseWrapper.USERNAME,
+        values.put(DatabaseWrapper.userName,
                 currentUsername.getName());
-        values.put(DatabaseWrapper.PASSWORD,
+        values.put(DatabaseWrapper.passWord,
                 currentUsername.getPassword());
-        values.put(DatabaseWrapper.BANSTATUS,
+        values.put(DatabaseWrapper.banStatus,
                 Boolean.toString(currentUsername.getBanStatus()));
-        values.put(DatabaseWrapper.LOCKSTATUS,
+        values.put(DatabaseWrapper.lockStatus,
                 Boolean.toString(currentUsername.getLockStatus()));
-        values.put(DatabaseWrapper.MAJOR,
+        values.put(DatabaseWrapper.major,
                 currentUsername.getMajor());
-        values.put(DatabaseWrapper.EMAIL,
+        values.put(DatabaseWrapper.email,
                 currentUsername.getEmail());
-        values.put(DatabaseWrapper.FULLNAME,
+        values.put(DatabaseWrapper.fullName,
                 currentUsername.getFullName());
-        values.put(DatabaseWrapper.INTEREST,
+        values.put(DatabaseWrapper.interest,
                 currentUsername.getInterest());
-        values.put(DatabaseWrapper.ADMINSTATUS,
+        values.put(DatabaseWrapper.adminStatus,
                 Boolean.toString(currentUsername.isAdminStatus()));
         final String [] whereArgs = {currentUsername.getName()};
-        db.update(DatabaseWrapper.USER, values,
-                DatabaseWrapper.USERNAME + "= ?", whereArgs);
+        db.update(DatabaseWrapper.user, values,
+                DatabaseWrapper.userName + "= ?", whereArgs);
     }
     /**
      * Sets the banned status of a given user.

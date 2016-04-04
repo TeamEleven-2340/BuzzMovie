@@ -23,7 +23,7 @@ public class AdminSearch extends AppCompatActivity {
         setSupportActionBar(toolbar);
         final ListView lv = (ListView) findViewById(R.id.userList);
         final DatabaseWrapper dbHelper
-                = new DatabaseWrapper(this, DatabaseWrapper.DATABASE_NAME);
+                = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final UserManagementFacade um = new UserManager(dbHelper, rdb);
         final ArrayList<User> userList = (ArrayList<User>) um.getUserList();
