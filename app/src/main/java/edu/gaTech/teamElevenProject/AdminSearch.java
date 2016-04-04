@@ -25,14 +25,12 @@ public class AdminSearch extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ListView lv = (ListView) findViewById(R.id.userList);
-        final DatabaseWrapper dbHelper
-                = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final UserManagementFacade um = new UserManager(dbHelper, rdb);
         final ArrayList<User> userList = (ArrayList<User>) um.getUserList();
         final ArrayList<User> usersToRemove = new ArrayList<>();
-        final ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<>(this, R.layout.item_name);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.item_name);
 
         for (final User s : userList) {
             if (!s.isAdminStatus()) {
@@ -61,8 +59,7 @@ public class AdminSearch extends AppCompatActivity {
              * @param display the selected movie
              */
             private void changeView(User display) {
-                final Intent intent
-                        = new Intent(getBaseContext(), UserDetailDisplay.class);
+                final Intent intent = new Intent(getBaseContext(), UserDetailDisplay.class);
                 intent.putExtra("user", display.getName());
                 startActivity(intent);
             }
@@ -72,8 +69,7 @@ public class AdminSearch extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            final Intent intent
-                    = new Intent(getBaseContext(), MainActivity.class);
+            final Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             return true;

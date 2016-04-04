@@ -49,14 +49,11 @@ public class ItemListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_list);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final MyClickHandler clickHandler
-                = new MyClickHandler();
+        final MyClickHandler clickHandler = new MyClickHandler();
         queue = Volley.newRequestQueue(this);
         final ListView lv = (ListView) findViewById(R.id.content);
-        movies = (List<Movie>) getIntent()
-                .getSerializableExtra("movies");
-        final ArrayAdapter<String> arrayAdapter
-                = new ArrayAdapter<>(this, R.layout.item_name);
+        movies = (List<Movie>) getIntent().getSerializableExtra("movies");
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.item_name);
 
 
         for (final Movie s : movies) {
@@ -89,8 +86,7 @@ public class ItemListActivity extends AppCompatActivity {
                                 int position,
                                 long id) {
             final Movie selectedMovie = movies.get(position);
-            final MyResponseHandler responseHandler
-                    = new MyResponseHandler(selectedMovie);
+            final MyResponseHandler responseHandler = new MyResponseHandler(selectedMovie);
             final String title = selectedMovie.getName();
             combinedTerms = title.replace(' ', '+');
             final String url = "http://www.omdbapi.com/?t="
