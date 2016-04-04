@@ -7,7 +7,7 @@ import android.test.RenamingDelegatingContext;
 /**
  * Created by Jed on 4/4/16.
  */
-public class HandleRegisterTest {
+public class HandleRegisterTest extends AndroidTestCase {
 
     private DatabaseWrapper db;
 
