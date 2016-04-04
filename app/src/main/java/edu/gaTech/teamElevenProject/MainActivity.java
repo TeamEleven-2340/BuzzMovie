@@ -8,10 +8,12 @@ import android.util.Log;
 import android.view.View;
 
 /**
- * Main activity class.
+ * Main activity class that handles clicking the
+ * login and register buttons on the main screen.
  */
 
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
             um.addAdmin("test", "pass");
         }
         if (um.findUserById("locked") == null) {
-            Log.d("QWERU", "QWERTU");
+            Log.d("qweru", "qwertu");
             um.addUser("locked", "lock");
             um.setLockStatus(true);
         }
         if (um.findUserById("banned") == null) {
-            Log.d("QWERTYU", "QWERTYU");
+            Log.d("qwertyu", "qwertyu");
             um.addUser("banned", "ban");
             um.setBannedStatus(true);
         }
@@ -57,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view the current view
      */
     public void onRegistrationButtonClicked(View view) {
-        final Intent registerintent
+        final Intent registerIntent
                 = new Intent(getBaseContext(), RegisterActivity.class);
-        startActivity(registerintent);
+        startActivity(registerIntent);
     }
 }

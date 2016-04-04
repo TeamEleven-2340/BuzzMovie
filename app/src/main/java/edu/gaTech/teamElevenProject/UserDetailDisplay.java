@@ -11,11 +11,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+/**
+ * UserDetailDisplay handles a user's information, including
+ * if it is a banned user or not.
+ */
 public class UserDetailDisplay extends AppCompatActivity {
     /**
      * ban status of the user
      */
     private String currentBanStatus;
+
     /**
      * User management facade used in UserDetailDisplay
      */
@@ -87,8 +92,7 @@ public class UserDetailDisplay extends AppCompatActivity {
      * @param v the current view
      */
     public void unlockButton(View v) {
-        final Boolean setStatus = false;
-        afepa.setLockStatus(setStatus);
+        afepa.setLockStatus(false);
         final Intent i = new Intent(this.getBaseContext(),
                 AdminSearch.class);
         startActivity(i);

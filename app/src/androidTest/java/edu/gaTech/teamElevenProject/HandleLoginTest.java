@@ -3,7 +3,6 @@ package edu.gaTech.teamElevenProject;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import android.view.View;
 import java.util.ArrayList;
 
 /**

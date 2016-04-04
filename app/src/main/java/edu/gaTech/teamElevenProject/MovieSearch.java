@@ -133,14 +133,14 @@ public class MovieSearch extends AppCompatActivity {
             }
         }
         terms.add(a);
-        String combinedterms = terms.get(0);
+        String combinedTerms = terms.get(0);
         if (terms.size() > 1) {
             for (int i = 1; i < terms.size(); i++) {
-                combinedterms += "+" + terms.get(i);
+                combinedTerms += "+" + terms.get(i);
             }
         }
         final String url = "http://www.omdbapi.com/?s="
-                + combinedterms + "&type=movie&y=&plot=short&r=json";
+                + combinedTerms + "&type=movie&y=&plot=short&r=json";
         final MovieResponseHandler responseHandler
                 = new MovieResponseHandler();
         final JsonObjectRequest jsObjRequest
@@ -223,6 +223,10 @@ public class MovieSearch extends AppCompatActivity {
         }
         return false;
     }
+
+    /**
+     * Class to responses in the list of movies.
+     */
     class MovieResponseHandler implements Response.Listener<JSONObject> {
 
         @Override

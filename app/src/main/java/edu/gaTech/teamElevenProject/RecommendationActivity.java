@@ -10,6 +10,10 @@ import android.widget.ListView;
 
 import java.util.List;
 
+/**
+ * RecommendationActivity handles what happens when a user
+ * makes a movie recommendation through the app.
+ */
 public class RecommendationActivity extends AppCompatActivity {
 
     @Override
@@ -26,7 +30,7 @@ public class RecommendationActivity extends AppCompatActivity {
         Log.d("QWERTY", (String) getIntent()
                 .getSerializableExtra("major"));
         final ArrayAdapter<String> arrayAdapter
-                = new ArrayAdapter<String>(this, R.layout.item_name);
+                = new ArrayAdapter<>(this, R.layout.item_name);
         final DatabaseWrapper dbHelper
                 = new DatabaseWrapper(this,
                 DatabaseWrapper.databaseMovieName);

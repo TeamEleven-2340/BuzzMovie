@@ -29,19 +29,19 @@ public class ProfileActivity extends AppCompatActivity {
                 = dbHelper.getReadableDatabase();
         final UserManagementFacade ufpa
                 = new UserManager(dbHelper, rdb);
-        final TextView namedisplayText
+        final TextView nameDisplayText
                 = (TextView) findViewById(R.id.nameDisplayText);
-        final TextView emaildisplayText
+        final TextView emailDisplayText
                 = (TextView) findViewById(R.id.emailDisplayText);
-        final TextView usernamedisplayText
+        final TextView usernameDisplayText
                 = (TextView) findViewById(R.id.userNameDisplayText);
         final TextView interestText
                 = (TextView) findViewById(R.id.interestTextView);
         final TextView majorText
                 = (TextView) findViewById(R.id.majorEditText);
-        emaildisplayText.setText(ufpa.getCurrentUsername().getEmail());
-        usernamedisplayText.setText(ufpa.getCurrentUsername().getName());
-        namedisplayText.setText(ufpa.getCurrentUsername().getFullName());
+        emailDisplayText.setText(ufpa.getCurrentUsername().getEmail());
+        usernameDisplayText.setText(ufpa.getCurrentUsername().getName());
+        nameDisplayText.setText(ufpa.getCurrentUsername().getFullName());
         interestText.setText(ufpa.getCurrentUsername().getInterest());
         majorText.setText(ufpa.getCurrentUsername().getMajor());
     }

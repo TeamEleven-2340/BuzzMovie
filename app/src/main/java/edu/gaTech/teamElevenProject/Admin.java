@@ -1,7 +1,7 @@
 package edu.gaTech.teamElevenProject;
 
 /**
- * Created by Admin on 3/7/2016.
+ * Class that handles administrators.
  */
 public class Admin extends User {
 

@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by Admin on 3/21/2016.
+ * Wrapper for database magic.
  */
 public class DatabaseWrapper extends SQLiteOpenHelper {
 
@@ -163,7 +163,7 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
             + tnn + ceRatedPeople + tnn + eeRatedPeople + " text not null)";
 
     /**
-     * Constructor
+     * Constructor for a DatabaseWrapper.
      * @param context context of the activity
      * @param name name of the database
      */

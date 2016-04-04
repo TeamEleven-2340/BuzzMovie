@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserManagementFacade {
 
     /**
-     * Adds a user to the userlist.
+     * Adds a user to the userList.
      *
      * @param name the user's username
      * @param pass the user's password
@@ -16,7 +16,7 @@ public interface UserManagementFacade {
     void addUser(String name, String pass);
 
     /**
-     * Adds a admin to the userlist.
+     * Adds a admin to the userList.
      *
      * @param name the user's username
      * @param pass the user's password

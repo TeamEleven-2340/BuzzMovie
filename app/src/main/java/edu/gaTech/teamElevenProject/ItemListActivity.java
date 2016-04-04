@@ -41,7 +41,7 @@ public class ItemListActivity extends AppCompatActivity {
     /**
      * String that contains the name of the movie
      */
-    private String combinedterms;
+    private String combinedTerms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class ItemListActivity extends AppCompatActivity {
         movies = (List<Movie>) getIntent()
                 .getSerializableExtra("movies");
         final ArrayAdapter<String> arrayAdapter
-                = new ArrayAdapter<String>(this, R.layout.item_name);
+                = new ArrayAdapter<>(this, R.layout.item_name);
 
 
         for (final Movie s : movies) {
@@ -74,10 +74,15 @@ public class ItemListActivity extends AppCompatActivity {
         final Intent intent = new Intent(getBaseContext(),
                 MovieDetailDisplay.class);
         intent.putExtra("movie", movie);
-        intent.putExtra("key", combinedterms);
+        intent.putExtra("key", combinedTerms);
         startActivity(intent);
     }
+
+    /**
+     * Class to handle clicks in the list of items.
+     */
     class MyClickHandler implements AdapterView.OnItemClickListener {
+
         @Override
         public void onItemClick(AdapterView<?> parent,
                                 View view,
@@ -87,9 +92,9 @@ public class ItemListActivity extends AppCompatActivity {
             final MyResponseHandler responseHandler
                     = new MyResponseHandler(selectedMovie);
             final String title = selectedMovie.getName();
-            combinedterms = title.replace(' ', '+');
+            combinedTerms = title.replace(' ', '+');
             final String url = "http://www.omdbapi.com/?t="
-                    + combinedterms + "&type=movie&y=&plot=short&r=json";
+                    + combinedTerms + "&type=movie&y=&plot=short&r=json";
             final JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request
                     .Method.GET, url, null, responseHandler,
                     new Response.ErrorListener() {
@@ -102,19 +107,25 @@ public class ItemListActivity extends AppCompatActivity {
             queue.add(jsObjRequest);
         }
     }
+
+    /**
+     * Class to handle responses in the list of items.
+     */
     class MyResponseHandler implements Response.Listener<JSONObject> {
+
         /**
-         * move that is selected
+         * Movie that is selected
          */
         private Movie selectedMovie;
 
         /**
-         * Constructor
+         * Constructor for a response handler
          * @param movie movie that is selected
          */
         public MyResponseHandler(Movie movie) {
             selectedMovie = movie;
         }
+
         @Override
         public void onResponse(JSONObject resp) {
             final  JSONObject obj1 = resp;
@@ -125,10 +136,10 @@ public class ItemListActivity extends AppCompatActivity {
                 selectedMovie.setLength(obj1.optString("Runtime"));
                 selectedMovie.setReleased(obj1.optString("Released"));
                 selectedMovie.setActors(obj1.optString("Actors"));
-                if (!Movies.ITEM_MAP.containsKey(combinedterms)) {
-                    Movies.ITEM_MAP.put(combinedterms, selectedMovie);
+                if (!Movies.ITEM_MAP.containsKey(combinedTerms)) {
+                    Movies.ITEM_MAP.put(combinedTerms, selectedMovie);
                 }
-                final Movie s = Movies.ITEM_MAP.get(combinedterms);
+                final Movie s = Movies.ITEM_MAP.get(combinedTerms);
                 changeView(s);
             } else {
                 final String text = "No Movies with the "

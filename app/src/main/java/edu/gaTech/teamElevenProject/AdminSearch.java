@@ -13,6 +13,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+/**
+ * Class that handles searching of administrators.
+ */
 public class AdminSearch extends AppCompatActivity {
 
     @Override
@@ -27,9 +30,9 @@ public class AdminSearch extends AppCompatActivity {
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final UserManagementFacade um = new UserManager(dbHelper, rdb);
         final ArrayList<User> userList = (ArrayList<User>) um.getUserList();
-        final ArrayList<User> usersToRemove = new ArrayList<User>();
+        final ArrayList<User> usersToRemove = new ArrayList<>();
         final ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this, R.layout.item_name);
+                new ArrayAdapter<>(this, R.layout.item_name);
 
         for (final User s : userList) {
             if (!s.isAdminStatus()) {

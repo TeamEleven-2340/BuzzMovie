@@ -9,6 +9,7 @@ import java.util.Map;
  * and a year in which it was released.
  */
 public class Movie implements Serializable {
+
     /**
      * Name of the movie
      */
@@ -231,7 +232,7 @@ public class Movie implements Serializable {
     }
 
     /**
-     * ToString method
+     * Prints out the movies name and ratings by major.
      * @param major major that we want to show
      * @return the string with title rating and the major
      */

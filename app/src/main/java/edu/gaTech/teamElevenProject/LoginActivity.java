@@ -72,9 +72,9 @@ public class LoginActivity extends AppCompatActivity {
 
         if (af.handleLoginRequest(nameBox.getText().toString(),
                 passBox.getText().toString())) {
-            final User loggedinUser
+            final User loggedInUser
                     = uf.findUserById(nameBox.getText().toString());
-            uf.setCurrentUsername(loggedinUser);
+            uf.setCurrentUsername(loggedInUser);
             if (uf.getBannedStatus()) {
                 text = "Login Failure! Account is Banned!";
                 final Context context = getApplicationContext();

@@ -12,7 +12,6 @@ import java.util.Map;
 /**
  * UserManager handles the database of the registered users.
  */
-
 public class UserManager implements AuthenticationFacade, UserManagementFacade {
 
     /**
@@ -49,8 +48,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         DatabaseWrapper.banStatus,
         DatabaseWrapper.adminStatus
     };
-
-
+    
     /**
      * Creates the UserManager object.
      * @param databaseHelper SQLiteOpenHelper
@@ -101,7 +99,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
             final String username = cursor.getString(0);
             final String password = cursor.getString(1);
             final String email = cursor.getString(2);
-            final String fullname = cursor.getString(3);
+            final String fullName = cursor.getString(3);
             final String major = cursor.getString(4);
             final String interest = cursor.getString(5);
             final String lockStatus = cursor.getString(6);
@@ -109,7 +107,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
             final String adminStatus = cursor.getString(8);
             final User user = new User(username, password);
             user.setInterest(interest);
-            user.setFullName(fullname);
+            user.setFullName(fullName);
             user.setLockStatus(Boolean.parseBoolean(lockStatus));
             user.setBanStatus(Boolean.parseBoolean(banStatus));
             user.setMajor(major);

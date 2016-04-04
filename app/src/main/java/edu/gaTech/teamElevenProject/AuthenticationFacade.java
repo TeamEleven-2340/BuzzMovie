@@ -1,7 +1,7 @@
 package edu.gaTech.teamElevenProject;
 
 /**
- * Created by Admin on 2/2/2016.
+ * Interface that handles login requests.
  */
 public interface AuthenticationFacade {
 

@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * Class that describes what is shown on each movie's info screen.
+ */
 public class MovieDetailDisplay extends AppCompatActivity {
 
     /**
@@ -31,17 +34,17 @@ public class MovieDetailDisplay extends AppCompatActivity {
     /**
      * The title of the movie
      */
-    private String combinedterms;
+    private String combinedTerms;
 
     /**
      * User management facade used in this activity
      */
-    private UserManagementFacade ufmdd;
+    private UserManagementFacade umf;
 
     /**
      * DatabaseWrapper used in this activity
      */
-    private DatabaseWrapper moviedbHelper;
+    private DatabaseWrapper movieDBHelper;
 
     /**
      * SQLiteDatabase used in this activity
@@ -55,12 +58,12 @@ public class MovieDetailDisplay extends AppCompatActivity {
         final Toolbar toolbar
                 = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        moviedbHelper = new DatabaseWrapper(this,
+        movieDBHelper = new DatabaseWrapper(this,
                 DatabaseWrapper.databaseMovieName);
-        rdb = moviedbHelper.getReadableDatabase();
+        rdb = movieDBHelper.getReadableDatabase();
         movie = (Movie) getIntent().
                 getSerializableExtra("movie");
-        combinedterms = (String) getIntent().
+        combinedTerms = (String) getIntent().
                 getSerializableExtra("key");
         final List<Movie> movieList
                 = Movies.getMovieList(rdb);
@@ -73,7 +76,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
         if (movie.getPeopleRated() == 0) {
             movie.setRating(0);
         }
-        ufmdd = new UserManager(moviedbHelper, rdb);
+        umf = new UserManager(movieDBHelper, rdb);
         final TextView titleView
                 = (TextView) findViewById(R.id.titleView);
         final TextView genreView
@@ -101,7 +104,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
      */
     public void onRateButtonClicked(View v) {
         final String major
-                = ufmdd.getCurrentUsername().getMajor();
+                = umf.getCurrentUsername().getMajor();
         double majorRating;
         double currentMajorRating;
         double rating = ratingBar.getRating();
@@ -135,7 +138,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
         movie.setRating(rating);
         final String ratingString = String.format("%.2g%n", rating);
         ratingView.setText(ratingString);
-        Movies.ITEM_MAP.put(combinedterms, movie);
+        Movies.ITEM_MAP.put(combinedTerms, movie);
         final List<Movie> a = Movies.ITEMS;
         for (int i = 0; i < a.size(); i++) {
             if (a.get(i).getName()
@@ -165,7 +168,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
      */
     private void addMovie(Movie mov) {
         final SQLiteDatabase db
-                = moviedbHelper.getWritableDatabase();
+                = movieDBHelper.getWritableDatabase();
         double csRating = 0;
         double meRating = 0;
         double eeRating = 0;
@@ -219,7 +222,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
      * @param mov the movie that has to be updated
      */
     private void updateMovie(Movie mov) {
-        final SQLiteDatabase db = moviedbHelper.getWritableDatabase();
+        final SQLiteDatabase db = movieDBHelper.getWritableDatabase();
         double csRating = 0;
         double meRating = 0;
         double eeRating = 0;
