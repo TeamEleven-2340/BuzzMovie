@@ -29,10 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        final Toolbar toolbar
-                = (Toolbar) findViewById(R.id.toolbar);
-        dbHelper = new DatabaseWrapper(this,
-                DatabaseWrapper.databaseName);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
         rdb = dbHelper.getReadableDatabase();
         setSupportActionBar(toolbar);
     }
@@ -43,17 +41,13 @@ public class RegisterActivity extends AppCompatActivity {
      * @param v the current view
      */
     public void onRegisterClicked(View v) {
-        final EditText registerNameBox
-                = (EditText) findViewById(R.id.IDEditText);
-        final EditText registerPassBox
-                = (EditText) findViewById(R.id.passwordEditText);
-        final UserManagementFacade rg
-                = new UserManager(dbHelper, rdb);
+        final EditText registerNameBox = (EditText) findViewById(R.id.IDEditText);
+        final EditText registerPassBox = (EditText) findViewById(R.id.passwordEditText);
+        final UserManagementFacade rg = new UserManager(dbHelper, rdb);
         CharSequence text;
 
         if ("".equals(registerPassBox.getText().toString())
-                || "".equals(registerNameBox
-                .getText().toString())) {
+                || "".equals(registerNameBox.getText().toString())) {
             text = "No Username or Password Entered!";
             final Context context = getApplicationContext();
             final int duration = Toast.LENGTH_SHORT;

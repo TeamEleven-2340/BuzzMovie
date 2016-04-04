@@ -65,8 +65,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @param user the current user
      */
     public void setCurrentUsername(User user) {
-        final ArrayList<User> userList
-                = (ArrayList<User>) getUserList();
+        final ArrayList<User> userList = (ArrayList<User>) getUserList();
         for (int i = 0; i < userList.size(); i++) {
             final User foundUser = userList.get(i);
             if (foundUser.getName()
@@ -91,8 +90,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
     public List<User> getUserList() {
         final List usernameList = new ArrayList();
         final ArrayList userList = new ArrayList();
-        final Cursor cursor
-                = rdb.query(DatabaseWrapper.user,
+        final Cursor cursor = rdb.query(DatabaseWrapper.user,
                 columns, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -126,8 +124,7 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * @return whether the specified id is in the list of registered users
      */
     public User findUserById(String id) {
-        final ArrayList<User> userList
-                = (ArrayList<User>) getUserList();
+        final ArrayList<User> userList = (ArrayList<User>) getUserList();
         for (int i = 0; i < userList.size(); i++) {
             final User user = userList.get(i);
             if (user.getName().equals(id)) {
@@ -221,10 +218,8 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
      * Update the user database
      */
     public void updateDatabase() {
-        final SQLiteDatabase db
-                = dbHelper.getWritableDatabase();
-        final ContentValues values
-                = new ContentValues();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        final ContentValues values = new ContentValues();
         values.put(DatabaseWrapper.userName,
                 currentUsername.getName());
         values.put(DatabaseWrapper.passWord,

@@ -20,22 +20,15 @@ public class RecommendationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
-        final Toolbar toolbar
-                = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final ListView listView
-                = (ListView) findViewById(R.id.recListView);
-        final String major
-                = (String) getIntent().getSerializableExtra("major");
-        Log.d("QWERTY", (String) getIntent()
-                .getSerializableExtra("major"));
-        final ArrayAdapter<String> arrayAdapter
-                = new ArrayAdapter<>(this, R.layout.item_name);
-        final DatabaseWrapper dbHelper
-                = new DatabaseWrapper(this,
+        final ListView listView = (ListView) findViewById(R.id.recListView);
+        final String major = (String) getIntent().getSerializableExtra("major");
+        Log.d("QWERTY", (String) getIntent().getSerializableExtra("major"));
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.item_name);
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this,
                 DatabaseWrapper.databaseMovieName);
-        final SQLiteDatabase rdb
-                = dbHelper.getReadableDatabase();
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final List<Movie> a = Movies.getMovieList(rdb);
         if ("None".equals(major)) {
             for (final Movie b : a) {
