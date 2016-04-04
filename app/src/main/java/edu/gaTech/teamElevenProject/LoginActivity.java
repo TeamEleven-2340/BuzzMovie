@@ -58,22 +58,17 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void loginButtonClicked(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        final DatabaseWrapper dbHelper
-                = new DatabaseWrapper(this,
-                DatabaseWrapper.databaseName);
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
-        final AuthenticationFacade af
-                = new UserManager(dbHelper, rdb);
-        final UserManagementFacade uf
-                = new UserManager(dbHelper, rdb);
+        final AuthenticationFacade af = new UserManager(dbHelper, rdb);
+        final UserManagementFacade uf = new UserManager(dbHelper, rdb);
         final EditText nameBox = (EditText) findViewById(R.id.idEditText);
         final EditText passBox = (EditText) findViewById(R.id.passwordEditText);
         CharSequence text;
 
         if (af.handleLoginRequest(nameBox.getText().toString(),
                 passBox.getText().toString())) {
-            final User loggedInUser
-                    = uf.findUserById(nameBox.getText().toString());
+            final User loggedInUser = uf.findUserById(nameBox.getText().toString());
             uf.setCurrentUsername(loggedInUser);
             if (uf.getBannedStatus()) {
                 text = "Login Failure! Account is Banned!";

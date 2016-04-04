@@ -56,16 +56,12 @@ public class MovieSearch extends AppCompatActivity {
         setContentView(R.layout.activity_movie_search);
         queue = Volley.newRequestQueue(this);
         searchEditText = ((EditText) findViewById(R.id.searchEditText));
-        final Spinner spinner
-                = (Spinner) findViewById(R.id.majorFilter);
-        final ArrayAdapter<CharSequence> adapter
-                = ArrayAdapter.createFromResource(this,
+        final Spinner spinner = (Spinner) findViewById(R.id.majorFilter);
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.majorsFilter, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout
-                .simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView
-                .OnItemSelectedListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent,
                                        View view,
@@ -141,10 +137,8 @@ public class MovieSearch extends AppCompatActivity {
         }
         final String url = "http://www.omdbapi.com/?s="
                 + combinedTerms + "&type=movie&y=&plot=short&r=json";
-        final MovieResponseHandler responseHandler
-                = new MovieResponseHandler();
-        final JsonObjectRequest jsObjRequest
-                = new JsonObjectRequest(Request.Method.GET, url,
+        final MovieResponseHandler responseHandler = new MovieResponseHandler();
+        final JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url,
                 null, responseHandler, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -176,11 +170,9 @@ public class MovieSearch extends AppCompatActivity {
      * @param view Current view
      */
     public void recommendButtonClicked(View view) {
-        final Intent intent
-                = new Intent(this, RecommendationActivity.class);
+        final Intent intent = new Intent(this, RecommendationActivity.class);
         intent.putExtra("major", currentMajor);
-        final DatabaseWrapper dbHelper
-                = new DatabaseWrapper(this,
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this,
                 DatabaseWrapper.databaseMovieName);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final List<Movie> movieList = Movies.getMovieList(rdb);
@@ -240,8 +232,7 @@ public class MovieSearch extends AppCompatActivity {
             // data labeled result
             final JSONArray array = obj1.optJSONArray("Search");
             if (array != null) {
-                final ArrayList<edu.gaTech.teamElevenProject.Movie> movies
-                        = new ArrayList<>();
+                final ArrayList<edu.gaTech.teamElevenProject.Movie> movies = new ArrayList<>();
                 for (int i = 0; i < array.length(); i++) {
 
                     try {

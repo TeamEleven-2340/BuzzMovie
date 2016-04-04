@@ -55,21 +55,15 @@ public class MovieDetailDisplay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail_display);
-        final Toolbar toolbar
-                = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        movieDBHelper = new DatabaseWrapper(this,
-                DatabaseWrapper.databaseMovieName);
+        movieDBHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseMovieName);
         rdb = movieDBHelper.getReadableDatabase();
-        movie = (Movie) getIntent().
-                getSerializableExtra("movie");
-        combinedTerms = (String) getIntent().
-                getSerializableExtra("key");
-        final List<Movie> movieList
-                = Movies.getMovieList(rdb);
+        movie = (Movie) getIntent().getSerializableExtra("movie");
+        combinedTerms = (String) getIntent().getSerializableExtra("key");
+        final List<Movie> movieList = Movies.getMovieList(rdb);
         for (int i = 0; i < movieList.size(); i++) {
-            if (movie.getName().equals(movieList.
-                    get(i).getName())) {
+            if (movie.getName().equals(movieList.get(i).getName())) {
                 movie = movieList.get(i);
             }
         }
@@ -77,16 +71,11 @@ public class MovieDetailDisplay extends AppCompatActivity {
             movie.setRating(0);
         }
         umf = new UserManager(movieDBHelper, rdb);
-        final TextView titleView
-                = (TextView) findViewById(R.id.titleView);
-        final TextView genreView
-                = (TextView) findViewById(R.id.genreView);
-        final TextView actorsView
-                = (TextView) findViewById(R.id.actorsView);
-        final TextView lengthView
-                = (TextView) findViewById(R.id.lengthView);
-        final TextView releasedView
-                = (TextView) findViewById(R.id.releasedView);
+        final TextView titleView = (TextView) findViewById(R.id.titleView);
+        final TextView genreView = (TextView) findViewById(R.id.genreView);
+        final TextView actorsView = (TextView) findViewById(R.id.actorsView);
+        final TextView lengthView = (TextView) findViewById(R.id.lengthView);
+        final TextView releasedView = (TextView) findViewById(R.id.releasedView);
         ratingView = (TextView) findViewById(R.id.ratingView);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         final String rating = String.format("%.2g%n", movie.getRating());
@@ -103,8 +92,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
      * @param v the current view
      */
     public void onRateButtonClicked(View v) {
-        final String major
-                = umf.getCurrentUsername().getMajor();
+        final String major = umf.getCurrentUsername().getMajor();
         double majorRating;
         double currentMajorRating;
         double rating = ratingBar.getRating();
@@ -129,9 +117,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
                 movie.setRatingsByMajors(major, rating);
             }
         }
-        final double currentRating
-                = movie.getRating()
-                * movie.getPeopleRated();
+        final double currentRating = movie.getRating() * movie.getPeopleRated();
         rating = currentRating + rating;
         movie.setPeopleRated(movie.getPeopleRated() + 1);
         rating = rating / movie.getPeopleRated();
@@ -167,8 +153,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
      * @param mov movie that you are adding
      */
     private void addMovie(Movie mov) {
-        final SQLiteDatabase db
-                = movieDBHelper.getWritableDatabase();
+        final SQLiteDatabase db = movieDBHelper.getWritableDatabase();
         double csRating = 0;
         double meRating = 0;
         double eeRating = 0;
