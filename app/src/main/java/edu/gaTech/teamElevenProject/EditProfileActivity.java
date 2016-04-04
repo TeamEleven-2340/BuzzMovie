@@ -54,18 +54,13 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        final Toolbar toolbar
-                = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final Spinner spinner
-                = (Spinner) findViewById(R.id.spinner);
-        final DatabaseWrapper dbHelper
-                = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
-        final SQLiteDatabase rdb
-                = dbHelper.getReadableDatabase();
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
+        final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         userFacade = new UserManager(dbHelper, rdb);
-        final ArrayAdapter<CharSequence> adapter
-                = ArrayAdapter.createFromResource(this,
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.majors, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
@@ -79,18 +74,15 @@ public class EditProfileActivity extends AppCompatActivity {
                                        View view,
                                        int position,
                                        long id) {
-                currentMajorSelected
-                        = parent.getItemAtPosition(position).toString();
+                currentMajorSelected = parent.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                currentMajorSelected
-                        = userFacade.getCurrentUsername().getMajor();
+                currentMajorSelected = userFacade.getCurrentUsername().getMajor();
             }
         });
-        final TextView userNameDisplay
-                = (TextView) findViewById(R.id.userNameDisplayText);
+        final TextView userNameDisplay = (TextView) findViewById(R.id.userNameDisplayText);
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         interestEditText = (EditText) findViewById(R.id.interestEditText);

@@ -155,8 +155,7 @@ public class DatabaseWrapper extends SQLiteOpenHelper {
     /**
      * Database creation for Movie.db
      */
-    private static final String movieDatabaseCreate
-            = "CREATE TABLE " + movie + " (" + movieName
+    private static final String movieDatabaseCreate = "CREATE TABLE " + movie + " (" + movieName
             + tnn + rating + tnn + csRating + tnn + meRating
             + tnn + ceRating + tnn + eeRating + tnn + ratedPeople
             + tnn + csRatedPeople + tnn + meRatedPeople
