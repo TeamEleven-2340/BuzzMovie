@@ -42,12 +42,12 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
         DatabaseWrapper.USERNAME,
         DatabaseWrapper.PASSWORD,
         DatabaseWrapper.EMAIL,
-        DatabaseWrapper.fullName,
+        DatabaseWrapper.FULLNAME,
         DatabaseWrapper.MAJOR,
         DatabaseWrapper.INTEREST,
-        DatabaseWrapper.lockStatus,
-        DatabaseWrapper.banStatus,
-        DatabaseWrapper.adminStatus
+        DatabaseWrapper.LOCKSTATUS,
+        DatabaseWrapper.BANSTATUS,
+        DatabaseWrapper.ADMINSTATUS
     };
 
 
@@ -231,19 +231,19 @@ public class UserManager implements AuthenticationFacade, UserManagementFacade {
                 currentUsername.getName());
         values.put(DatabaseWrapper.PASSWORD,
                 currentUsername.getPassword());
-        values.put(DatabaseWrapper.banStatus,
+        values.put(DatabaseWrapper.BANSTATUS,
                 Boolean.toString(currentUsername.getBanStatus()));
-        values.put(DatabaseWrapper.lockStatus,
+        values.put(DatabaseWrapper.LOCKSTATUS,
                 Boolean.toString(currentUsername.getLockStatus()));
         values.put(DatabaseWrapper.MAJOR,
                 currentUsername.getMajor());
         values.put(DatabaseWrapper.EMAIL,
                 currentUsername.getEmail());
-        values.put(DatabaseWrapper.fullName,
+        values.put(DatabaseWrapper.FULLNAME,
                 currentUsername.getFullName());
         values.put(DatabaseWrapper.INTEREST,
                 currentUsername.getInterest());
-        values.put(DatabaseWrapper.adminStatus,
+        values.put(DatabaseWrapper.ADMINSTATUS,
                 Boolean.toString(currentUsername.isAdminStatus()));
         final String [] whereArgs = {currentUsername.getName()};
         db.update(DatabaseWrapper.USER, values,

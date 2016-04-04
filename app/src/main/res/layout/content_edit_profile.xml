@@ -18,7 +18,6 @@
         android:text="@string/userName"
         android:id="@+id/UserNameText"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -27,7 +26,6 @@
         android:text="New Text"
         android:id="@+id/userNameDisplayText"
         android:layout_below="@+id/UserNameText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -36,7 +34,6 @@
         android:text="@string/email1"
         android:id="@+id/emailText"
         android:layout_below="@+id/userNameDisplayText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -44,9 +41,9 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
+        android:labelFor="@+id/emailEditText"
         android:id="@+id/emailEditText"
         android:layout_below="@+id/emailText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -55,7 +52,6 @@
         android:text="@string/name4"
         android:id="@+id/nameText"
         android:layout_below="@+id/emailEditText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -63,9 +59,9 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
+        android:labelFor="@+id/nameEditText"
         android:id="@+id/nameEditText"
         android:layout_below="@+id/nameText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -74,7 +70,6 @@
         android:text="@string/major"
         android:id="@+id/majorText"
         android:layout_below="@+id/nameEditText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -83,15 +78,14 @@
         android:text="@string/interest"
         android:id="@+id/interestText"
         android:layout_below="@+id/spinner"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:labelFor="@+id/interestEditText"
         android:id="@+id/interestEditText"
         android:layout_below="@+id/interestText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:inputType="textPassword" />
 
@@ -101,6 +95,5 @@
         android:id="@+id/spinner"
         android:spinnerMode="dropdown"
         android:layout_below="@+id/majorText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 </RelativeLayout>

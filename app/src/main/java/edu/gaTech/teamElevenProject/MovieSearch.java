@@ -48,14 +48,14 @@ public class MovieSearch extends AppCompatActivity {
     /**
      * the editText of the movie search
      */
-    private EditText searcheditText;
+    private EditText searchEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_search);
         queue = Volley.newRequestQueue(this);
-        searcheditText = ((EditText) findViewById(R.id.searchEditText));
+        searchEditText = ((EditText) findViewById(R.id.searchEditText));
         final Spinner spinner
                 = (Spinner) findViewById(R.id.majorFilter);
         final ArrayAdapter<CharSequence> adapter
@@ -116,7 +116,7 @@ public class MovieSearch extends AppCompatActivity {
      * @param view view
      */
     public void onGetMovie(View view) {
-        final String searchTerm = searcheditText.getText().toString();
+        final String searchTerm = searchEditText.getText().toString();
         int count = 1;
         String a = "";
         final ArrayList<String> terms = new ArrayList<>();

@@ -18,7 +18,6 @@
         android:text="@string/title"
         android:id="@+id/titleDisplay"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="20sp" />
 
@@ -28,7 +27,6 @@
         android:text="@string/genre1"
         android:id="@+id/genreDisplay"
         android:layout_below="@+id/titleView"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="20sp"/>
 
@@ -38,7 +36,6 @@
         android:text="@string/actors"
         android:id="@+id/actorsDisplay"
         android:layout_below="@+id/genreView"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="20sp"/>
 
@@ -49,7 +46,6 @@
         android:text="@string/length"
         android:id="@+id/lengthDisplay"
         android:layout_below="@+id/actorsView"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="20sp"/>
 
@@ -59,7 +55,6 @@
         android:text="@string/released"
         android:id="@+id/releasedDisplay"
         android:layout_below="@+id/lengthView"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="20sp"/>
 
@@ -69,7 +64,6 @@
         android:text="@string/rating"
         android:id="@+id/ratingDisplay"
         android:layout_below="@+id/releasedView"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="20sp"/>
 
@@ -78,7 +72,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/titleView"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/titleDisplay"
         android:layout_toEndOf="@+id/titleDisplay"
         android:textSize="20sp"/>
 
@@ -87,7 +80,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/genreView"
         android:layout_below="@+id/titleView"
-        android:layout_toRightOf="@+id/genreDisplay"
         android:layout_toEndOf="@+id/genreDisplay"
         android:textSize="20sp"/>
 
@@ -96,7 +88,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/lengthView"
         android:layout_below="@+id/actorsView"
-        android:layout_toRightOf="@+id/lengthDisplay"
         android:layout_toEndOf="@+id/lengthDisplay"
         android:textSize="20sp"/>
 
@@ -105,7 +96,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/releasedView"
         android:layout_below="@+id/lengthView"
-        android:layout_toRightOf="@+id/releasedDisplay"
         android:layout_toEndOf="@+id/releasedDisplay"
         android:textSize="20sp"/>
 
@@ -114,7 +104,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/ratingView"
         android:layout_below="@+id/releasedView"
-        android:layout_toRightOf="@+id/ratingDisplay"
         android:layout_toEndOf="@+id/ratingDisplay"
         android:textSize="20sp"/>
 
@@ -123,7 +112,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/actorsView"
         android:layout_below="@+id/genreView"
-        android:layout_toRightOf="@+id/actorsDisplay"
         android:layout_toEndOf="@+id/actorsDisplay"
         android:textSize="20sp"/>
 
@@ -132,7 +120,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
         android:layout_below="@+id/ratingDisplay"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:numStars="5"
         android:stepSize="0.5"
@@ -144,7 +131,6 @@
         android:text="@string/rateIt"
         android:id="@+id/ratingButton"
         android:layout_below="@+id/ratingBar"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="onRateButtonClicked" />
 

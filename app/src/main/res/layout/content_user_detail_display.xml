@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/username"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/nameText"
         android:layout_toEndOf="@+id/nameText" />
 
     <TextView
@@ -26,7 +25,6 @@
         android:text="@string/name1"
         android:id="@+id/nameText"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -35,7 +33,6 @@
         android:text="@string/banStatus"
         android:id="@+id/banStatusText"
         android:layout_below="@+id/username"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Spinner
@@ -43,7 +40,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner2"
         android:layout_alignTop="@+id/banStatusText"
-        android:layout_toRightOf="@+id/banStatusText"
         android:layout_toEndOf="@+id/banStatusText" />
 
     <Button
@@ -61,7 +57,6 @@
         android:text="@string/lockStatus"
         android:id="@+id/lock"
         android:layout_below="@+id/spinner2"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -69,7 +64,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/lockStatus"
         android:layout_below="@+id/spinner2"
-        android:layout_toRightOf="@+id/lock"
         android:layout_toEndOf="@+id/lock" />
 
     <Button

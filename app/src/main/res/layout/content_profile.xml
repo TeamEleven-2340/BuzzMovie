@@ -16,17 +16,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/userName1"
-        android:id="@+id/usernameText"
+        android:id="@+id/userNameDisplayText"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/userNameDisplay"
-        android:layout_below="@+id/usernameText"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/userNameDisplayText"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -35,7 +33,6 @@
         android:text="@string/email"
         android:id="@+id/emailText"
         android:layout_below="@+id/userNameDisplayText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -43,7 +40,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/emailDisplayText"
         android:layout_below="@+id/emailText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -51,8 +47,7 @@
         android:layout_height="wrap_content"
         android:text="@string/name3"
         android:id="@+id/nameText"
-        android:layout_below="@+id/EmailDisplayText"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/emailDisplayText"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -60,7 +55,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/nameDisplayText"
         android:layout_below="@+id/nameText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <ImageView
@@ -69,7 +63,6 @@
         android:id="@+id/imageView"
         android:src="@drawable/main_background"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:contentDescription="@string/yellowJacketLogo" />
 
@@ -79,7 +72,6 @@
         android:text="@string/major1"
         android:id="@+id/majorText"
         android:layout_below="@+id/nameDisplayText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -87,7 +79,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/majorEditText"
         android:layout_below="@+id/majorText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -96,7 +87,6 @@
         android:text="@string/interest1"
         android:id="@+id/interestText"
         android:layout_below="@+id/majorEditText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -104,7 +94,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/interestTextView"
         android:layout_below="@+id/interestText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>

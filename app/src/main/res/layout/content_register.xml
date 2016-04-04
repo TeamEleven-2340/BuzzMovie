@@ -8,9 +8,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#1471d4"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="edu.gaTech.teamElevenProject.RegisterActivity"
+    android:background="#1471d4"
     tools:showIn="@layout/activity_register">
 
     <EditText
@@ -18,12 +18,13 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
+        android:labelFor="@+id/passwordEditText"
         android:id="@+id/passwordEditText"
         android:layout_below="@+id/passwordTextView"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
+        android:labelFor="@+id/IDEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -31,7 +32,6 @@
         android:ems="10"
         android:id="@+id/IDEditText"
         android:layout_below="@+id/LogIn"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -40,7 +40,6 @@
         android:text="@string/password1"
         android:id="@+id/passwordTextView"
         android:layout_below="@+id/IDEditText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -49,7 +48,6 @@
         android:text="@string/id1"
         android:id="@+id/LogIn"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
@@ -59,7 +57,6 @@
         android:text="@string/register"
         android:id="@+id/RegisterButton"
         android:layout_below="@+id/passwordEditText"
-        android:layout_toRightOf="@+id/passwordTextView"
         android:layout_toEndOf="@+id/passwordTextView"
         android:onClick="onRegisterClicked" />
 
