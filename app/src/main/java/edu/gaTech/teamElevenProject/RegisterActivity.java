@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
+        dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASENAME);
         rdb = dbHelper.getReadableDatabase();
         setSupportActionBar(toolbar);
     }

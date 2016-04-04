@@ -16,7 +16,7 @@ public class AddUserTest extends AndroidTestCase{
     public void setUp() throws Exception {
         super.setUp();
         RenamingDelegatingContext context = new RenamingDelegatingContext(getContext(), "test_");
-        db = new DatabaseWrapper(context, DatabaseWrapper.databaseName);
+        db = new DatabaseWrapper(context, DatabaseWrapper.DATABASENAME);
     }
 
     @Override

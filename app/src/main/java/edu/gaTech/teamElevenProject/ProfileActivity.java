@@ -22,7 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final  DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
+        final  DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASENAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final UserManagementFacade ufpa = new UserManager(dbHelper, rdb);
         final TextView nameDisplayText = (TextView) findViewById(R.id.nameDisplayText);

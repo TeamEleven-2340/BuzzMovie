@@ -29,7 +29,7 @@ public class UserDetailDisplay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final  DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
+        final  DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASENAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         afepa = new UserManager(dbHelper, rdb);
         setContentView(R.layout.activity_user_detail_display);

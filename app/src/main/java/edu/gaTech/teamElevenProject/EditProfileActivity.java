@@ -57,7 +57,7 @@ public class EditProfileActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASENAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         userFacade = new UserManager(dbHelper, rdb);
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,

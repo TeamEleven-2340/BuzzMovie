@@ -27,7 +27,7 @@ public class RecommendationActivity extends AppCompatActivity {
         Log.d("QWERTY", (String) getIntent().getSerializableExtra("major"));
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.item_name);
         final DatabaseWrapper dbHelper = new DatabaseWrapper(this,
-                DatabaseWrapper.databaseMovieName);
+                DatabaseWrapper.DATABASEMOVIENAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final List<Movie> a = Movies.getMovieList(rdb);
         if ("None".equals(major)) {

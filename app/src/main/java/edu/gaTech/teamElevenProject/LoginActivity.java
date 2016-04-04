@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void loginButtonClicked(View v) {
         Log.d("LOGIN ACTIVITY", "Login Button Pressed");
-        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseName);
+        final DatabaseWrapper dbHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASENAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final AuthenticationFacade af = new UserManager(dbHelper, rdb);
         final UserManagementFacade uf = new UserManager(dbHelper, rdb);

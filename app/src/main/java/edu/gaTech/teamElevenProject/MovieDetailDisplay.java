@@ -57,7 +57,7 @@ public class MovieDetailDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail_display);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        movieDBHelper = new DatabaseWrapper(this, DatabaseWrapper.databaseMovieName);
+        movieDBHelper = new DatabaseWrapper(this, DatabaseWrapper.DATABASEMOVIENAME);
         rdb = movieDBHelper.getReadableDatabase();
         movie = (Movie) getIntent().getSerializableExtra("movie");
         combinedTerms = (String) getIntent().getSerializableExtra("key");
@@ -238,19 +238,19 @@ public class MovieDetailDisplay extends AppCompatActivity {
             eeRated = mov.getPeopleByMajors().get("EE");
         }
         final ContentValues values = new ContentValues();
-        values.put(DatabaseWrapper.movieName, mov.getName());
-        values.put(DatabaseWrapper.rating, mov.getRating());
-        values.put(DatabaseWrapper.csRating, csRating);
-        values.put(DatabaseWrapper.meRating, meRating);
-        values.put(DatabaseWrapper.ceRating, ceRating);
-        values.put(DatabaseWrapper.eeRating, eeRating);
-        values.put(DatabaseWrapper.ratedPeople, ratedPeople);
-        values.put(DatabaseWrapper.csRatedPeople, csRated);
-        values.put(DatabaseWrapper.meRatedPeople, meRated);
-        values.put(DatabaseWrapper.ceRatedPeople, ceRated);
-        values.put(DatabaseWrapper.eeRatedPeople, eeRated);
+        values.put(DatabaseWrapper.MOVIENAME, mov.getName());
+        values.put(DatabaseWrapper.RATING, mov.getRating());
+        values.put(DatabaseWrapper.CSRATING, csRating);
+        values.put(DatabaseWrapper.MERATING, meRating);
+        values.put(DatabaseWrapper.CERATING, ceRating);
+        values.put(DatabaseWrapper.EERATING, eeRating);
+        values.put(DatabaseWrapper.RATEDPEOPLE, ratedPeople);
+        values.put(DatabaseWrapper.CSRATEDPEOPLE, csRated);
+        values.put(DatabaseWrapper.MERATEDPEOPLE, meRated);
+        values.put(DatabaseWrapper.CERATEDPEOPLE, ceRated);
+        values.put(DatabaseWrapper.EERATEDPEOPLE, eeRated);
         final String[] whereArgs = {mov.getName()};
-        db.update(DatabaseWrapper.movie, values, DatabaseWrapper
-                .movieName + "= ?", whereArgs);
+        db.update(DatabaseWrapper.MOVIE, values, DatabaseWrapper
+                .MOVIENAME + "= ?", whereArgs);
     }
 }

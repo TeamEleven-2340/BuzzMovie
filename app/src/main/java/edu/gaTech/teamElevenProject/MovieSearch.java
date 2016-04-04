@@ -173,7 +173,7 @@ public class MovieSearch extends AppCompatActivity {
         final Intent intent = new Intent(this, RecommendationActivity.class);
         intent.putExtra("major", currentMajor);
         final DatabaseWrapper dbHelper = new DatabaseWrapper(this,
-                DatabaseWrapper.databaseMovieName);
+                DatabaseWrapper.DATABASEMOVIENAME);
         final SQLiteDatabase rdb = dbHelper.getReadableDatabase();
         final List<Movie> movieList = Movies.getMovieList(rdb);
         boolean a = false;
