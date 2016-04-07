@@ -25,19 +25,21 @@ public class HandleRegisterTest extends AndroidTestCase {
 
     public void testHandleRegisterRequest() throws Exception {
         setUp();
-        String name = "validUser";
-        String pass = "validPass";
-        boolean inDatabase = false;
+        String userNotRegistered = "name1";
+        String userRegistered = "name2";
+        String passNR = "pass1";
+        String passR = "pass2";
         SQLiteDatabase rdb = db.getReadableDatabase();
         UserManager userManager = new UserManager(db, rdb);
+        userManager.addUser(userRegistered, passR);
 
-        assertFalse(userManager.handleRegisterRequest(name, pass));
-        System.out.println(name + " can register");
+        //checks to make sure that a user not in the system can register
+        assertFalse(userManager.handleRegisterRequest(userNotRegistered, passNR));
+        System.out.println(userNotRegistered + " can register");
 
-        userManager.addUser(name, pass);
-
-        assertTrue(userManager.handleRegisterRequest(name, pass));
-        System.out.println(name + " is already a user");
+        //checks to make sure that someone cannot register with a username that is already taken
+        assertTrue(userManager.handleRegisterRequest(userRegistered, passR));
+        System.out.println(userRegistered + " is already a user");
         tearDown();
     }
 }
